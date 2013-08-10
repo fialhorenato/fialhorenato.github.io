@@ -6,21 +6,23 @@ body{
 	height:100%
 }
 
+
 i{
 	padding-left:15px;
 	padding-right:15px;
-	color:gray;
+	color:black;
 	text-align:center;
 }
 
 i:hover{
 	position:relative;
 	top:-3px;
-	color: #000;
+	color: dark-gray;
 }
 
 
 h1.title {
+	font-family: 'Ubuntu', Tahoma;
 	color: #000;
 	text-align: center;
 }
@@ -37,7 +39,19 @@ a:visited {
 }
 
 div.content{
+	font-family: 'Ubuntu', Tahoma;
 	width:600px;
 	margin:0 auto;
-	text-align:center
+	text-align:left
 }
+
+p.icons{
+	text-align:center;
+}
+
+div.content a{
+	font-family: 'Ubuntu', Tahoma;
+	text-decoration: none;
+	color: #000;
+}
+
