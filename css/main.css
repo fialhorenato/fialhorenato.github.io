@@ -22,7 +22,7 @@ i:hover{
 
 
 h1.title {
-	font-family: 'Ubuntu', Tahoma;
+	font-family: 'Open Sans', Tahoma;
 	color: #000;
 	text-align: center;
 }
@@ -39,7 +39,7 @@ a:visited {
 }
 
 div.content{
-	font-family: 'Ubuntu', Tahoma;
+	font-family: 'Open Sans', Tahoma;
 	width:600px;
 	margin:0 auto;
 	text-align:left
@@ -50,7 +50,7 @@ p.icons{
 }
 
 div.content a{
-	font-family: 'Ubuntu', Tahoma;
+	font-family: 'Open Sans', Tahoma;
 	text-decoration: none;
 	color: #000;
 }
