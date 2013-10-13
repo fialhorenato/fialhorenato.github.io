@@ -3,55 +3,59 @@ body{
 	margin:0;
 	padding:0;
 	width:100%;
-	height:100%
+	height:100%;
+	font-family: "Ubuntu";
 }
-
 
 i{
 	padding-left:15px;
 	padding-right:15px;
-	color:black;
+	color:gray;
 	text-align:center;
 }
 
 i:hover{
 	position:relative;
 	top:-3px;
-	color: dark-gray;
+	color: #000;
 }
 
 
 h1.title {
-	font-family: 'Open Sans', Tahoma;
 	color: #000;
 	text-align: center;
+	font-family: "Ubuntu";
 }
 
-a{
+a.icons{
 	text-decoration:none;
-	color:none;
 	outline:0
 }
 
-a:visited {
+a.icons:visited {
 	text-decoration:none;
 	color : gray;
 }
 
 div.content{
-	font-family: 'Open Sans', Tahoma;
 	width:600px;
 	margin:0 auto;
-	text-align:left
+	text-align:justify;
 }
 
-p.icons{
-	text-align:center;
+div.content p{
+	font-size:14px;
+	text-align: justify;
 }
 
-div.content a{
-	font-family: 'Open Sans', Tahoma;
-	text-decoration: none;
-	color: #000;
+div.icons-jumbotron{
+	width: 600px;
+	margin: 0 auto;
 }
+
+.centered{
+    float: none;
+    margin: 0 auto;
+}
+
 
