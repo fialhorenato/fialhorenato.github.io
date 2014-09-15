@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 <head>
     <!-- HTML5 Tags -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
 
     <!-- Font Awesome (CDN Bootstrap) -->
     <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -16,265 +16,127 @@
     <!-- Source Sans Pro (Font) -->
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
+
+    <!-- Testando Polymer -->
+    <script src="components/platform/platform.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <link rel="import" href="components/font-roboto/roboto.html">
+    <link rel="import" href="components/core-icons/core-icons.html">
+    <link rel="import" href="components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="components/paper-icon-button/paper-icon-button.html">
+    <link href="components/paper-shadow/paper-shadow.html" rel="import">
+    <link href="components/paper-shadow/paper-shadow.css" rel="stylesheet">
+
+    <link href="components/paper-icon-button/paper-icon-button.html" rel="import">
+    <link href="components/paper-item/paper-item.html" rel="import">
+    <link href="components/paper-menu-button/paper-menu-button.html" rel="import">
+    <link rel="import" href="components/paper-dialog/paper-dialog-transition.html">
+    <link href="components/paper-dialog/paper-dialog.html" rel="import">
+
+    <script>
+    function toggleDialog(transition) {
+      var dialog = document.querySelector('paper-dialog[transition=' + transition + ']');
+      dialog.toggle();
+    }
+  </script>
+
+
     <title>Renato Fialho - www.renatofialho.com</title>
 </head>
 
 
 <body>
-    <div class="col-lg-12 text-center">
-        <a href="index.html"><img src="img/flagus.png" class="" alt="En-US" /></a>
-        <a href="indexPtBr.html"><img src="img/flags.png" class="" alt="Pt-BR" /></a>
-    </div>
 
-    <div class="jumbotron">
-        <div class="container text-center">
-            <h1 class="title">Renato Fialho </h1>
-        </div>
-    </div>
+    <div ng-init="links = [
+        {name:'Twitter', icon:'fa fa-twitter fa-lg', link:'http://www.twitter.com/renatobh'},
+        {name:'Github', icon:'fa fa-git fa-lg', link:'http://www.github.com/fialhorenato'},
+        {name:'Facebook', icon:'fa fa-facebook fa-lg', link:'http://www.facebook.com/fialho.renato'},
+        {name:'Linkedin', icon:'fa fa-linkedin fa-lg', link:'http://br.linkedin.com/in/renatofialho'},
+        {name:'Blog', icon:'fa fa-tumblr fa-lg', link:'http://blog.renatofialho.com'},
+        {name:'Resume', icon:'fa fa-file-pdf-o fa-lg', link:'https://dl.dropboxusercontent.com/u/15145158/CV_Renato_Fialho.pdf'}
+    ]">
 
-    <div class="well">
-        <div class="container text-center">
-         <div class="col-lg-8 centered">
-            <a class="icons" href="http://www.twitter.com/renatobh" target="_blank"><i class="fa fa-twitter  fa-4x"></i></a>
-            <a class="icons" href="http://www.github.com/fialhorenato" target="_blank"><i class="fa fa-git  fa-4x"></i></a>
-            <a class="icons" href="http://www.facebook.com/fialho.renato" target="_blank"><i class="fa fa-facebook  fa-4x"></i></a>
-            <a class="icons" href="http://br.linkedin.com/in/renatofialho" target="_blank"><i class="fa fa-linkedin  fa-4x"></i></a>
-            <a class="icons" href="http://blog.renatofialho.com" target="_blank"><i class="fa fa-tumblr  fa-4x"></i></a>
-            <a class="icons" href="https://dl.dropboxusercontent.com/u/15145158/CV_Renato_Fialho.pdf" target="_blank"><i class="fa fa-file-pdf-o  fa-4x"></i></a>
-        </div>
+    <core-toolbar style="background: #FFFFFF;">
+    <paper-menu-button icon="menu" halign="left">
+    <a ng-repeat="link in links" class="list-group-item" href="{{link.link}}"><i class="{{link.icon}}"></i>&nbsp; {{link.name}}</a>
+    <a class="list-group-item" href="index.html"><img src="img/us.png" alt="PT-Br">&nbsp; PT-Br </a>
+
+    <!--<paper-item center-justified flex ng-repeat="link in links"><i class={{link.icon}}></i><a href={{link.link}} target="_blank"></a></paper-item> -->
+    </paper-menu-button>
+    <div class = "col-md-11 col-xs-11 col-sm-11 col-lg-11 text-center">
+         <span class="title" flex>Renato Fialho</span>
     </div>
+    </core-toolbar>
+
+<br>
+
+
+<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 text-center">
+    <h2 class="title">Sobre mim</h2>
 </div>
-
-<div class="well">
-    <h2 class="title">Sobre</h2>
-    <br/>
-    <div class="container">
-        <div class="col-lg-8 centered">
-            <p>Estudante de 23 anos de idade atualmente graduando em Ciência da Computação na Universidade FUMEC em Belo Horizonte, Minas Gerais, Brasil.</p>
+<div class="col-md-8 col-xs-8 col-sm-8 col-lg-8 text-justified centered">
+       <p>Estudante de 23 anos de idade atualmente graduando em Ciência da Computação na Universidade FUMEC em Belo Horizonte, Minas Gerais, Brasil.</p>
             <p>Voltado para decisões estratégicas com análise de detalhes, compromissado com a excelência, com fácil relacionamento interpessoal, foco para o cliente, confiabilidade e atitude profissional. </p>
             <p>Adaptável a novos ambientes, focado em desafios, aberto a busca de novos conhecimentos e informações.</p>
             <p>Foco em planejamento e gerenciamento de projetos e com ótimo pensamento sistêmico</p>
-        </div>
-    </div>
 </div>
 
-<div class="well">
+
+
+
+    <div ng-init="skills = [
+        {name:'Java', knowledge:'80%',modal:'#JavaModal'},
+        {name:'PHP', knowledge:'80%',modal:'#PHPModal'},
+        {name:'SQL', knowledge:'80%',modal:'#SQLModal'},
+        {name:'JavaScript', knowledge:'70%',modal:'#JavaScriptModal'},
+        {name:'NoSQL', knowledge:'60%',modal:'#NoSQLModal'},
+        {name:'Git', knowledge:'90%',modal:'#GitModal'},
+        {name:'HTML5/CSS3', knowledge:'90%',modal:'#HTMLModal'},
+        {name:'Python', knowledge:'60%',modal:'#PythonModal'},
+        {name:'Ruby on Rails', knowledge:'60%',modal:'#RubyModal'},
+        {name:'C', knowledge:'70%',modal:'#CModal'},
+        {name:'C++', knowledge:'60%',modal:'#C++Modal'},
+        {name:'Node.js', knowledge:'50%',modal:'#NodeModal'},
+        {name:'Objective-C', knowledge:'60%',modal:'#ObjCModal'}
+    ]">
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 text-center">
     <h2 class="title">Habilidades Técnicas</h2>
-    <br/>
-    <div class="container">
-        <div class="col-lg-12 centered">
-
-            <div class="col-lg-4 text-center" data-toggle="modal" href="#JavaModal">
-                <p>Java</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                        <span>80%</span>
-                    </div>
+</div>
+    <div class="col-md-8 col-xs-8 col-sm-8 col-lg-8 text-justified centered">
+        <div ng-repeat="skill in skills" class="col-lg-3 text-center">
+            <paper-button label={{skill.name}}></paper-button>
+            <div class="progress progress-striped">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style=width:{{skill.knowledge}};>
+                    <span>{{skill.knowledge}}</span>
                 </div>
             </div>
-
-            <div class="col-lg-4 text-center" data-toggle="modal" href="#PHPModal">
-                <p>PHP</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                        <span>80%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center" data-toggle="modal" href="#SQLModal">
-                <p>SQL</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                        <span>80%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center" data-toggle="modal" href="#JSModal">
-                <p>Javascript</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                        <span>70%</span>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-lg-4 text-center">
-                <p>No-SQL</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                        <span>60%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center">
-                <p>Git</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-                        <span>90%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center">
-                <p>HTML5/CSS3</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                        <span>80%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center">
-                <p>Python</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                        <span>60%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center">
-                <p>Ruby on Rails</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                        <span>60%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center">
-                <p>C</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                        <span>80%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center">
-                <p>C++</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                        <span>60%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center">
-                <p>Node.js</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                        <span>60%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center">
-                <p>Objective-C</p>
-                <div class="progress progress-striped">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                        <span>70%</span>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
     </div>
-</div>
 
-
-<div class="modal fade" id="JavaModal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4 class="title">Java</h4>
-            </div>
-            <div class="modal-body">
-                <p>- Experiência em desenvolvimento utilizando o framework Spring ROO </p>
-                <p>- Certificado de curso sobre a API de reflexão no Java 6.</p>
-                <p>- Experiência em desenvolvimento de Java para Web (J2EE)</p>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="PHPModal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4 class="title">PHP</h4>
-            </div>
-            <div class="modal-body">
-                <p>- Experiência em desenvolvimento utilizando os frameworks Zend, CodeIgniter e Cake PHP.</p>
-                <p>- Curso de CakePHP (4 horas - FUMEC)</p>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="SQLModal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4 class="title">SQL</h4>
-            </div>
-            <div class="modal-body">
-                <p>- Experiência em modelagem de bancos de dados utilizando MySQL, PostgreSQL e Microsoft SQL Server</p>
-                <p>- Conhecimento em PL/SQL.</p>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="JSModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4 class="title">JavaScript</h4>
-            </div>
-            <div class="modal-body">
-                <p>- Experiência utilizando JQuery, YUI, Bootstrap entre outras bibliotecas.</p>
-                <p>- Experiência utilizando Angular.js.</p>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="NoSQLModal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4 class="title">No-SQL</h4>
-            </div>
-            <div class="modal-body">
-                <p>- Experiência utilizando Mongo.db.</p>
-                <p>- Experiência utilizando Cassandra.</p>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 
 </body>
 
 <!-- JQuery via CDN -->
-<script language="javascript" type="text/javascript" src="js/jquery.min.js"></script>
+
 <!-- Bootstrap JS via CDN -->
-<script language="javascript" type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
 
 </html>

@@ -45,17 +45,20 @@
 <body>
 
     <div ng-init="links = [
-        {name:'Twitter', icon:'fa fa-twitter 2x', link:'http://www.twitter.com/renatobh'},
-        {name:'Github', icon:'fa fa-git 2x', link:'http://www.github.com/fialhorenato'},
-        {name:'Facebook', icon:'fa fa-facebook 2x', link:'http://www.facebook.com/fialho.renato'},
-        {name:'Linkedin', icon:'fa fa-linkedin 2x', link:'http://br.linkedin.com/in/renatofialho'},
-        {name:'Blog', icon:'fa fa-tumblr 2x', link:'http://blog.renatofialho.com'},
-        {name:'Resume', icon:'fa fa-file-pdf-o 2x', link:'https://dl.dropboxusercontent.com/u/15145158/Resume_Renato_Fialho.pdf'}
+        {name:'Twitter', icon:'fa fa-twitter fa-lg', link:'http://www.twitter.com/renatobh'},
+        {name:'Github', icon:'fa fa-git fa-lg', link:'http://www.github.com/fialhorenato'},
+        {name:'Facebook', icon:'fa fa-facebook fa-lg', link:'http://www.facebook.com/fialho.renato'},
+        {name:'Linkedin', icon:'fa fa-linkedin fa-lg', link:'http://br.linkedin.com/in/renatofialho'},
+        {name:'Blog', icon:'fa fa-tumblr fa-lg', link:'http://blog.renatofialho.com'},
+        {name:'Resume', icon:'fa fa-file-pdf-o fa-lg', link:'https://dl.dropboxusercontent.com/u/15145158/Resume_Renato_Fialho.pdf'}
     ]">
 
     <core-toolbar style="background: #FFFFFF;">
     <paper-menu-button icon="menu" halign="left">
-    <paper-item center-justified flex ng-repeat="link in links"><i class={{link.icon}}></i><a href={{link.link}} target="_blank"></a></paper-item>
+    <a ng-repeat="link in links" class="list-group-item" href="{{link.link}}"><i class="{{link.icon}}"></i>&nbsp; {{link.name}}</a>
+    <a class="list-group-item" href="indexPtBr.html"><img src="img/br.png" alt="PT-Br">&nbsp; PT-Br </a>
+
+    <!--<paper-item center-justified flex ng-repeat="link in links"><i class={{link.icon}}></i><a href={{link.link}} target="_blank"></a></paper-item> -->
     </paper-menu-button>
     <div class = "col-md-11 col-xs-11 col-sm-11 col-lg-11 text-center">
          <span class="title" flex>Renato Fialho</span>
