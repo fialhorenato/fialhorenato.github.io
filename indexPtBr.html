@@ -55,13 +55,13 @@
         {name:'Facebook', icon:'fa fa-facebook fa-lg', link:'http://www.facebook.com/fialho.renato'},
         {name:'Linkedin', icon:'fa fa-linkedin fa-lg', link:'http://br.linkedin.com/in/renatofialho'},
         {name:'Blog', icon:'fa fa-tumblr fa-lg', link:'http://blog.renatofialho.com'},
-        {name:'Resume', icon:'fa fa-file-pdf-o fa-lg', link:'https://dl.dropboxusercontent.com/u/15145158/CV_Renato_Fialho.pdf'}
+        {name:'CV', icon:'fa fa-file-pdf-o fa-lg', link:'https://dl.dropboxusercontent.com/u/15145158/CV_Renato_Fialho.pdf'}
     ]">
 
     <core-toolbar style="background: #FFFFFF;">
     <paper-menu-button icon="menu" halign="left">
     <a ng-repeat="link in links" class="list-group-item" href="{{link.link}}"><i class="{{link.icon}}"></i>&nbsp; {{link.name}}</a>
-    <a class="list-group-item" href="index.html"><img src="img/us.png" alt="PT-Br">&nbsp; PT-Br </a>
+    <a class="list-group-item" href="index.html"><img src="img/us.png" alt="PT-Br">&nbsp; EN-Us </a>
 
     <!--<paper-item center-justified flex ng-repeat="link in links"><i class={{link.icon}}></i><a href={{link.link}} target="_blank"></a></paper-item> -->
     </paper-menu-button>
