@@ -5,37 +5,27 @@ body{
 	width:100%;
 	height:100%;
 	font-family: 'Source Sans Pro', sans-serif;
+	-webkit-transform: translateZ(0);
+      transform: translateZ(0);
 }
+
+
 
 i{
-	padding-left:15px;
-	padding-right:15px;
 	color:gray;
-	text-align:center;
 }
-
-i:hover{
-	position:relative;
-	top:-3px;
-	color: #000;
-}
-
 
 .title {
 	text-align: center;
+	font-weight: bold;
 }
 
-
-
-a.icons{
-	text-decoration:none;
-	outline:0
+span.title {
+	text-align: center;
+	font-weight: bold;
+	font-size: 24px;
 }
 
-a.icons:visited {
-	text-decoration:none;
-	color : gray;
-}
 
 div.content{
 	width:600px;
@@ -53,9 +43,12 @@ div.icons-jumbotron{
 	margin: 0 auto;
 }
 
-.centered{
-    float: none;
-    margin: 0 auto;
+paper-dialog {
+    width: 50%;
+    min-width: 430px;
+    position: fixed;
 }
 
-
+.titulo {
+text-align: center;
+}
