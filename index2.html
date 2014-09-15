@@ -98,7 +98,8 @@
 <br>
 <br>
 <br>
-<br><br>
+<br>
+<br>
 <br>
 
 
@@ -108,7 +109,7 @@
 </div>
     <div class="col-md-8 col-xs-8 col-sm-8 col-lg-8 text-justified centered">
         <div ng-repeat="skill in skills" class="col-lg-3 text-center">
-            <paper-button label={{skill.name}}></paper-button>
+            <paper-button>{{skill.name}}</paper-button>
             <div class="progress progress-striped">
                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style=width:{{skill.knowledge}};>
                     <span>{{skill.knowledge}}</span>
