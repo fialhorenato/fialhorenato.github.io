@@ -45,15 +45,15 @@
 <body>
 
     <div ng-init="links = [
-        {icon:'fa fa-twitter 2x', link:'http://www.twitter.com/renatobh'},
-        {icon:'fa fa-git 2x', link:'http://www.github.com/fialhorenato'},
-        {icon:'fa fa-facebook 2x', link:'http://www.facebook.com/fialho.renato'},
-        {icon:'fa fa-linkedin 2x', link:'http://br.linkedin.com/in/renatofialho'},
-        {icon:'fa fa-tumblr 2x', link:'http://blog.renatofialho.com'},
-        {icon:'fa fa-file-pdf-o 2x', link:'https://dl.dropboxusercontent.com/u/15145158/Resume_Renato_Fialho.pdf'}
+        {name:'Twitter', icon:'fa fa-twitter 2x', link:'http://www.twitter.com/renatobh'},
+        {name:'Github', icon:'fa fa-git 2x', link:'http://www.github.com/fialhorenato'},
+        {name:'Facebook', icon:'fa fa-facebook 2x', link:'http://www.facebook.com/fialho.renato'},
+        {name:'Linkedin', icon:'fa fa-linkedin 2x', link:'http://br.linkedin.com/in/renatofialho'},
+        {name:'Blog', icon:'fa fa-tumblr 2x', link:'http://blog.renatofialho.com'},
+        {name:'Resume', icon:'fa fa-file-pdf-o 2x', link:'https://dl.dropboxusercontent.com/u/15145158/Resume_Renato_Fialho.pdf'}
     ]">
 
-    <core-toolbar style="background: #00000;">
+    <core-toolbar style="background: #FFFFFF;">
     <paper-menu-button icon="menu" halign="left">
     <paper-item center-justified flex ng-repeat="link in links"><i class={{link.icon}}></i><a href={{link.link}} target="_blank"></a></paper-item>
     </paper-menu-button>
