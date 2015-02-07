@@ -1,19 +1,32 @@
 /*! Plugin options and other jQuery stuff */
 
-// FitVids options
+// dl-menu options
 $(function() {
-	$("article").fitVids();
-});
-
-// Table of Contents toggle
-$(function() {
-  $(".toc h3").click(function () {
-    $("#drawer").toggleClass("hidden");
+  $( '#dl-menu' ).dlmenu({
+    animationClasses : { classin : 'dl-animate-in', classout : 'dl-animate-out' }
   });
 });
 
+// FitVids options
+$(function() {
+  $("article").fitVids();
+});
+
+$(".close-menu").click(function () {
+  $(".menu").toggleClass("disabled");
+  $(".links").toggleClass("enabled");
+});
+
+$(".about").click(function () {
+  $("#about").css('display','block');
+});
+
+$(".close-about").click(function () {
+  $("#about").css('display','');
+});
+
 // Add lightbox class to all image links
-$("a[href$='.jpg'],a[href$='.png'],a[href$='.gif']").addClass("image-popup");
+$("a[href$='.jpg'],a[href$='.jpeg'],a[href$='.JPG'],a[href$='.png'],a[href$='.gif']").addClass("image-popup");
 
 // Magnific-Popup options
 $(document).ready(function() {

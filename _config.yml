@@ -1,44 +1,33 @@
-title:            RenatoFialho.com
-description:      Blog do Renato Fialho
+title:            Blog - Renato Fialho
+description:      Blog - Renato Fialho
 disqus_shortname: shortname
-# Your site's domain goes here. When working locally use localhost server leave blank
-# PS. If you set this wrong stylesheets and scripts won't load and most links will break.
-# PPS. If you leave it blank for local testing home links won't work, they'll be fine for live domains though.
-url:              http://fialhorenato.github.com
+# Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
+# When testing locally leave blank or use http://localhost:4000
+url:              //fialhorenato.github.io
 
 # Owner/author information
 owner:
   name:           Renato Fialho
-  avatar:         Avatar.png
-  bio:            "A 23 years old student currently pursuing a BS, Computer Science at FUMEC in Belo Horizonte - Minas Gerais - Brazil."
+  avatar:         avatar.jpg
+  bio:            “O sol nasce, a bicicleta anda, o lobo uiva e o urso panda."
   email:          renato@renatofialho.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        renatobh
-  facebook:       renato.fialho
+  facebook:       fialho.renato
   github:         fialhorenato
   stackexchange:
   linkedin:
   instagram:      renatofialho
   flickr:
   tumblr:
-  # For Google Authorship https://plus.google.com/authorship
   # google plus id, include the '+', eg +mmistakes
-  google_plus:    +RenatoFialho90
+  google_plus:    +renatofialho
 
 # Analytics and webmaster tools stuff goes here
 google_analytics:
 google_verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
-
-# Links to include in top navigation
-# For external links add external: true
-links:
-  - title: Home
-    url: /
-  - title: About
-    url: /about/
-    external: true
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/New_York
