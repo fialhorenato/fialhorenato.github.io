@@ -4,10 +4,6 @@ title: Differences between StringBuilder, StringBuffer and String in Java
 description: Differences between StringBuilder, StringBuffer and String in Java
 modified: 2014-09-27
 tags: [StringBuilder, StringBuffer, String, Java]
-image:
-  feature: 33246.jpg
-  credit: Wally
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
 comments: true
 share: true
 ---
