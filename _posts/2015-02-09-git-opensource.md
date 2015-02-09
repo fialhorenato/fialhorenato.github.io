@@ -4,10 +4,6 @@ title: How to contribute to open source projects in Github even being a "newbie"
 description: How to contribute to open source projects in Github even being a "newbie"
 modified: 2015-02-09
 tags: [Git, OpenSource, Github, Community]
-image:
-  feature: 33246.jpg
-  credit: Wally
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
 comments: true
 share: true
 ---
@@ -33,8 +29,8 @@ So, if you're ready, let's introduce you how to contribute.
 
 First of all, you will go to Github and click on Explore. Some categories will show up to you, and if you get interested, you can click on them and start.
 
-Assuming that you will contribute with JavaScript Frameworks. When you access this category, will show up a lot of projects, choose one that will fit your needs,
-don't pick the projects based on reputation or a lot of contributors. Help to improve/grown yourself and the project in a useful way.
+Assuming that you will contribute with JavaScript Frameworks. When you access this category, will show up a lot of projects, **choose one that will fit your needs,
+don't pick the projects based on reputation or a lot of contributors. Help to improve/grown yourself and the project in a useful way.**
 
 Assuming that you picked AngularJS (Because it was the first one to shown up), so you can Fork the project, download in your PC and start to test and look up for
 bugs.
@@ -45,7 +41,7 @@ Now, let's go into How to contribute.
 
 #### Documentation Bugs
 
-First thing to do before look for bugs is READ THE DOCUMENTATION. If during this reading you find something wrong, you can start to contribute.
+First thing to do before look for bugs is **READ THE DOCUMENTATION**. If during this reading you find something wrong, you can start to contribute.
 
 You can fix errors in writing, logic or examples of this documentation, it cannot be updated or something like this.
 
@@ -69,7 +65,7 @@ The opened issues are located in the right side of the project interface of Gith
 
 #### Improve suggestions
 
-If you use this project and think that they must add something, something useful to the project, you can open an Issue. The developers will analyze and think
+If you use this project and think that they must add something, something useful to the project, you can open an **Issue**. The developers will analyze and think
 if it's viable to add this to the project.
 
 #### Translation
