@@ -43,6 +43,8 @@ links:
     url: /categories
   - title: About
     url: /about
+  - title: LSC Project
+    url: /LSC
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/Sao_Paulo
