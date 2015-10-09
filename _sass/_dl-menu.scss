@@ -3,7 +3,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 1000;
+	z-index: 99999;
 	-webkit-perspective: 1000px;
 	-moz-perspective: 1000px;
 	perspective: 1000px;
@@ -13,23 +13,24 @@
 	@media #{$medium} {
 		position: fixed;
 		max-width: 175px;
-		top: 25px;
-		left: 25px;
+		top: 3px;
+		left: 35px;
 	}
 	button {
 		top: 0;
 		left: 0;
-		background: $comp-color;
+		background: #3D5B99;
+		// background: $comp-color;
 		border: none;
-		width: 48px;
-		height: 45px;
+		width: 100px;
+		height: 40px;
 		text-indent: -900em;
 		overflow: hidden;
 		position: relative;
 		cursor: pointer;
 		outline: none;
 		@include border-radius(0,3px,0,0);
-		opacity: 0.6;
+		opacity: 1;
 		@media #{$medium} {
 			@include border-radius(3px,3px,3px,3px);
 		}
@@ -37,7 +38,7 @@
 	button:hover,
 	button.dl-active,
 	ul {
-		background: #aaa;
+		background: #23355B;
 	}
 	button:after {
 		content: '';
@@ -129,7 +130,7 @@
 		max-height: 600px;
 		opacity: 0;
 		pointer-events: none;
-		box-shadow: 0 12px 24px rgba($black,0.4);
+		box-shadow: 0 12px 24px rgba($black,0.3);
 		-webkit-transform: translateY(10px);
 		-moz-transform: translateY(10px);
 		transform: translateY(10px);

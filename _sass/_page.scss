@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	background-color: $body-color;
+	background-color: #E9EAED;
 }
 
 // Main
@@ -15,13 +15,15 @@ body {
 	}
 }
 .entry-content {
-	@include font-size(16);
+	@include font-size(18);
+	background-color: #E9EAED;
 	// Dotted line underlines for links
 	p > a,
 	li > a {
-		border-bottom: 1px dotted lighten($link-color, 50);
+		// border-bottom: 1px dotted lighten($link-color, 50);
 		&:hover {
-			border-bottom-style: solid;
+			// border-bottom-style: solid;
+			border-bottom: 1px solid #888888;
 		}
 	}
 }
@@ -35,23 +37,23 @@ body {
 }
 .header-title {
 	text-align: center;
-	margin: 30px 0 0;
+	margin: 70px 0 0;
 	h1 {
-		margin: 10px 20px;
-		font-weight: 700;
+		margin: 50px 20px;
+		font-weight: 300;
 		@include font-rem(32);
 		color: lighten($base-color,20);
 		@media #{$medium} {
-			@include font-rem(48);
+			@include font-rem(40);
 		}
 		@media #{$large} {
-			@include font-rem(60);
+			@include font-rem(40);
 		}
 	}
 	h2 {
 		margin: 0;
 		@include font-rem(18);
-		text-transform: uppercase;
+		// text-transform: uppercase;
 		color: lighten($base-color,40);
 		@media #{$medium} {
 			@include font-rem(24);
@@ -67,7 +69,7 @@ body {
 	display: table;
 	margin-top: 0;
 	width: 100%;
-	height: 400px;
+	height: 300px;
 	overflow: hidden;
 	.header-title-wrap {
 		display: table-cell;
@@ -76,8 +78,8 @@ body {
 		text-align: center;
 	}
 	h1 {
-		margin: 10px;
-		font-weight: 700;
+		margin: 50px;
+		font-weight: 300;
 		margin: 10px 60px;
 		color: $white;
 		text-shadow: 1px 1px 4px rgba($base-color,0.6);
@@ -90,7 +92,7 @@ body {
 	h2 {
 		margin: 0;
 		color: $white;
-		text-transform: uppercase;
+		// text-transform: uppercase;
 		@media #{$medium} {
 			a {
 				color: $white;
@@ -200,15 +202,19 @@ header .entry-meta {
 #post,
 #page {
 	.entry-content {
-		margin: 40px 2px 20px 2px;
-		padding: 10px 15px;
-		background-color: $white;
-		box-shadow: 0 0 0 0, 0 6px 12px rgba($black,0.1);
+		margin: 20px 2px 20px 2px;
+		// padding: 10px 15px;
+		padding: 0px 0px;
+		background-color: #E9EAED;
+		// box-shadow: 0 0 0 0, 0 6px 12px rgba($black,0.1);
 		@include rounded(3px);
 		@media #{$medium} {
-			margin-left: 10px;
-			margin-right: 10px;
-			padding: 20px 30px;
+			//margin-left: 10px;
+			//margin-right: 10px;
+			//padding: 20px 30px;
+			margin-left: 0px;
+			margin-right: 0px;
+			padding: 0px 0px;
 		}
 		@media #{$large} {
 			max-width: 800px;
@@ -222,8 +228,8 @@ header .entry-meta {
 	#disqus_thread {
 		margin: 40px 2px 20px 2px;
 		padding: 10px 15px;
-		background-color: $white;
-		box-shadow: 0 0 0 1px rgba($border-color,0.1), 0 6px 12px rgba($black,0.1);
+		background-color: #E9EAED;
+		// box-shadow: 0 0 0 1px rgba($border-color,0.1), 0 6px 12px rgba($black,0.1);
 		@include rounded(3px);
 		@media #{$medium} {
 			margin-left: 10px;
@@ -276,8 +282,8 @@ header .entry-meta {
 	position: relative;
 	margin: 40px 2px 20px 2px;
 	padding: 40px 15px 25px;
-	background-color: $white;
-	box-shadow: 0 0 0 1px rgba($border-color,0.1), 0 6px 12px rgba($black,0.1);
+	background-color: #E9EAED;
+	// box-shadow: 0 0 0 1px rgba($border-color,0.1), 0 6px 12px rgba($black,0.1);
 	@include rounded(3px);
 	@media #{$medium} {
 		margin: 50px 10px 20px 10px;
@@ -363,8 +369,8 @@ header .entry-meta {
 		}
 	}
 	article {
-		background-color: $white;
-		box-shadow: 0 0 0 0, 0 6px 12px rgba($base-color,0.1);
+		background-color: #E9EAED;
+		// box-shadow: 0 0 0 0, 0 6px 12px rgba($base-color,0.1);
 		@include rounded(3px);
 		margin-bottom: 20px;
 		padding: 25px 15px;
@@ -403,7 +409,7 @@ header .entry-meta {
 // --------------------------------------------------
 .footer-wrapper {
 	@include clearfix;
-	margin: 2em auto;
+	margin: 0px;
 	text-align: center;
 	color: lighten($text-color,20);
 	a {

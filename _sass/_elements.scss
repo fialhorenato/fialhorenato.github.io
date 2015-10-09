@@ -63,32 +63,32 @@ svg:not(:root) {
 // --------------------------------------------------
 .btn {
   display: inline-block;
-  margin-bottom: 20px;
-  padding: 8px 20px;
+  margin-bottom: 15px;
+  padding: 9px 38px;
   @include font-rem(14);
-  background-color: $primary;
-  color: $white;
-  border-width: 2px !important;
+  background-color: #E9EAED;
+  color: #4D4D4E;
+  border-width: 0px !important;
   border-style: solid !important;
-  border-color: $primary;
+  border-color: #00AFF0;
   @include rounded(3px);
   &:visited {
-    color: $white;
+    color: #4D4D4E;
   }
   &:hover {
-    background-color: $white;
-    color: $primary;
+    background-color: #E9EAED;
+    color: #4D4D4E;
   }
 }
 .btn-inverse {
-  background-color: $white;
-  color: $primary;
-  border-color: $white;
+  background-color: $primary;
+  color: $white;
+  border-color: #00CCFF;
   &:visited {
     color: $primary;
   }
   &:hover {
-    background-color: $primary;
+    background-color: #33CCFF;
     color: $white;
   }
 }
@@ -100,8 +100,8 @@ svg:not(:root) {
     color: $white;
   }
   &:hover {
-    background-color: $white;
-    color: $success;
+    background-color: #33CC33;
+    color: $white;
   }
 }
 .btn-warning {
@@ -112,8 +112,8 @@ svg:not(:root) {
     color: $white;
   }
   &:hover {
-    background-color: $white;
-    color: $warning;
+    background-color: #FF9933;
+    color: $white;
   }
 }
 .btn-danger {
@@ -124,8 +124,8 @@ svg:not(:root) {
     color: $white;
   }
   &:hover {
-    background-color: $white;
-    color: $danger;
+    background-color: #FF0033;
+    color: $white;
   }
 }
 .btn-info {
@@ -136,8 +136,8 @@ svg:not(:root) {
     color: $white;
   }
   &:hover {
-    background-color: $white;
-    color: $info;
+    background-color: #3399FF;
+    color: $white;
   }
 }
 
