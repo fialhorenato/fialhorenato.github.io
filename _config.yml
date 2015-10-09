@@ -1,42 +1,42 @@
-title:            Nguyen Minh Huy (David Ng)
-description:      David Ng
-disqus_shortname: 
+title:            Renato Fialho
+description:      Blog
+disqus_shortname:
 reading_time:     false
 comments:         yes
-words_per_minute: 
+words_per_minute:
 # Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
 # When testing locally leave blank or use http://localhost:4000
 url:
 
 # Owner/author information
 owner:
-  name:           David Ng
-  avatar:         avatar.jpg
-  bio:            "The only thing that never changes is that everything always changes."
-  email:          
+  name:           Renato Fialho
+  #avatar:         avatar.jpg
+  #bio:            "The only thing that never changes is that everything always changes."
+  email:          renato@renatofialho.com
   # Social networking links used in footer. Update and remove as you like.
-  twitter:        david15894
-  facebook:       david15894
-  github:         minhhuy150894
-  stackexchange:  
-  linkedin:       
-  instagram:      
-  flickr:         
-  tumblr:         
+  twitter:        renatobh
+  #facebook:       david15894
+  github:         fialhorenato
+  stackexchange:
+  linkedin:
+  instagram:
+  flickr:
+  tumblr:
   # google plus id, include the '+', eg +mmistakes
-  google_plus:    +HuyNguyenMinhStormChaser
+  #google_plus:    +HuyNguyenMinhStormChaser
 
 # Background image to be tiled on all pages
-background: 
+background:
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:   
-google_verify:      
+google_analytics:
+google_verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:         
+bing_verify:
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    America/New_York
+timezone:    America/Sao_Paulo
 future:      true
 highlighter: pygments
 markdown:    kramdown
