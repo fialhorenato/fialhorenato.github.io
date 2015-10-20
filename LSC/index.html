@@ -308,6 +308,7 @@ function network(data, prev, index, expand) {
     if (expand[i]) {
       // the node should be directly visible
       nm[n.name] = nodes.length;
+
       nodes.push(n);
       if (gn[i]) {
         // place new nodes at cluster location (plus jitter)
@@ -504,7 +505,7 @@ function init() {
       .attr("y1", function(d) { return d.source.y; })
       .attr("x2", function(d) { return d.target.x; })
       .attr("y2", function(d) { return d.target.y; })
-      .style("stroke-width", function(d) { return d.size || 1; })
+      .style("stroke-width", function(d) { if(d.size / 4 < 1) { return 1; } else { return d.size/4}; })
       .style("stroke", function(d) {return d.color; })
       .on('mouseover', linktip.show)
       .on('mouseout', linktip.hide);
@@ -530,10 +531,18 @@ function init() {
       .on('mouseout', nodetip.hide)
       .on("click", function(d) {
       expand[d.group] = !expand[d.group];
+      d3.selectAll("circle").filter( function(d) {
+        console.log(expand[d.group]);
+        if (!expand[d.group]) {
+          return 1
+        }
+      }).style("opacity", 0.3);
       init();
       });
 
   node.call(force.drag);
+
+
 
   force.on("tick", function() {
     if (!hull.empty()) {
@@ -575,7 +584,13 @@ function init() {
 
     d3.selectAll(".hull")
     .style("fill",function(d) {return d.lesk_color });
+
+    d3.selectAll("circle").style("opacity", 0.2);
+
+
   }
+
+
 }
 
     </script>
