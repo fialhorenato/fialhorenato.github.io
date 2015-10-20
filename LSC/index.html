@@ -318,7 +318,7 @@ function network(data, prev, index, expand) {
       // the node is part of a collapsed cluster
       if (l.size == 0) {
         string = n.name.split("_");
-        l.name = string[3];
+        l.name = string[3] + string[4];
 
         l.cinema_color = n.cinema;
         l.clustal_color = n.clustal;
