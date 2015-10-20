@@ -416,8 +416,8 @@ var linktip = d3.tip()
 var body = d3.select("#grafo");
 
 var vis = body.append("svg")
-   .attr("width", width)
    .attr("height", height)
+   .attr("class", "col-md-12")
    .call(d3.behavior.zoom().on("zoom", function () {
      vis.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")}))
      .append("g")
