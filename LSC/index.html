@@ -494,7 +494,9 @@ function init() {
       .attr("d", drawCluster)
       .style("fill", function(d) {return d.clustal_color; })
       .on("click", function(d) {
-      expand[d.group] = false; init();
+      expand[d.group] = false;
+      d3.selectAll("circle").style("opacity", 1);
+      d3.selectAll(".link").style("opacity", 1); init();
       });
 
   link = linkg.selectAll("line.link").data(net.links, linkid);
@@ -532,11 +534,11 @@ function init() {
       .on("click", function(d) {
       expand[d.group] = !expand[d.group];
       d3.selectAll("circle").filter( function(d) {
-        console.log(expand[d.group]);
         if (!expand[d.group]) {
           return 1
         }
       }).style("opacity", 0.3);
+      d3.selectAll(".link").style("opacity", 0.2);
       init();
       });
 
