@@ -6,8 +6,8 @@ relative_permalinks: true
 
 # Setup
 title:               Renato Fialho
-tagline:             'Renato Fialho Blog'
-description:         'Renato Fialho Blog'
+tagline:             'Blog'
+description:         'Renato Fialho -- Blog'
 url:                 www.renatofialho.com
 baseurl:             ''
 paginate:            5
