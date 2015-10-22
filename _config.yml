@@ -10,7 +10,7 @@ tagline:             'Blog'
 description:         'Blog'
 url:                 www.renatofialho.com
 baseurl:             ''
-paginate:            5
+paginate:            1
 
 # About/contact
 author:

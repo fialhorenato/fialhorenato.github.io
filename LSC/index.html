@@ -16,7 +16,7 @@ svg {
   border: 1px solid #ccc;
 }
 body {
-  font: 10px sans-serif;
+  font: 12px sans-serif;
 }
 circle.node {
   stroke: #555;
@@ -380,13 +380,17 @@ function convexHulls(nodes, index, offset) {
     hulls[i].cinema_color = n.cinema_color;
     hulls[i].clustal_color = n.clustal_color;
     hulls[i].lesk_color = n.lesk_color;
+    var string = n.name.split("_");
+    var name = string[3] + string[4];
+    hulls[i].name = name;
   }
 
 
   // create convex hulls
   var hullset = [];
   for (i in hulls) {
-    hullset.push({clustal_color : hulls[i].clustal_color,lesk_color : hulls[i].lesk_color,cinema_color : hulls[i].cinema_color, group: i, path: d3.geom.hull(hulls[i])});
+    var name = string[3] + string[4];
+    hullset.push({name : hulls[i].name, clustal_color : hulls[i].clustal_color,lesk_color : hulls[i].lesk_color,cinema_color : hulls[i].cinema_color, group: i, path: d3.geom.hull(hulls[i])});
   }
 
   return hullset;
@@ -414,6 +418,13 @@ var linktip = d3.tip()
   + "<strong>Type:</strong> <span style='color:white'>" + d.type + "</span><br><br>"
 });
 
+var hulltip = d3.tip()
+.attr('class', 'd3-tip')
+.offset([-10, 0])
+.html(function(d) {
+  return "<strong>Residue: </strong> <span style='color:white'>" + d.name  + "</span><br><br>"
+});
+
 var body = d3.select("#grafo");
 
 var vis = body.append("svg")
@@ -423,7 +434,8 @@ var vis = body.append("svg")
      vis.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")}))
      .append("g")
      .call(nodetip)
-     .call(linktip);
+     .call(linktip)
+     .call(hulltip);
 
 d3.json("graph2.json", function(json) {
   data = json;
@@ -482,7 +494,7 @@ function init() {
     .gravity(0)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
     .charge(-1000)    // ... charge is important to turn single-linked groups to the outside
     .friction(0.5)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
-      .start();
+    .start();
 
 
 
@@ -493,6 +505,8 @@ function init() {
       .attr("class", "hull")
       .attr("d", drawCluster)
       .style("fill", function(d) {return d.clustal_color; })
+      .on('mouseover', hulltip.show)
+      .on('mouseout', hulltip.hide)
       .on("click", function(d) {
       expand[d.group] = false;
       d3.selectAll("circle").style("opacity", 1);
@@ -511,12 +525,10 @@ function init() {
       .style("stroke-width", function(d) { if(d.size / 4 < 1) { return 1; } else { return d.size/4}; })
       .style("stroke", function(d) {return d.color; })
       .on('mouseover', linktip.show)
-      .on('mouseout', linktip.hide);
+      .on('mouseout', linktip.hide)
 
-
-
-      vis.append("svg:g").selectAll("line")
-      .on('mouseover', linktip.show)
+      d3.selectAll("line.link")
+      .on('mouseover', nodetip.show)
       .on('mouseout', linktip.hide);
 
       node = nodeg.selectAll("circle.node").data(net.nodes, nodeid);
