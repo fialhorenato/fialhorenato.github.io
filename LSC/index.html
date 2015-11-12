@@ -165,16 +165,16 @@ line.link {
         <h3 class="panel-title" align="center">FILTER BY LINK TYPE</h3>
       </div>
       <div class="panel-body">
-        <div class="btn-group multiselect-div inter-select">
+        <div  class="btn-group multiselect-div inter-select">
           <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <span class="multiselect-selected-text">Select the interactions</span> <span class="caret"></b>
             </button>
-            <ul class="dropdown-menu">
-              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Aromatic stacking">Aromatic stacking</label></a></li>
-              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Hydrogen bond">Hydrogen bond</label></a></li>
-              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Hydrophobic">Hydrophobic</label></a></li>
-              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Repulsive">Repulsive</label></a></li>
-              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Salt bridge">Salt bridge</label></a></li>
+            <ul class="dropdown-menu" id="linkinter">
+              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Aromatic stacking" checked>Aromatic stacking</label></a></li>
+              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Hydrogen bond" checked>Hydrogen bond</label></a></li>
+              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Hydrophobic" checked>Hydrophobic</label></a></li>
+              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Repulsive" checked>Repulsive</label></a></li>
+              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Salt bridge" checked>Salt bridge</label></a></li>
             </ul>
           </div>
         </div>
@@ -202,12 +202,12 @@ line.link {
               <span class="multiselect-selected-text"> Select the residue types </span> <b class="caret"></b>
             </button>
             <ul class="dropdown-menu" id = "filterbyresidue">
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB'>Polar Positive</label></a></li>
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030'>Polar Negative</label></a></li>
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#9F3ED5'>Polar Neutral</label></a></li>
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#4EA429'>Non-Polar Aliphatic</label></a></li>
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#009999'>Non-Polar Rings</label></a></li>
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FFAA00'>Cysteine</label></a></li>
+              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB' checked>Polar Positive</label></a></li>
+              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030' checked>Polar Negative</label></a></li>
+              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#9F3ED5' checked>Polar Neutral</label></a></li>
+              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#4EA429' checked>Non-Polar Aliphatic</label></a></li>
+              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#009999' checked>Non-Polar Rings</label></a></li>
+              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FFAA00' checked>Cysteine</label></a></li>
             </ul>
           </div>
         </div>
@@ -408,6 +408,8 @@ function drawCluster(d) {
 
 // --------------------------------------------------------
 
+var groupsexpanded = [];
+
 var nodetip = d3.tip()
 .attr('class', 'd3-tip atom-tip')
 .offset([-10, 0])
@@ -442,6 +444,7 @@ var vis = body.append("svg")
      .call(nodetip)
      .call(linktip);
 
+
 d3.json("graph2.json", function(json) {
   data = json;
   for (var i=0; i<data.links.length; ++i) {
@@ -468,6 +471,26 @@ function init() {
   if (force) force.stop();
 
   net = network(data, net, getGroup, expand);
+
+  //sort links by source, then target
+  net.links.sort(function(a,b) {
+    if (a.source > b.source) {return 1;}
+    else if (a.source < b.source) {return -1;}
+    else {
+      if (a.target > b.target) {return 1;}
+      if (a.target < b.target) {return -1;}
+      else {return 0;}
+    }
+  });
+  //any links with duplicate source and target get an incremented 'linknum'
+  for (var i=0; i<net.links.length; i++) {
+    if (i != 0 &&
+      net.links[i].source == net.links[i-1].source &&
+      net.links[i].target == net.links[i-1].target) {
+        net.links[i].linknum = net.links[i-1].linknum + 1;
+      }
+      else {net.links[i].linknum = 1;};
+    };
 
   force = d3.layout.force()
       .nodes(net.nodes)
@@ -506,15 +529,19 @@ function init() {
   hullg.selectAll("path.hull").remove();
   hull = hullg.selectAll("path.hull")
       .data(convexHulls(net.nodes, getGroup, off))
-    .enter().append("path")
+      .enter().append("path")
       .attr("class", "hull")
       .attr("d", drawCluster)
       .style("fill", function(d) {return d.clustal_color; })
       .on("click", function(d) {
       expand[d.group] = false;
-      d3.selectAll("circle").style("opacity", 1);
-      d3.selectAll(".link").style("opacity", 1);
+      groupsexpanded = groupsexpanded.slice(d.group);
       init();
+      if(groupsexpanded.length < 1) {
+        update_links();
+        update_nodes();
+      }
+
       });
 
   link = linkg.selectAll("line.link").data(net.links, linkid);
@@ -527,12 +554,12 @@ function init() {
       .attr("y2", function(d) { return d.target.y; })
       .style("stroke-width", function(d) { if(d.size / 4 < 1) { return 1; } else { return d.size/4}; })
       .style("stroke", function(d) {return d.color; })
-      .on('mouseover', linktip.show)
-      .on('mouseout', linktip.hide)
-
-      d3.selectAll("line.link")
-      .on('mouseover', nodetip.show)
+      .on("click", function() {console.log("PASSEI POR AQUI POR ESSE LINK DAORA!")})
+      .on('mouseover', function() {console.log("PASSEI POR AQUI POR ESSE LINK DAORA!")})
       .on('mouseout', linktip.hide);
+
+
+
 
       node = nodeg.selectAll("circle.node").data(net.nodes, nodeid);
       node.exit().remove();
@@ -541,7 +568,7 @@ function init() {
 
       node.enter().append("circle")
       .attr("class", function(d) { return "node" + (d.size?"":" leaf"); })
-      .attr("r", function(d) { return d.size / 20 ? (d.size + dr) / 2 : dr+1; })
+      .attr("r", function(d) { return d.size / 18 ? (d.size + dr) / 2 : dr+1; })
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; })
       .style("fill", function(d) {return d.clustal_color ; })
@@ -555,10 +582,13 @@ function init() {
         }
       }).style("opacity", 0.3);
       d3.selectAll(".link").style("opacity", 0.2);
+      groupsexpanded.push(d.group);
+      update_links();
+      update_nodes();
       init();
       });
 
-  node.call(force.drag);
+  //node.call(force.drag);
 
 
 
@@ -569,13 +599,20 @@ function init() {
     }
 
     link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; })
+    .attr("y1", function(d) { return d.source.y; })
+    .attr("x2", function(d) { return d.target.x; })
+    .attr("y2", function(d) { return d.target.y; })
+
+        link.attr("d", function(d) {
+          var dx = d.target.x - d.source.x,
+          dy = d.target.y - d.source.y,
+          dr = 10/d.linknum;  //linknum is defined above
+          return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+        });
 
 
     node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+        .attr("cy", function(d) { return d.y; })
 
 
   });
@@ -609,8 +646,7 @@ function init() {
 
     </script>
 
-
-    <script>
+<script>
     $("#colorlist li").click(function(){
       var choice = $(this).text();
 
@@ -656,12 +692,12 @@ function init() {
         </div>\
         " ;
 
-        var filterhtml = "<li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB'>Polar Positive</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030'>Polar Negative</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#9F3ED5'>Polar Neutral</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#4EA429'>Non-Polar Aliphatic</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#009999'>Non-Polar Rings</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FFAA00'>Cysteine</label></a></li>\
+        var filterhtml = "<li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB' checked>Polar Positive</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030' checked>Polar Negative</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#9F3ED5' checked>Polar Neutral</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#4EA429' checked>Non-Polar Aliphatic</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#009999' checked>Non-Polar Rings</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FFAA00' checked>Cysteine</label></a></li>\
         ";
         $('#filterbyresidue').html(filterhtml);
         $('#edges').html(html);
@@ -696,11 +732,11 @@ function init() {
         " ;
         $('#edges').html(html);
 
-        var filterhtml = "<li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FF9640'>GPST</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030'>HKR</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB'>FWY</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#008500'>ILMV</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#ccc'>Others</label></a></li>\
+        var filterhtml = "<li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FF9640' checked>GPST</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030' checked>HKR</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB' checked>FWY</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#008500' checked>ILMV</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#ccc' checked>Others</label></a></li>\
         ";
         $('#filterbyresidue').html(filterhtml);
 
@@ -709,6 +745,7 @@ function init() {
 
         d3.selectAll(".hull")
         .style("fill",function(d) { return d.clustal_color });
+
       } else if (choice == "LESK") {
         var html = "\
         <div class='row'>\
@@ -740,25 +777,30 @@ function init() {
         " ;
         $('#edges').html(html);
 
-        var filterhtml = "<li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FF9640'>Small Nonpolar</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#269926'>Hydrophobic</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#CD0077'>Polar</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030'>Negatively Charged</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB'>Positively Charged</label></a></li>";
+        var filterhtml = "<li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FF9640' checked>Small Nonpolar</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#269926' checked>Hydrophobic</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#CD0077' checked>Polar</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030' checked>Negatively Charged</label></a></li>\
+        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB' checked >Positively Charged</label></a></li>";
         $('#filterbyresidue').html(filterhtml);
         d3.selectAll("circle")
         .style("fill",function(d) { return d.lesk_color });
 
         d3.selectAll(".hull")
         .style("fill",function(d) { return d.lesk_color });
+        update_links();
+        update_nodes();
       }
+
+      update_links();
+      update_nodes();
+
 
 
     });
 
     $('#clearSearchBtn').on("click", function() {
-      d3.selectAll("circle")
-      .style("opacity", 1);
+
       if ($('#datebox').val() == "CINEMA") {
         d3.selectAll("circle")
         .style("fill", function(d) {return d.cinema_color});
@@ -773,6 +815,8 @@ function init() {
         d3.selectAll("circle")
         .style("fill", function(d) {return d.lesk_color});
       }
+      update_links();
+      update_nodes();
 
     });
 
@@ -793,6 +837,88 @@ function init() {
       }).style("fill",filterColor).style("opacity", 1);
 
     });
+
+
+    function update_links() {
+
+      var interColor = ["Aromatic stacking","Hydrogen bond","Hydrophobic","Repulsive","Salt bridge"];
+
+      var graphSelections = { "atoms": ["Acceptor","Aromatic", "Donor","Hydrophobic","Negative","Positive"],
+      "interactions": ["Aromatic stacking","Hydrogen bond","Hydrophobic","Repulsive","Salt bridge"] };
+
+
+      var multiselect = $("#linkinter").parents('.multiselect-div');
+      var selections = [];
+      multiselect.find('input[type="checkbox"]:checked').each(function() {
+        var item = $(this).val();
+        selections.push(item);
+      });
+      graphSelections.interactions = selections;
+      d3.selectAll(".link").style("opacity", 0.2);
+      d3.selectAll(".link").filter( function(d) {
+        if (groupsexpanded.length > 0) {
+          if(expand[d.source.group] || expand[d.target.group]) {
+            var types = d.type;
+            var linkNotSelected = false;
+              if ( $.inArray(types, graphSelections.interactions) !== -1) {
+                linkNotSelected = true;
+              }
+            return linkNotSelected;
+          }
+        } else {
+          var types = d.type;
+          var linkNotSelected = false;
+            if ( $.inArray(types, graphSelections.interactions) !== -1) {
+              linkNotSelected = true;
+            }
+          return linkNotSelected;
+        }
+
+      }).style("opacity", 1);
+
+    }
+
+    function update_nodes() {
+      var interColor = ["Aromatic stacking","Hydrogen bond","Hydrophobic","Repulsive","Salt bridge"];
+
+      var graphSelections = { "atoms": ["Acceptor","Aromatic", "Donor","Hydrophobic","Negative","Positive"],
+      "interactions": ["Aromatic stacking","Hydrogen bond","Hydrophobic","Repulsive","Salt bridge"] };
+
+      var multiselect = $("#filterbyresidue").parents('.multiselect-div');
+
+      var selections = [];
+      multiselect.find('input[type="checkbox"]:checked').each(function() {
+        var item = $(this).val();
+        selections.push(item);
+      });
+
+      graphSelections.atoms = selections;
+      d3.selectAll("circle").style("opacity", 0.2);
+      d3.selectAll("circle").filter( function(d) {
+          if(groupsexpanded.length > 0) {
+            if (expand[d.group]) {
+              if ($("#datebox").val() == "CINEMA") {
+                var types = d.cinema_color;
+              } else if ($("#datebox").val() == "CLUSTAL") {
+                var types = d.clustal_color;
+              } else if ($("#datebox").val() == "LESK") {
+                var types = d.lesk_color;
+              }
+              if ( $.inArray(types, graphSelections.atoms) !== -1 ) return 1;
+            }
+          } else {
+            if ($("#datebox").val() == "CINEMA") {
+              var types = d.cinema_color;
+            } else if ($("#datebox").val() == "CLUSTAL") {
+              var types = d.clustal_color;
+            } else if ($("#datebox").val() == "LESK") {
+              var types = d.lesk_color;
+            }
+            if ( $.inArray(types, graphSelections.atoms) !== -1 ) return 1;
+          }
+
+      }).style("opacity", 1);
+    }
 
 
     $('body').on("click", ".multiselect-div ul li input", function(event) {
@@ -817,32 +943,11 @@ function init() {
       multiselect.find('.multiselect-selected-text').text(text);
 
       if ( multiselect.hasClass("atom-select") ) {
-        graphSelections.atoms = selections;
-        d3.selectAll("circle").style("opacity", 0.2);
-        d3.selectAll("circle").filter( function(d) {
-          if ($("#datebox").val() == "CINEMA") {
-            var types = d.cinema_color;
-          } else if ($("#datebox").val() == "CLUSTAL") {
-            var types = d.clustal_color;
-          } else if ($("#datebox").val() == "LESK") {
-            var types = d.lesk_color;
-          }
-            if ( $.inArray(types, graphSelections.atoms) !== -1 ) return 1;
-        }).style("opacity", 1);
+        update_nodes();
       }
 
       if ( multiselect.hasClass("inter-select") ) {
-        graphSelections.interactions = selections;
-        d3.selectAll(".link").style("opacity", 1);
-        d3.selectAll(".link").filter( function(d) {
-          console.log(d);
-          var types = d.type;
-          var linkNotSelected = true;
-            if ( $.inArray(types, graphSelections.interactions) !== -1) {
-              linkNotSelected = false;
-            }
-          return linkNotSelected;
-        }).style("opacity", 0.2);
+        update_links();
       }
 
 
