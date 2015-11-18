@@ -460,6 +460,7 @@ var linktip = d3.tip()
 .html(function(d) {
   return "<strong>Edge: </strong> <span style='color:white'>" + d.source.name + " - " + d.target.name +  "</span><br><br>"
   + "<strong>Type:</strong> <span style='color:white'>" + d.type + "</span><br><br>"
+  + "<strong>Interactions:</strong> <span style='color:white'>" + d.size + "</span><br><br>";
 });
 
 var hulltip = d3.tip()
@@ -589,7 +590,7 @@ function init() {
       // .attr("y1", function(d) { return d.source.y; })
       // .attr("x2", function(d) { return d.target.x; })
       // .attr("y2", function(d) { return d.target.y; })
-      .style("stroke-width", function(d) { if(d.size / 4 < 1) { return 1; } else { return d.size/4}; })
+      .style("stroke-width", function(d) { if(d.size / 7 < 1) { return 1; } else { return d.size/7}; })
       .style("stroke", function(d) {return d.color; })
       .on("click", function() {console.log("PASSEI POR AQUI POR ESSE LINK DAORA!")})
       .on('mouseover', linktip.show)
