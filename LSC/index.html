@@ -556,9 +556,9 @@ function init() {
     .linkStrength(function(l, i) {
     return 1;
     })
-    .gravity(0)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
+    .gravity(0.5)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
     .charge(-5000)    // ... charge is important to turn single-linked groups to the outside
-    .friction(0.5)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
+    .friction(0.7)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
     .start();
 
 
@@ -620,9 +620,10 @@ function init() {
       }).style("opacity", 0.2);
       d3.selectAll(".link").style("opacity", 0);
       groupsexpanded++;
+
+      init();
       update_links();
       update_nodes();
-      init();
       });
 
   //node.call(force.drag);
@@ -643,7 +644,7 @@ function init() {
     link.attr("d", function(d) {
     var dx = d.target.x - d.source.x,
         dy = d.target.y - d.source.y,
-        dr = 75/d.linknum;  //linknum is defined above
+        dr = 1/d.linknum;  //linknum is defined above
         return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
     });
 
