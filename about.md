@@ -11,7 +11,7 @@ I used to be a Software Developer at [Toro Investimentos](http://www.tororadar.c
 
 I also developed the company app using a hybrid framework -- [Ionic](https://ionicframework.com/).
 
-Before, i used to be a Research Assistant at [LBS](http://www.lbs.dcc.ufmg.br/), where i had the chance to work with [pandas](http://pandas.pydata.org/) and [d3.js](https://d3js.org/), making beatufil and concise data visualization and standardization of data of proteins and ligands, mainly from [PDB](http://www.rcsb.org/pdb/home/home.do).
+Before, i used to be a Research Assistant at [LBS](http://www.lbs.dcc.ufmg.br/), where i had the chance to work with [pandas](http://pandas.pydata.org/) and [d3.js](https://d3js.org/), making beautiful and concise data visualization and standardization of data of proteins and ligands, mainly from [PDB](http://www.rcsb.org/pdb/home/home.do).
 
 I also worked at [Vale](http://www.vale.com.br) as an IT Business Partner intern and at [INDG](http://www.indg.com.br) and [UNA](http://www.una.br) as an IT Infrastructure intern.
 
