@@ -1,0 +1,102 @@
+---
+layout: default
+title: Home
+---
+
+  {% for post in site.posts limit:1 %}
+    <div class="container">
+        <h2 class="title text-center"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+        <h6 class="post-date text-center">{{ post.date | date_to_string }}</h6>
+        <p>{{ post.content }}<p>
+
+<div class="section">
+<div class="button-container text-center">
+                    {% if post.next.url %}
+                    <a href="{{post.next.url}}" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Previous">
+                        <i class="fa fa-angle-double-left"></i>
+                    </a>
+                    {% else %}
+                    <a href="#button" class="btn btn-primary btn-round btn-lg btn-icon disabled" rel="tooltip" title="" data-original-title="Previous">
+                        <i class="fa fa-angle-double-left"></i>
+                    </a>
+                    {% endif %}
+                    {% if post.previous.url %}
+                    <a href="{{post.previous.url}}" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Next">
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                    {% else %}
+                    <a href="#button" class="btn btn-primary btn-round btn-lg btn-icon disabled" rel="tooltip" title="" data-original-title="Next">
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                    {% endif %}
+</div>
+</div>
+</div>
+  {% endfor %}
+
+  <div class="container">
+    <div class="section">
+      <h3 class="title text-center">Related Posts</h3>
+      <div class="card">
+        <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
+          {% assign count = 1 %} {% for post in site.posts limit:5 %} {%if count == 2%}
+          <li class="nav-item text-center">
+            <a class="nav-link active" data-toggle="tab" href="#post{{count}}" role="tab" aria-expanded="true">{{post.title | strip_html | truncatewords:10}}</a>
+          </li>
+          {% elsif count > 2 %}
+          <li class="nav-item text-center">
+            <a class="nav-link" data-toggle="tab" href="#post{{count}}" role="tab">{{post.title | strip_html | truncatewords:10}}</a>
+          </li>
+          {% endif %} {% assign count = count | plus: 1 %} {% endfor %}
+        </ul>
+        <div class="card-block">
+          <!-- Tab panes -->
+          <div class="tab-content text-center">
+            {% assign count = 1 %} {% for post in site.posts limit:5 %} {%if count == 2%}
+            <div class="tab-pane active" id="post{{count}}" role="tabpanel" aria-expanded="true">
+              <h3><a href="{{post.url}}">{{post.title}}</a></h3>
+              <p>{{post.content | strip_html | truncatewords:75}}</p>
+              <p class="text-right">
+                <a href="{{post.url}}" class="btn btn-primary btn-round"><i class="now-ui-icons ui-1_simple-add"></i>  Read More</a>    
+              </p>
+            </div>
+            {% elsif count > 2 %}
+            <div class="tab-pane" id="post{{count}}" role="tabpanel" aria-expanded="false">
+              <h3><a href="{{post.url}}">{{post.title}}</a></h3>
+              <p>{{post.content | strip_html | truncatewords:75}}</p>
+              <p class="text-right">
+                <a href="{{post.url}}" class="btn btn-primary btn-round"><i class="now-ui-icons ui-1_simple-add"></i>  Read More</a>    
+              </p>
+            </div>
+            {% endif %} {% assign count = count | plus: 1 %} {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+<!--<div class="pagination">
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ site.baseurl }}/page{{paginator.next_page}}">Older</a>
+  {% else %}
+    <span class="pagination-item older">Older</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}/">Newer</a>
+    {% else %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}/page{{paginator.previous_page}}">Newer</a>
+    {% endif %}
+  {% else %}
+    <span class="pagination-item newer">Newer</span>
+  {% endif %}
+</div>-->
+
+<!--{% if page.type == "post" %}
+{% include post.html %}
+{% elsif page.class == "contact" %}
+{% include contact.html %}
+{% else %}
+{{ content }}
+{% endif %}-->
