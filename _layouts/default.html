@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-us" class="gr__demos_creative-tim_com">
 
     {% include head.html %}
-    <body>
+    <body class="login-page" data-gr-c-s-loaded="true">
         {% include header.html %}
+        
+        <div id="wrap">
+
+    
         <div class="section">
             <div class="col-md-8 offset-md-2">
                 {{ content }}
             </div>
         </div>
+        <div class="push"></div>
+        </div>
         {% include footer.html %}
+        
     </body>
     {% include js.html %}
 </html>

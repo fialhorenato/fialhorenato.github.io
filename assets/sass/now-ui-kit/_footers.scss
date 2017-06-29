@@ -1,9 +1,13 @@
 .footer{
     padding: 24px 0;
+    color: #FFFFFF;
+
+    a{
+        color: #FFFFFF;
+    }
 
     &.footer-default{
-        background-color: #0F0F0F;
-        color: #FFFFFF;
+        background-color: #000000;
     }
 
     nav{
@@ -20,7 +24,7 @@
             display: inline-block;
 
             a{
-                color: #FFFFFF;
+                color: inherit;
                 padding: $padding-base-vertical;
                 font-size: $font-size-small;
                 text-transform: uppercase;
@@ -34,10 +38,8 @@
     }
 
     .copyright{
-        a{
-            color: #FFFFFF;
-        }
         font-size: $font-size-small;
+        line-height: 1.8;
     }
 
     &:after{
