@@ -1,5 +1,50 @@
 ---
-title: Home
 layout: default
 ---
-<h1 class="title text-center"> 404 </h1>
+
+<div class="container text-center">
+<!--<h1 class="title text-center">404</h1>-->
+<img src="https://s-media-cache-ak0.pinimg.com/originals/13/7c/a9/137ca9e2a4de70b11d0ae475997e8004.gif" alt="John Travolta Lost">
+
+</div>
+
+  <div class="container">
+    <div class="section">
+      <h3 class="title text-center">Recent Posts</h3>
+      <div class="card">
+        <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
+          {% assign count = 1 %} {% for post in site.posts limit:5 %} {%if count == 2%}
+          <li class="nav-item text-center">
+            <a class="nav-link active" data-toggle="tab" href="#post{{count}}" role="tab" aria-expanded="true">{{post.title | strip_html | truncatewords:10}}</a>
+          </li>
+          {% elsif count > 2 %}
+          <li class="nav-item text-center">
+            <a class="nav-link" data-toggle="tab" href="#post{{count}}" role="tab">{{post.title | strip_html | truncatewords:10}}</a>
+          </li>
+          {% endif %} {% assign count = count | plus: 1 %} {% endfor %}
+        </ul>
+        <div class="card-block">
+          <!-- Tab panes -->
+          <div class="tab-content text-center">
+            {% assign count = 1 %} {% for post in site.posts limit:5 %} {%if count == 2%}
+            <div class="tab-pane active" id="post{{count}}" role="tabpanel" aria-expanded="true">
+              <h3><a href="{{post.url}}">{{post.title}}</a></h3>
+              <p>{{post.content | strip_html | truncatewords:75}}</p>
+              <p class="text-right">
+                <a href="{{post.url}}" class="btn btn-primary btn-round"><i class="now-ui-icons ui-1_simple-add"></i>  Read More</a>    
+              </p>
+            </div>
+            {% elsif count > 2 %}
+            <div class="tab-pane" id="post{{count}}" role="tabpanel" aria-expanded="false">
+              <h3><a href="{{post.url}}">{{post.title}}</a></h3>
+              <p>{{post.content | strip_html | truncatewords:75}}</p>
+              <p class="text-right">
+                <a href="{{post.url}}" class="btn btn-primary btn-round"><i class="now-ui-icons ui-1_simple-add"></i>  Read More</a>    
+              </p>
+            </div>
+            {% endif %} {% assign count = count | plus: 1 %} {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
