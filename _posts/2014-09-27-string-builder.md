@@ -18,7 +18,7 @@ Is an object that can be changed with low computational cost, it’s cheaper do 
 
 **Cons** - Is recommended only if the String will be modified, because is a expensive class than String.
 
-###StringBuffer
+### StringBuffer
 
 The same as StringBuilder but built with synchronized methods, so it guarantees the synchronization with many threads trying to modify the same String.
 
@@ -26,7 +26,7 @@ The same as StringBuilder but built with synchronized methods, so it guarantees 
 
 **Cons** - Is the most expensive method to modify Strings, only use if you really need to have synchronized access to the String.
 
-###String
+### String
 
 The most popular Object to build and use Strings, have some good methods.
 
@@ -34,7 +34,7 @@ The most popular Object to build and use Strings, have some good methods.
 
 **Cons**- Using += to append Strings, or modify the String with this Object is the most expensive way.
 
-###Conclusions
+### Conclusions
 
 **Tips** - Use ``string.concat(“x”)`` instead of ``string += "x"`` to append, to modify the String.
 

@@ -18,8 +18,6 @@ In my case, since i was doing the test using paper and no internet at all, went 
 
 I did this and worked for me, if you want to get a specific double and treat it using 2 decimals only, it's amazing!
 
-{% gist fialhorenato/67e28e214c0236b33013cdf33bfed1d2 %}
-
 ```java
 String formatted = String.format("%.2f", double yourdoublewithNdecimals);
 double newdoublewith2decimal = Double.parseDouble(formatted));
