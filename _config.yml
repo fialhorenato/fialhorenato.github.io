@@ -33,6 +33,8 @@ gems:
   - jekyll-feed
   - jekyll-gist
 
+highlighter: rouge
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
