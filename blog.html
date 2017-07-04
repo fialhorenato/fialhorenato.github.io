@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Home
 ---
 
   {% for post in site.posts limit:1 %}
+  {% assign mypage = post.title %}
     <div class="container">
         <h2 class="title text-center"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
         <h6 class="post-date text-center">{{ post.date | date_to_string }}</h6>
