@@ -8,7 +8,7 @@ comments: true
 share: true
 ---
 
-I was reading some articles about the differences between this 3 classes that you can use to build Strings in java and when/how to use.
+I was reading some [articles](http://www.examiner.com/article/when-to-use-the-java-string-stringbuffer-and-stringbuilder-classes) about the differences between this 3 classes that you can use to build Strings in java and when/how to use.
 
 ### StringBuilder
 
@@ -49,5 +49,3 @@ String with concat("x") = 1.0130005s
 StringBuffer = 1.6049805s
 
 String with += = 1.7210932s
-
-**Source**  - <a href="http://www.examiner.com/article/when-to-use-the-java-string-stringbuffer-and-stringbuilder-classes">When to use the Java String, StringBuffer and StringBuilder classes</a>

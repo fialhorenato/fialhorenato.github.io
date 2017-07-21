@@ -101,6 +101,11 @@
 
         &:after{
             display: none;
+            content: none;
         }
     }
+}
+
+.dropdown-toggle::after {
+    display:none
 }
