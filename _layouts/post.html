@@ -28,7 +28,7 @@ layout: default
   <div class="row voffset5">  
     <div class="col-md-4 offset-md-4 text-center">
       {% if page.next.url %}
-      <a href="{{post.next.url}}" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Previous">
+      <a href="{{page.next.url}}" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Previous">
                     <i class="fa fa-angle-double-left"></i>
       </a> 
       {% else %}
@@ -37,7 +37,7 @@ layout: default
       </a> 
       {% endif %} 
       {% if page.previous.url %}
-      <a href="{{post.previous.url}}" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Next">
+      <a href="{{page.previous.url}}" class="btn btn-primary btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Next">
                     <i class="fa fa-angle-double-right"></i>
       </a> 
       {% else %}
