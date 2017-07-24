@@ -2,10 +2,20 @@
 layout: default
 ---
 
+<div class="container-fluid">
   <div class="row voffset5">
     <div class="col-md-8 offset-md-2 text-center">
       <h2 class="title"><a href="{{ site.baseurl }}{{ post.url }}">{{ page.title }}</a></h2>
-      <span class="badge badge-default">{{ page.date | date_to_string }}</span>
+    </div>
+    <div class="col-md-8 offset-md-2 text-center">
+      <div class="row">
+        <div class="col text-left">
+          <span class="badge badge-primary">POSTED - {{page.date | date_to_string }}</span>
+        </div>
+        <div class="col text-right">
+          <span class="badge badge-primary">LAST UPDATE - {{page.modified | date_to_string}}</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -44,3 +54,4 @@ layout: default
       {% include card.html %}
     </div>
   </div>
+</div>

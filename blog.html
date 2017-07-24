@@ -3,6 +3,7 @@ layout: default
 ---
 
   {% for post in site.posts limit:1 %} {% assign mypage = post.title %}
+<div class="container-fluid">
   <div class="row voffset5">
     <div class="col-md-8 offset-md-2 text-center">
       <h2 class="title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
@@ -55,4 +56,5 @@ layout: default
       {% include card.html %}
     </div>
   </div>
+</div>
       
