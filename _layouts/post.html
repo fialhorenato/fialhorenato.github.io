@@ -12,6 +12,8 @@ layout: default
         <div class="col text-left">
           <span class="badge badge-primary">POSTED - {{page.date | date_to_string }}</span>
         </div>
+        {% assign words = content | number_of_words %}
+        {% include readingtime.html %}
         <div class="col text-right">
           <span class="badge badge-primary">LAST UPDATE - {{page.modified | date_to_string}}</span>
         </div>
