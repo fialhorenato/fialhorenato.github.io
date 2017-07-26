@@ -1,11 +1,17 @@
 ---
 layout:     post
 title:      Porque devemos investir enquanto jovens
+description: Quanto mais cedo pouparmos, mais cedo teremos nossa independência financeira e uma aposentadoria tranquila, mas como?
 date:       2017-07-25 21:00:00
-categories: finance
+lang: PT-BR
+author: "Renato Fialho"
 ---
 
+
 A diferença entre esperar para investir em sua aposentadoria e começar hoje pode ser brutal, e o culpado disso tem nome e sobrenome, **juros compostos**, que pode parecer um termo intimidador, mas que pode ser seu melhor amigo para um futuro financeiro estável e tranquilo.
+
+{: .center}
+![alt text center](https://i1.wp.com/media.giphy.com/media/n59dQcO9yaaaY/giphy.gif?resize=350%2C200 "Tio Patinhas")
 
 Se você consegue ler em inglês e leu o [about](/about), sabe que um dos assuntos que eu mais me interesso e procuro conhecer um pouco mais é sobre finanças e investimentos, além de que o meu ~~e da torcida do galo~~ sonho é fazer o dinheiro trabalhar para mim em algum momento da vida.
 
@@ -51,9 +57,16 @@ A diferença fica mais gritante quando vemos que João investiu somente **R$16.0
 
 Ou seja, João aplicou **R$62.000 a menos** que Mario e teve um retorno **R$ 756.813,92** maior.
 
+{: .center}
+![alt text center](https://media.giphy.com/media/h0MTqLyvgG0Ss/giphy.gif "Swag Rich")
+
+
+
+
 Começar a investir cedo é a chave para ter uma aposentadoria milionária, começando a fazer o dinheiro render no mundo mágico dos juros compostos.
 
 Para vocês brincarem e fazerem alguma simulação, vou deixar o [link](https://docs.google.com/spreadsheets/d/1R7gFu3uAe0YlbF0r22Dyntfe5QborbMam11UZrqqqaU/edit?usp=sharing) para a planilha que eu usei no Google Sheets, onde vocês podem mudar o valor investido a cada ano e a % de juros do investimento escolhido.
+
 
 ### Vamos bater um papo?
 

@@ -1,28 +1,47 @@
 # Site settings
 title:       Renato Fialho
 email:       renato@renatofialho.com
-author:      Renato Fialho
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+author:
+  name: 'Renato da Silva Reis Fialho'
+  email: renato@renatofialho.com
+  github: fialhorenato
+  twitter: renatobh
+
+description: "A blog about technology, enterpreunership, finances, sports and music."
 baseurl:     ""
 url:         "http://renatofialho.com"
 date_format: "%b %-d, %Y"
+permalink: /posts/:title/
 header_pages:
  - about.md
  - contact.html
  - archive.md
 
+
+# Twitter username for SEO
+twitter:
+  username: renatobh
+
+social:
+  name: Renato Fialho
+  links:
+    - https://twitter.com/renatobh
+    - https://www.facebook.com/renato.fialho
+    - https://www.linkedin.com/in/renatofialho
+    - https://github.com/fialhorenato
+
 # Google services
 google_verification:
 # Use either direct GA implementation or set up GTM account
 # - using both will skew your data (leave blank to not use at all)
-google_analytics: UA-35245135-2
+google_analytics: UA-35245135-2ge
 google_tag_manager:
 # Bing services
 bing_verification:
 
 # Optional features
 animated:             true
-show_related_posts:   false
+show_related_posts:   true
 show_post_footers:    false
 show_social_icons:    false
 ajaxify_contact_form: false
@@ -119,13 +138,15 @@ text:
 markdown:     kramdown
 redcarpet:
   extensions: ['smart', 'tables', 'with_toc_data']
-permalink:    pretty
+# permalink:    pretty
 paginate:     4
 sass:
   style: compressed
 gems:
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-redirect-from
 # https://github.com/jekyll/jekyll/issues/2938
 exclude:
   - Gemfile
