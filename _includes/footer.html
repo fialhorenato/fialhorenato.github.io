@@ -1,8 +1,14 @@
-<div class="row voffset7">
-</div>
-<footer class="footer">
-      <div class="container text-center">
-        <p class="text"> 	Posts are written by <a href="/">Renato Fialho</a></p>
-        <p class="text"> 	&lt;/> available on GitHub</p>
-      </div>
-    </footer>
+<footer class="center">
+  <div class="measure">
+    <small>
+      Written with &lt;3 by <a href="http://renatofialho.com">Renato Fialho</a> (<a href="https://twitter.com/renatobh">@renatobh</a>).<br>
+      Using Pixxyl, &lt;/&gt; available on <a href="https://github.com/johnotander/pixyll">GitHub</a>.
+    </small>
+  </div>
+</footer>
+{% if site.enable_anchorjs %}<!-- AnchorJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.0.0/anchor.min.js"></script>
+<script>
+    anchors.options.visible = 'always';
+    anchors.add('article h2, article h3, article h4, article h5, article h6');
+</script>{% endif %}

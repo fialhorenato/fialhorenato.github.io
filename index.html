@@ -1,63 +1,28 @@
 ---
-title: Home
+layout: default
 ---
+{% assign posts_count = (paginator.posts | size) %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-{% include head.html %}
-
-<body class="profile-page">
-  <!-- Navbar -->
-  <nav class="navbar navbar-toggleable-md bg-primary fixed-top navbar-transparent " color-on-scroll="500">
-    {% include navbar.html %}
-  </nav>
-  <!-- End Navbar -->
-  <div class="wrapper">
-    <div class="page-header page-header-small" filter-color="black">
-      <div class="page-header-image" data-parallax="true" style="background-image: url('assets/img/bg12.jpg');">
-      </div>
-      <div class="container">
-        <div class="content-center">
-          <div class="photo-container">
-            <img src="assets/img/renato.jpg" alt="">
-          </div>
-          <h3 class="title">Renato Fialho</h3>
-          <p class="category">Web Developer</p>
+<div class="home">
+  {% if posts_count > 0 %}
+    <div class="posts">
+      {% for post in paginator.posts %}
+        <div class="post py3">
+          <p class="post-meta">{{ post.date | date: site.date_format }}</p>
+          <a href="{{ post.url | prepend: site.baseurl }}" class="post-link"><h3 class="h1 post-title">{{ post.title }}</h3></a>
+          <span class="post-summary">
+            {% if post.summary %}
+              {{ post.summary }}
+            {% else %}
+              {{ post.excerpt }}
+            {% endif %}
+          </span>
         </div>
-      </div>
+      {% endfor %}
     </div>
-    <div class="section">
-      <div class="container">
-        <div class="button-container">
-          <a href="/blog" data-background-color="black" class="btn btn-default btn-round btn-lg">MY BLOG</a>
 
-        </div>
-        <h3 class="title">About me</h3>
-        <h6 class="title">I'm Renato Fialho , a systems and web developer</h6>
-        <p>
-
-          <br>
-          <br> I used to work as a web software developer at Toro Investimentos where I had the chance to develop systems
-          using Django, Angular.js, Node and many other technologies
-          <br>
-          <br> I used to be a Research Assistant at LBS too, where I had the chance to work with data visualization using
-          pandas and d3.js, developing beautiful, useful and concise data visualization and standardization of data protein
-          and ligands, mainly from PDB
-          <br>
-          <br> I also worked at Vale as an IT Business Partner Intern and at INDG and UNA as an IT Infrastructure Intern.
-          <br>
-          <br> My current toolset is – Python , Flask , Pytest , Ruby , Rails , CakePHP , MySQL , Mongo.db , Node , Mocha
-          , and Vagrant.
-
-
-        </p>
-      </div>
-    </div>
-{% include footer.html %}
-  </div>
-</body>
-{% include googleanalytics.html %}
-{% include css.html %}
-{% include js.html %}
-</html>
+    {% include pagination.html %}
+  {% else %}
+    <h1 class='center'>{{ site.text.index.coming_soon }}</h1>
+  {% endif %}
+</div>
