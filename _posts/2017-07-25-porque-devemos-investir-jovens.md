@@ -24,8 +24,6 @@ Já Mario nunca teve nenhuma educação financeira, e só resolveu começar a ap
 Quem vai ter mais dinheiro aos 65 anos?
 
 
-
-
 Nessa simulação, vemos os dois casos:
 
 | Idade |     João    |    Mario    |    Total João   |   Total Mario   |
@@ -55,7 +53,7 @@ Ou seja, João aplicou **R$62.000 a menos** que Mario e teve um retorno **R$ 756
 
 Começar a investir cedo é a chave para ter uma aposentadoria milionária, começando a fazer o dinheiro render no mundo mágico dos juros compostos.
 
-Para vocês brincarem e fazerem alguma simulação, vou deixar o link para a planilha que eu usei no Google Sheets, onde vocês podem mudar o valor investido a cada ano e a % de juros do investimento escolhido.
+Para vocês brincarem e fazerem alguma simulação, vou deixar o [link](https://docs.google.com/spreadsheets/d/1R7gFu3uAe0YlbF0r22Dyntfe5QborbMam11UZrqqqaU/edit?usp=sharing) para a planilha que eu usei no Google Sheets, onde vocês podem mudar o valor investido a cada ano e a % de juros do investimento escolhido.
 
 ### Vamos bater um papo?
 
