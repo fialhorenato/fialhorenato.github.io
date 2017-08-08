@@ -74,8 +74,7 @@ Há cerca de uns quatro anos, comecei a procurar informações de como investir 
 
 Infelizmente, pouca gente investe de maneira inteligente e, principalmente, consciente. À outra parte da população, resta seguir as recomendações de seus gerentes, que trabalham para grandes bancos, portanto, mais interessados nos próprios lucros. O material disponível na internet também geralmente é escasso, desatualizado ou fragmentado.
 
-Ainda quero aprendendo muito e minha ideia com essa serie de artigos é tentar compilar o que eu vejo de melhor sobre esse mundo. Se você ficou com dúvidas, quer entender melhor algum ponto ou bater um papo sobre uma situação específica, me manda um [email](/contact) e vamos aprender juntos!
-
+Ainda quero aprender muito e minha ideia com essa serie de artigos é tentar compilar o que eu vejo de melhor sobre esse mundo. Se você ficou com dúvidas, quer entender melhor algum ponto ou bater um papo sobre uma situação específica, me manda um [email](/contact) e vamos aprender juntos!
 
 
 
