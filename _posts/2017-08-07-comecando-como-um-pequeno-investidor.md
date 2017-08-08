@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Investir de forma inteligente - Criando um pequeno investidor inteligente
-description: Guia para os pequenos investidores iniciarem seus investimentos de forma inteligente.
+title:      Investir de forma inteligente - Começando como um pequeno investidor
+description: Guia para os pequenos investidores iniciarem seus investimentos de forma inteligente, com Conta Corrente Digital e contas em corretoras
 date:       2017-08-07 20:00:00
 lang: PT-BR
 author: "Renato Fialho"
