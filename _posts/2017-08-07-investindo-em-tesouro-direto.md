@@ -2,7 +2,7 @@
 layout:     post
 title:      Investir de forma inteligente - Criando um pequeno investidor inteligente
 description: Guia para os pequenos investidores iniciarem seus investimentos de forma inteligente.
-date:       2017-07-25 21:00:00
+date:       2017-08-07 20:00:00
 lang: PT-BR
 author: "Renato Fialho"
 ---
