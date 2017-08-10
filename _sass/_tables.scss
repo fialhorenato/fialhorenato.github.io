@@ -8,6 +8,9 @@ table {
   max-width: 100%;
   margin-bottom: 1.5;
   font-size: 1.125rem;
+  border-collapse: collapse;
+  overflow-x:auto;
+  display:block;
   // Cells
   > thead,
   > tbody,
