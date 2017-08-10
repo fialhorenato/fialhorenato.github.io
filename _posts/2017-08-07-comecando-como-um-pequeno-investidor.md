@@ -5,6 +5,7 @@ description: Guia para os pequenos investidores iniciarem seus investimentos de 
 date:       2017-08-07 20:00:00
 lang: PT-BR
 author: "Renato Fialho"
+image: https://cdn-images-1.medium.com/max/800/1*iGE303qOSyvusC2DoSYPXw.jpeg
 ---
 
 Essa é uma série de artigos que apresenta uma abordagem simples e dinâmica de como investir além da poupança e se tornar um pequeno investidor inteligente. O objetivo principal é gastar o mínimo possível com taxas, diversificando os investimentos em renda fixa e variável com ganhos acima da inflação.

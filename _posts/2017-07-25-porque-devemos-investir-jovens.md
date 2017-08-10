@@ -5,6 +5,7 @@ description: Quanto mais cedo pouparmos, mais cedo teremos nossa independência 
 date:       2017-07-25 21:00:00
 lang: PT-BR
 author: "Renato Fialho"
+image: https://i1.wp.com/media.giphy.com/media/n59dQcO9yaaaY/giphy.gif?resize=350%2C200
 ---
 
 
