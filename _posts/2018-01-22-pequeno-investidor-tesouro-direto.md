@@ -2,7 +2,7 @@
 layout:     post
 title:      Investir de forma inteligente - Tesouro Direto
 description: Como investir em Tesouro Direto, uma modalidade de investimento em Renda Fixa mais famosas do mercado de investimentos atual.
-date:       2018-01-25 21:00:00
+date:       2018-01-22 21:00:00
 lang: PT-BR
 author: "Renato Fialho"
 image: https://i1.wp.com/media.giphy.com/media/n59dQcO9yaaaY/giphy.gif?resize=350%2C200
