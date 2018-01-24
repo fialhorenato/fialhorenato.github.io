@@ -9,18 +9,12 @@ image: https://i1.wp.com/media.giphy.com/media/n59dQcO9yaaaY/giphy.gif?resize=35
 categories: finanças investimento dinheiro juros investidor dinheiro
 ---
 
-Essa é uma série de artigos que apresenta uma abordagem simples e dinâmica de
-como diversificar seus investimentos além da poupança e se tornar um pequeno
-investidor inteligente. O objetivo principal é gastar o mínimo possível com
-taxas, diversificando os investimentos em renda fixa e variável visando ganhos
-acima da inflação.
+Essa é uma série de artigos que apresenta uma abordagem simples e dinâmica decomo diversificar seus investimentos além da poupança e se tornar um pequeno investidor inteligente. O objetivo principal é gastar o mínimo possível com taxas, diversificando os investimentos em renda fixa e variável visando ganhos acima da inflação.
 
-Se você não leu o primeiro artigo, clique abaixo que vai te levar para lá :)
+- [Investir de forma inteligente - Começando como um pequeno investidor](/posts/comecando-como-um-pequeno-investidor/)
+- [Investir de forma inteligente - Tesouro Direto](/posts/pequeno-investidor-tesouro-direto/)
 
-No primeiro texto falamos sobre como começar a investir de forma inteligente.
-Agora vamos entrar um pouco no mundo da Renda Fixa, especificamente um dos
-investimentos que se tornou bastante popular nos últimos anos, o **Tesouro
-Direto**.
+No primeiro texto falamos sobre como começar a investir de forma inteligente. Agora vamos entrar um pouco no mundo da Renda Fixa, especificamente um dos investimentos que se tornou bastante popular nos últimos anos, o **Tesouro Direto**.
 
 ### Tesouro Direto (TD)
 
