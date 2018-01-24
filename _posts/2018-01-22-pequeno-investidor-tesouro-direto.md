@@ -9,8 +9,6 @@ image: https://i1.wp.com/media.giphy.com/media/n59dQcO9yaaaY/giphy.gif?resize=35
 categories: finanças investimento dinheiro juros investidor dinheiro
 ---
 
-# Investir de forma inteligente — Renda Fixa Parte 1
-
 Essa é uma série de artigos que apresenta uma abordagem simples e dinâmica de
 como diversificar seus investimentos além da poupança e se tornar um pequeno
 investidor inteligente. O objetivo principal é gastar o mínimo possível com
