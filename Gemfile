@@ -5,4 +5,5 @@ source 'https://rubygems.org'
 # https://github.com/github/pages-gem
 gem 'github-pages'
 gem 'jekyll-seo-tag'
-gem 'nokogiri', '~> 1.8.1'
+gem 'nokogiri', '>= 1.8.5'
+gem 'jekyll'
