@@ -3,7 +3,7 @@ layout:     post
 title:      Technical Tests - You're doing it wrong
 description: Dissecting the hows, whys, and why nots of screening candidates
 date: 2019-06-17 23:00:00
-lang: EN-US
+lang: e-US
 author: "Renato Fialho"
 categories: technical tests wrong fail
 ---
@@ -28,27 +28,27 @@ Copying the "Google" or "Facebook" style of interviews won't turn your company i
 
 Even Google isn't really the image what you have of Google. Every company must be different, and the best way to sell that company and to find, attract, and hire the best people, is to understand the company, the team, the environment and the role.
 
- It also means that if the candidate has been judged against criteria that really are important to getting the job done, there’s a good chance that when the candidate is offered and takes the job, they’re the right person for that role.
+It also means that if the candidate has been judged against criteria that really are important to getting the job done, there’s a good chance that when the candidate is offered and takes the job, they’re the right person for that role.
 
- ### Value the effort of the candidate, and the power of feedback
+### Value the effort of the candidate, and the power of feedback
 
- Most of the companies that requires the - **Coding test to be completed at home which gets you to the next round. (or NOT)** - don't provide any feedback, and some of them provide a helpless vague feedback.
+Most of the companies that requires the - **Coding test to be completed at home which gets you to the next round. (or NOT)** - don't provide any feedback, and some of them provide a helpless vague feedback.
 
- Those type of tests demands a high time cost and low value gained for the candidate, and the **MINIMUM** that you should provide, since it's a technical test, is a technical feedback on what that candidate can improve.
+Those type of tests demands a high time cost and low value gained for the candidate, and the **MINIMUM** that you should provide, since it's a technical test, is a technical feedback on what that candidate can improve.
 
- If your companys is doing this, you're paving the road that good developers won't wanna work for you.
+If your companys is doing this, you're paving the road that good developers won't wanna work for you.
 
- ### Why the best developers don’t do technical tests
+### Why the best developers don’t do technical tests
 
- The problem is that organizations don’t always look at the costs to the candidate. 
+The problem is that organizations don’t always look at the costs to the candidate. 
  
- Maybe because they see there are a lot of candidates out there and they believe they can play a numbers game—for every candidate who doesn’t have the time or inclination to complete the tech task, there are several who are willing to. 
+Maybe because they see there are a lot of candidates out there and they believe they can play a numbers game—for every candidate who doesn’t have the time or inclination to complete the tech task, there are several who are willing to. 
  
- But what organizations may not not realize is the true cost to themselves. Candidates are not all created equal. What if the ones that don’t have time / can’t be bothered to take the tests are the best candidates? How likely is this?
+But what organizations may not not realize is the true cost to themselves. Candidates are not all created equal. What if the ones that don’t have time / can’t be bothered to take the tests are the best candidates? How likely is this?
 
- **Pretty likely.**
+**Pretty likely.**
 
- Why?
+Why?
 
 - The most experienced developers have families, life outside of work, or have simply been through enough tech tests in their lives that they just don’t want to do another made-up test for a company they’ve never heard of.
 
@@ -62,9 +62,9 @@ That’s just a few examples. However, it gives you an idea of why some organiza
 
 As an employer, it’s easy to pick a test that suits your timescale best.
 
- Often the temptation (and seemingly logical thing to do) is set the tech test right after the CV screening, i.e. before the candidate speaks to a human in the company. This keeps the cost to the company very low, because you don’t need to invest any time in phone screens or face to face interviews with a candidate who doesn’t know the difference between an if statement and a for loop. 
+Often the temptation (and seemingly logical thing to do) is set the tech test right after the CV screening, i.e. before the candidate speaks to a human in the company. This keeps the cost to the company very low, because you don’t need to invest any time in phone screens or face to face interviews with a candidate who doesn’t know the difference between an if statement and a for loop. 
  
- So you ping out your standard technical test, and only those developers who can really code will make it onto your premises. Right?
+So you ping out your standard technical test, and only those developers who can really code will make it onto your premises. Right?
 
 But lets think about the candidate again. For them it’s a numbers game too. 
 
