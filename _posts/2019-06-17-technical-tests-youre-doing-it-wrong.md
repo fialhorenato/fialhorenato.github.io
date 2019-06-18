@@ -8,7 +8,9 @@ author: "Renato Fialho"
 categories: technical tests wrong fail
 ---
 
-Many of us have experienced both sides of the interview table when it comes to recruiting.In this post i'll talk about one of the most controversial step in the hiring process : **the technical test**, and why senior developers are not willing to do your tests.
+Many of us have experienced both sides of the interview table when it comes to recruiting.
+
+In this post i'll talk about one of the most controversial step in the hiring process : **the technical test**, and why senior developers are not willing to do online tests.
 
 ### What do you mean, technical test?
 
