@@ -1,8 +1,8 @@
 <footer class="center">
   <div class="measure">
     <small>
-      Written with &lt;3 by <a href="http://renatofialho.com">Renato Fialho</a> (<a href="https://twitter.com/renatobh">@renatobh</a>).<br>
-      Using Pixxyl, &lt;/&gt; available on <a href="https://github.com/johnotander/pixyll">GitHub</a>.
+      <a href="http://renatofialho.com">Renato Fialho</a> (<a href="https://github.com/fialhorenato">@fialhorenato</a>).<br>
+      Pixyll available on <a href="https://github.com/johnotander/pixyll">GitHub</a>.
     </small>
   </div>
 </footer>
@@ -12,3 +12,8 @@
     anchors.options.visible = 'always';
     anchors.add('article h2, article h3, article h4, article h5, article h6');
 </script>{% endif %}
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("{{ '/sw.js' | relative_url }}")
+    }
+</script>

@@ -4,7 +4,3 @@ source 'https://rubygems.org'
 # maintaining a local Jekyll environment in sync with GitHub Pages
 # https://github.com/github/pages-gem
 gem 'github-pages'
-gem 'jekyll-seo-tag'
-gem 'nokogiri', '>= 1.8.5'
-gem "jekyll", ">= 3.6.3"
-gem "ffi", ">= 1.9.24"
