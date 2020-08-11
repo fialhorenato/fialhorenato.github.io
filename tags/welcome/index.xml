@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>welcome on Renato Fialho</title>
-    <link>http://renatofialho.com/tags/welcome/</link>
+    <link>https://renatofialho.com/tags/welcome/</link>
     <description>Recent content in welcome on Renato Fialho</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 10 Aug 2020 21:00:00 +0200</lastBuildDate>
     
-	<atom:link href="http://renatofialho.com/tags/welcome/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://renatofialho.com/tags/welcome/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Welcome</title>
-      <link>http://renatofialho.com/posts/welcome/</link>
+      <link>https://renatofialho.com/posts/welcome/</link>
       <pubDate>Mon, 10 Aug 2020 21:00:00 +0200</pubDate>
       
-      <guid>http://renatofialho.com/posts/welcome/</guid>
+      <guid>https://renatofialho.com/posts/welcome/</guid>
       <description>Hello everyone!
 As part of learning new technologies and new things, i&amp;rsquo;m bringing this blog back to life using Hugo , i&amp;rsquo;ll try to bring posts and news mainly about finance, technology, project management and other subjects.</description>
     </item>
