@@ -6,10 +6,22 @@
     <description>Recent content in Posts on Renato Fialho</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 11 Aug 2020 21:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2020 21:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://www.renatofialho.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to put your sideproject online with less than $6</title>
+      <link>https://www.renatofialho.com/posts/how-sideproject-less-6/</link>
+      <pubDate>Wed, 12 Aug 2020 21:00:00 +0200</pubDate>
+      
+      <guid>https://www.renatofialho.com/posts/how-sideproject-less-6/</guid>
+      <description>Hello!
+So, if you are like me, an enthusiast of development, new languages or new frameworks, there&amp;rsquo;s a high chance that you have a sideproject waiting to be kicked off, and probably because of laziness, lack of time or lack of money, you never put it into production.
+Don&amp;rsquo;t worry, that happens very often.
+This post is focused on helping with the main reason which developers are resistant on putting those projects in production: Money.</description>
+    </item>
     
     <item>
       <title>Porque devemos investir enquanto jovens</title>
