@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="Renato Fialho">
+    <meta name="description" content="How lombok can help you generating boilerplate code">
+    <meta name="keywords" content="blog,developer,personal">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Stop writing java boilerplate code"/>
+<meta name="twitter:description" content="How lombok can help you generating boilerplate code"/>
+
+    <meta property="og:title" content="Stop writing java boilerplate code" />
+<meta property="og:description" content="How lombok can help you generating boilerplate code" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.renatofialho.com/posts/stop-writing-java-boilerplate-code/" />
+<meta property="article:published_time" content="2020-08-17T21:00:00+02:00" />
+<meta property="article:modified_time" content="2020-08-17T21:00:00+02:00" />
+
+
+    
+      <base href="https://www.renatofialho.com/posts/stop-writing-java-boilerplate-code/">
+    
+    <title>
+  Stop writing java boilerplate code · Renato Fialho
+</title>
+
+    
+      <link rel="canonical" href="https://www.renatofialho.com/posts/stop-writing-java-boilerplate-code/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="/css/custom.css" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://www.renatofialho.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://www.renatofialho.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.74.3" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Renato Fialho
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.renatofialho.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.renatofialho.com/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.renatofialho.com/contact/">Contact</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Stop writing java boilerplate code</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-08-17T21:00:00&#43;02:00'>
+                August 17, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="/tags/technology/">technology</a>
+      <span class="separator">•</span>
+    <a href="/tags/java/">java</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p>How many time did you already lose writing boilerplate code in Java? Or generating those in your IDE?</p>
+<p>A simple POJO has as least <em>getters</em>, <em>setters</em>, <em>constructors</em>, <em>toString</em>, <em>equals</em>, <em>hashCode</em> and that&rsquo;s a lot of code!</p>
+<p>Other programming languages such as Scala and Kotlin provides dynamic access to properties without no extra boilerplate code, but there&rsquo;s a solution for Java? <strong>Yes</strong></p>
+<h2 id="project-lombok">Project Lombok</h2>
+<blockquote>
+<p>Project Lombok is a java library that automatically plugs into your editor and build tools, spicing up your java.
+Never write another getter or equals method again, with one annotation your class has a fully featured builder, Automate your logging variables, and much more.</p>
+</blockquote>
+<p>Lombok is all based in annotations and generates all the boilerplate code in compile-time, which makes the code more readable, less error-prone and makes the development way more productive!</p>
+<figure>
+    <img src="/images/annotations-everywhere.jpg"/> 
+</figure>
+
+<p>In order to use Lombok, you need to install the plugin for your specific IDE.</p>
+<ul>
+<li>Check <a href="https://projectlombok.org/setup/eclipse" target="_blank">here</a> for the instructions for eclipse</li>
+<li>Check <a href="https://plugins.jetbrains.com/plugin/6317-lombok" target="_blank">here</a> for the plugin for IntelliJ</li>
+<li>Check <a href="https://projectlombok.org/setup/netbeans" target="_blank">here</a> for Netbeans (Please make a favor to yourself and migrate to <a href="https://www.jetbrains.com/idea/download" target="_blank">IntelliJ Community</a>)</li>
+</ul>
+<h3 id="getters-setters-tostring-equals-and-hashcode---all-bundled">Getters, Setters, toString, equals and hashCode - All bundled</h3>
+<p>Then this:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="font-weight:bold">public</span> <span style="font-weight:bold">class</span> <span style="font-weight:bold">Person</span>{
+  <span style="font-weight:bold">private</span> String name;
+  <span style="font-weight:bold">private</span> <span style="">int</span> age;
+
+  <span style="font-weight:bold">public</span> String getName(){
+    <span style="font-weight:bold">return</span> name;
+  }
+  
+  <span style="font-weight:bold">public</span> <span style="">void</span> setName(String name){
+    <span style="font-weight:bold">this</span>.name = name;
+  }
+  
+  <span style="font-weight:bold">public</span> <span style="">int</span> getAge(){
+    <span style="font-weight:bold">return</span> age;
+  }
+  
+  <span style="font-weight:bold">public</span> <span style="">void</span> setAge(<span style="">int</span> age){
+    <span style="font-weight:bold">this</span>.age = age;
+  }
+  
+  @Override
+  <span style="font-weight:bold">public</span> <span style="">boolean</span> equals(Object o) {
+    <span style="font-weight:bold">if</span> (<span style="font-weight:bold">this</span> == o) {
+      <span style="font-weight:bold">return</span> <span style="font-weight:bold">true</span>;
+    }
+    <span style="font-weight:bold">if</span> (o == <span style="font-weight:bold">null</span> || getClass() != o.getClass()) {
+      <span style="font-weight:bold">return</span> <span style="font-weight:bold">false</span>;
+    }
+    Person person = (Person) p;
+    <span style="font-weight:bold">return</span> name == person.name &amp;&amp;
+        age == person.age;
+  }
+
+  @Override
+  <span style="font-weight:bold">public</span> <span style="">int</span> hashCode() {
+    <span style="font-weight:bold">return</span> Objects.hash(name, age, chassisCode);
+  }
+
+  @Override
+  <span style="font-weight:bold">public</span> String toString() {
+    <span style="font-weight:bold">return</span> <span style="font-style:italic">&#34;Person{&#34;</span> +
+        <span style="font-style:italic">&#34;name=&#34;</span> + name +
+        <span style="font-style:italic">&#34;, age=&#34;</span> + age +
+        <span style="font-style:italic">&#39;}&#39;</span>;
+  }
+}
+</code></pre></div><p>Will be reduced to only:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@Data
+<span style="font-weight:bold">public</span> <span style="font-weight:bold">class</span> <span style="font-weight:bold">Person</span>{
+  <span style="font-weight:bold">private</span> String name;
+  <span style="font-weight:bold">private</span> <span style="">int</span> age;
+}
+</code></pre></div><figure>
+    <img src="/images/magic.gif"/> 
+</figure>
+
+<p><a href="https://projectlombok.org/features/Data" target="_blank">@Data</a> provides you @ToString, @EqualsAndHashCode, @Getter on all fields, @Setter on all non-final fields, and @RequiredArgsConstructor.</p>
+<h3 id="logging-never-was-so-easy">Logging never was so easy!</h3>
+<p>Lombok helps you to log easily with the logging library that you choose for your project. It has support to Log4j, Log4j2, Sl4j, CommonsLog and others.</p>
+<p>Check the <a href="https://projectlombok.org/features/log" target="_blank">@Log</a> page.</p>
+<h3 id="immutable-classes">Immutable classes</h3>
+<p>The <a href="https://projectlombok.org/features/Value" target="_blank">@Value</a> annotation makes immutable classes very easy!</p>
+<blockquote>
+<p>@Value is the immutable variant of @Data; all fields are made private and final by default, and setters are not generated. The class itself is also made final by default, because immutability is not something that can be forced onto a subclass. Like @Data, useful toString(), equals() and hashCode() methods are also generated, each field gets a getter method, and a constructor that covers every argument (except final fields that are initialized in the field declaration) is also generated.</p>
+</blockquote>
+<p>I&rsquo;ll write a post in the future of the pros and cons for Immutable classes in Java, but it&rsquo;s a great POJO pattern and you should <a href="https://www.baeldung.com/java-immutable-object" target="_blank">check</a> it!</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Project lombok is one of your best friends when writing Java POJO&rsquo;s and even classes, and even Spring Boot suggests it as one of the dependencies on <a href="http://www.start.spring.io" target="_blank">Spring Initialzr</a>.</p>
+<p>Please check the <a href="https://projectlombok.org/" target="_blank">Lombok Project</a> and it&rsquo;s <a href="https://projectlombok.org/features/all" target="_blank">documentation</a> page to know more of this powerful tool.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+      
+        ©
+        
+        2020
+         Renato Fialho 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-35245135-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NK9M4TV"></script>
+
+    
+
+  </body>
+
+</html>
