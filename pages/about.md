@@ -5,9 +5,9 @@ permalink: /about/
 weight: 2
 ---
 
-I'm Renato Fialho, a Full Stack Developer based in Stockholm , Sweden.
+Hello! I'm Renato Fialho 👋 , a Software Engineer currently based in Stockholm , Sweden.
 
-Currently, i work as a Senior Software Engineer for [Klarna](http://www.klarna.com) where i develop mainly backend services using Java, Spring, PostgreSQL, Apache Kafka and other distributed systems technologies.
+Currently, I work as a Senior Software Engineer for [Klarna](http://www.klarna.com) where i develop mainly backend services using Java, Spring, PostgreSQL, Apache Kafka and other distributed systems technologies.
 
 I worked as a Software Engineer for [Hotmart](http://www.hotmart.com) in Belo Horizonte - MG, where i developed and maintained backend services using Java and Kotlin, Spring and J2EE, MySQL, Terraform, AWS (ECS, EKS, S3, SQS, SNS).
 
