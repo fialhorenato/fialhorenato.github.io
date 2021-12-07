@@ -2,7 +2,7 @@
 title: Handling SIGTERM and SIGKILL in Spring Boot Applications running on Docker Orchestrators (Kubernetes, ECS)
 tags: Java Technology Docker
 style: fill
-color: warning
+color: light
 description: How to handle SIGTERM and SIGKILL instructions in Spring Boot Web Applicatons running on Docker Orchestrators
 layout: post
 ---
