@@ -23,9 +23,15 @@ $ jdeps --list-deps --ignore-missing-deps  your-fat-jar.jar
    java.logging
 ```
 
-Spring Boot has a strategy by default to generate a fat jar with all the needed dependencies inside of it, then not many dependencies from java are needed in the JRE, if you want to check all the dependencies your application is using and match with the dependencies inside your fat jar, you can just remove the `--ignore-missing-deps` flag.
+Well, that doesn't seems right, huh?
 
-In some Java Versions, it looks like `jdeps` doesn't handle the fat jar correctly, with some previous experience, we usually need those packages in our minimal JRE:
+Spring Boot has a strategy by default to generate a fat jar with all the needed dependencies inside of it, and `jdeps` currently can't get all the dependencies recursively inside the jars from the fat-jar.
+
+So, what you can do is to extract all the contents from the fat-jar and run jdeps against every jar in the `lib` folder.
+
+Or, you can try with try and error, and see which ClassNotFoundException you will get from each JRE version
+
+But, from some previous experience, we usually need those packages in our minimal JRE:
 
 ```
 java.compiler
