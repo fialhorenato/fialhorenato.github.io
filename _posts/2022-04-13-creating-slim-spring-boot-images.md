@@ -25,6 +25,24 @@ $ jdeps --list-deps --ignore-missing-deps  your-fat-jar.jar
 
 Spring Boot has a strategy by default to generate a fat jar with all the needed dependencies inside of it, then not many dependencies from java are needed in the JRE, if you want to check all the dependencies your application is using and match with the dependencies inside your fat jar, you can just remove the `--ignore-missing-deps` flag.
 
+In some Java Versions, it looks like `jdeps` doesn't handle the fat jar correctly, with some previous experience, we usually need those packages in our minimal JRE:
+
+```
+java.compiler
+java.logging
+java.sql
+java.rmi
+java.naming
+java.management
+java.instrument
+java.security.jgss
+java.net.http
+jdk.httpserver
+jdk.naming.dns
+```
+
+But my suggestion is to try yourself and see which packages you will really need in your slim JRE
+
 ## Creating my Java slim JRE
 
 You can use `jlink` locally to create your customized JRE, the command is somehow like this:
@@ -83,7 +101,7 @@ USER root
 RUN apk --update add --no-cache --virtual .jlink-build-deps binutils=~2.34-r2 && \
     jlink \
     --module-path "$JAVA_HOME/jmods" \
-    --add-modules java.base, java.logging \
+    --add-modules java.compiler,java.sql,java.naming,java.management,java.instrument,java.rmi,java.desktop,jdk.internal.vm.compiler.management,java.xml.crypto,java.scripting,java.security.jgss,jdk.httpserver,java.net.http,jdk.naming.dns,jdk.crypto.cryptoki,jdk.unsupported \
     --verbose \
     --strip-debug \
     --compress 2 \
