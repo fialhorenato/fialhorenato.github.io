@@ -7,24 +7,75 @@ description: How to create slim docker images for running your Spring Boot appli
 layout: post
 ---
 
-Today, we are going to talk about the JRE, and how we can create slim docker images by creating customized JREs using `jlink` and `jmods`.
+In this post, I will explain how you can create slim docker images by creating customized JREs using `jlink` and `jmods`.
 
-Since `Java 9` , but more mature since `Java 11`, the JDK contains a new way to create your customized JRE with only the modules that you need from Java, and with that, you can save some good bucks in your Container Repository application (ECR, Artifactory, Docker Hub).
+Those commands are present on JDKs since Java 9, but actually being mature enough since Java 11, they bring a new way to create your customized JRE with only the modules that you need from Java, and then, creating smaller Docker images to run your Java applications (Mainly focused in Spring Boot applications), saving some good bucks in your Container Repository application (ECR, Artifactory, Docker Hub).
 
-But, how do we start?
+## But, how do we start?
 
-First, we need to get the list produced from `jdeps` based in your jarfile from Spring Boot, for example:
+Assuming you already have a JDK installed in your machine, if not, i strongly suggest you to use [sdkman.io](https://sdkman.io/) and install Java 17 version (Which is the latest LTS as of the date of this post)
+
+First of all, we need to get the list produced from `jdeps` based in your jarfile from Spring Boot, for example:
 
 ```shell
 $ jdeps --list-deps --ignore-missing-deps  your-fat-jar.jar
    java.base
    java.logging
 ```
-Spring boot already generates a fat jar with all the needed dependencies inside of it, so not many dependencies from java are needed in the JRE, if you want to check all the dependencies, you can just remove the `--ignore-missing-deps` and check inside your JAR if your dependencies are already met.
 
-So, for example, we can create our docker image like this:
+Spring Boot has a strategy by default to generate a fat jar with all the needed dependencies inside of it, then not many dependencies from java are needed in the JRE, if you want to check all the dependencies your application is using and match with the dependencies inside your fat jar, you can just remove the `--ignore-missing-deps` flag.
+
+## Creating my Java slim JRE
+
+You can use `jlink` locally to create your customized JRE, the command is somehow like this:
+
+```shell
+jlink \
+    --module-path "$JAVA_HOME/jmods" \
+    --add-modules [the java modules your application needs joined by ,]] \
+    --verbose \
+    --strip-debug \
+    --compress 2 \
+    --no-header-files \
+    --no-man-pages \
+    --output /opt/jre-minimal
+```
+
+Explaining each flag:
+
+```
+--module-path <path>              Module path.
+                                        If not specified, the JDKs jmods directory
+                                        will be used, if it exists. If specified,
+                                        but it does not contain the java.base module,
+                                        the JDKs jmods directory will be added,
+                                        if it exists.
+
+--verbose                         Enable verbose tracing
+
+--strip-debug                     Strip debug information
+
+--compress=<0|1|2>                Enable compression of resources:
+                                          Level 0: No compression
+                                          Level 1: Constant string sharing
+                                          Level 2: ZIP
+
+--no-header-files                 Exclude include header files
+
+--no-man-pages                    Exclude man pages
+
+--output <path>                   Location of output path
+```
+
+You can get those informations as well by running `jlinks --help` in your command line tool.
+
+## But then, how do I create my slim Spring Boot application docker image
+
+Well, take this as an example, as i mentioned, it's using the OpenJDK 17 version (Latest LTS by the time this post was written)
 
 ```Dockerfile
+# Build our minimal JRE using jlink
+
 FROM openjdk:17 as builder
 
 USER root
@@ -42,13 +93,15 @@ RUN apk --update add --no-cache --virtual .jlink-build-deps binutils=~2.34-r2 &&
 
 USER app
 
-# img
+# Now it is time for us to build our real image on top of an alpine version of it
+
 FROM openjdk:17-alpine
 
 WORKDIR /app
 
+# Copy the JRE created in the last step into our $JAVA_HOME
+
 COPY --from=builder /opt/jre-minimal $JAVA_HOME
-COPY --from=builder /opt/java/lib/security/cacerts "$JAVA_HOME"/lib/security/cacerts
 
 # For gradle
 # COPY build/libs/app-*.jar build/app.jar
@@ -62,5 +115,5 @@ ENTRYPOINT java -jar app.jar
 
 But, how efficient is this?
 
-For example, in a regular spring boot application, it saved 200Mb of storage for every image generated, from `543.03 MB` to `349.98 MB`, assuming that you always have 10 versions of your application in your container registry, you can save `2GB` of storage space for each application!
+For example, in a regular spring boot application, it saved 200Mb of storage for every image generated, from `543.03` to `349.98`, assuming that you always have 10 versions of your application in your container registry, you can save **2** GB of storage space for each application!
 
