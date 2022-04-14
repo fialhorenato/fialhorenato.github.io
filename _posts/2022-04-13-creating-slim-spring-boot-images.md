@@ -104,8 +104,7 @@ FROM openjdk:17 as builder
 
 USER root
 
-RUN apk --update add --no-cache --virtual .jlink-build-deps binutils=~2.34-r2 && \
-    jlink \
+RUN jlink \
     --module-path "$JAVA_HOME/jmods" \
     --add-modules java.compiler,java.sql,java.naming,java.management,java.instrument,java.rmi,java.desktop,jdk.internal.vm.compiler.management,java.xml.crypto,java.scripting,java.security.jgss,jdk.httpserver,java.net.http,jdk.naming.dns,jdk.crypto.cryptoki,jdk.unsupported \
     --verbose \
@@ -117,24 +116,22 @@ RUN apk --update add --no-cache --virtual .jlink-build-deps binutils=~2.34-r2 &&
 
 USER app
 
-# Now it is time for us to build our real image on top of an alpine version of it
+# Now it is time for us to build our real image on top of an slim debian image
 
-FROM openjdk:17-alpine
-
-WORKDIR /app
+FROM debian:stretch-slim
 
 # Copy the JRE created in the last step into our $JAVA_HOME
 
 COPY --from=builder /opt/jre-minimal $JAVA_HOME
 
 # For gradle
-# COPY build/libs/app-*.jar build/app.jar
+# COPY build/libs/app.jar app.jar
 
 # For maven
-# COPY target/app-*.jar build/app.jar
+# COPY target/app.jar app.jar
 
-WORKDIR /app/build
-ENTRYPOINT java -jar app.jar
+
+ENTRYPOINT ["java","-jar","/app.jar"]
 ```
 
 But, how efficient is this?
