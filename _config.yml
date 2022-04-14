@@ -32,11 +32,6 @@ author:
   github: fialhorenato
   linkedin: renatofialho
 
-analytics:
-  enabled: true
-  google:
-    tracking_id: UA-35245135-2
-
 ### Posts ###
 permalink: /blog/:title
 
