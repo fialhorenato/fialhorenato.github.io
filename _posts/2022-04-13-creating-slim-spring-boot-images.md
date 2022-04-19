@@ -2,7 +2,7 @@
 title: How to create slim Spring Boot docker images
 tags: Java Technology Docker Spring Spring-Boot
 style: fill
-color: warning
+color: dark
 description: How to create slim docker images for running your Spring Boot applications
 layout: post
 ---
@@ -118,7 +118,7 @@ USER app
 
 # Now it is time for us to build our real image on top of an slim debian image
 
-FROM debian:stretch-slim
+FROM bitnami/minideb:bullseye
 
 # Copy the JRE created in the last step into our $JAVA_HOME
 
