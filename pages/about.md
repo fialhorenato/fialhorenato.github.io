@@ -5,18 +5,14 @@ permalink: /about/
 weight: 2
 ---
 
-Hello! I'm Renato Fialho 👋 , a Software Engineer currently based in Stockholm , Sweden.
+Hello! I'm Renato Fialho 👋 , a Software Engineer currently based in Amsterdam, Netherlands.
 
-Currently, I work as a Senior Software Engineer for [Klarna](http://www.klarna.com) where i develop mainly backend services using Java, Spring, PostgreSQL, Apache Kafka and other distributed systems technologies.
+I have experience building concurrent and resilient applications using Java, Kotlin, Spring, J2EE, PostgreSQL, Apache Kafka, AWS (ECS, EKS, S3, SQS, SNS) and other technologies.
 
-I worked as a Software Engineer for [Hotmart](http://www.hotmart.com) in Belo Horizonte - MG, where i developed and maintained backend services using Java and Kotlin, Spring and J2EE, MySQL, Terraform, AWS (ECS, EKS, S3, SQS, SNS).
+My recent experience is mainly in building payments applications in fintech companies such as [Klarna](http://www.klarna.com), [Toro Investimentos](https://www.toroinvestimentos.com.br/) and [Hotmart](https://www.hotmart.com.br/).
 
 While not working/coding, you will probably find me reading topics in [Hackernoon](https://hackernoon.com/) and/or finding for good topics at [Hackernews](https://news.ycombinator.com/).
 
-I'm interested to know and learn about new technologies/frameworks/languages. I usually loves to know more about enterpreunership, finance , sports and music. And probably those are the subjects you will read on this blog, mixed or not.
-
-I helped as a Research Assistant at [LBS](http://www.lbs.dcc.ufmg.br/) in [UFMG](http://www.ufmg.br) too, where I had the chance to work creating beautiful, useful, concise and reliable [data visualizations](/projects/LSC) using [pandas](http://pandas.pydata.org/) and [d3.js](https://d3js.org/).
-
-I'm currently working with the following languages/tools, but not only – Java, Kotlin, Spring Boot, Docker, Flutter, Gradle, Maven, Python, Ruby on Rails, Elasticsearch, AWS, PostgreSQL.
+I'm interested to know and learn how we can solve real world problems using technologies/frameworks/languages. I love to know more about enterpreunership, finance , sports and music, and probably those are the subjects you will read on this blog, mixed or not.
 
 Wanna talk about something, hire me or are looking for a consultant? [Send me an email](/contact)!
