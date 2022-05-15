@@ -9,7 +9,7 @@ layout: post
 
 Hello again!
 
-As I mentioned [here](2021-08-28-why-wsl2-is-so-slow.md), I'm trying to use WSL for my development setup.
+As I mentioned [here](/why-wsl2-is-so-slow), I'm trying to use WSL for my development setup.
 
 I'm a heavy user of MacOS since 2014 when i bought my first Macbook Pro, but in 2020 I wanted to play some "heavier" games with mouse and keyboard, i ended up selling my current Macbook since i had one from the company that I was working for and I bought a brand new Desktop with Windows.
 
