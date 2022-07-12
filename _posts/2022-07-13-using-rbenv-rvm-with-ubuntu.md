@@ -7,7 +7,7 @@ description: Quick reminder of problems by using rbenv or rvm in Ubuntu 22.04
 layout: post
 ---
 
-As I previously mentioned [here](./2021-08-28-why-wsl2-is-so-slow.md) and [here](./2022-05-03-intellij-and-wsl-not-a-good-match.md), I've been trying to use Windows with Windows Subsystem for Linux (WSL) recently, and unfortunately, failed miserably, it is super slow and unfortunately any Jetbrains IDE and Eclipse have a hard time on scanning the storage for the WSL.
+As I previously mentioned [here](/blog/why-wsl2-is-so-slow) and [here](/blog/intellij-and-wsl-not-a-good-match), I've been trying to use Windows with Windows Subsystem for Linux (WSL) recently, and unfortunately, failed miserably, it is super slow and unfortunately any Jetbrains IDE and Eclipse have a hard time on scanning the storage for the WSL.
 
 Then, I bought a brand new SSD and installed Ubuntu on its newest version (22.04 currently) and it's been a great ride to come back to Linux as a development platform (It is a way better experience).
 
