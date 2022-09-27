@@ -91,6 +91,10 @@ The output will be:
     VirtualThread[#22]/runnable@ForkJoinPool-1-worker-1 running command C
 ```
 
+Loom and Java in general are prominently devoted to building web applications. Obviously, Java is used in many other areas, and the ideas introduced by Loom may well be useful in these applications. 
+
+It’s easy to see how massively increasing thread efficiency, and dramatically reducing the resource requirements for handling multiple competing needs, will result in greater throughput for servers. Better handling of requests and responses is a bottom-line win for a whole universe of existing and to-be-built Java applications.
+
 
 ## Reference
 
