@@ -2,7 +2,7 @@
 title: How to learn SOLID design principles using Java
 tags: Java Development
 style: fill
-color: light
+color: primary
 description: How to learn the SOLID principles by coding using Java
 layout: post
 ---
