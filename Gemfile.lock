@@ -117,7 +117,8 @@ GEM
     tzinfo-data (1.2020.5)
       tzinfo (>= 1.0.0)
     wdm (0.1.1)
-    zeitwerk (2.6.6)
+    webrick (1.8.1)
+    zeitwerk (2.6.1)
 
 PLATFORMS
   ruby
@@ -129,10 +130,11 @@ DEPENDENCIES
   jekyll-seo-tag
   jekyll-sitemap
   kramdown-parser-gfm
-  portfolyou-jekyll-theme (~> 2.2, >= 2.2.2)
+  portfolyou-jekyll-theme (~> 2.3.0, >= 2.3.0)
   tzinfo (~> 1.2)
   tzinfo-data
   wdm (~> 0.1.1)
+  webrick (~> 1.8)
 
 BUNDLED WITH
    2.2.26
