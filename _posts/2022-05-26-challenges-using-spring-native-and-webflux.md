@@ -1,11 +1,7 @@
 ---
 title: "Spring Native and WebFlux: Lessons from a PostgreSQL App"
 tags:
-  - Spring Boot
-  - WebFlux
-  - GraalVM
-  - Kotlin
-  - Databases
+  - Software Development
 description: Lessons from an early Spring Native and WebFlux experiment with PostgreSQL, R2DBC, and GraalVM.
 last_modified_at: 2026-11-13
 layout: single

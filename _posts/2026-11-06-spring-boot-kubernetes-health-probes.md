@@ -3,10 +3,7 @@ date: 2026-11-06
 title: "Spring Boot Kubernetes Probes: Liveness, Readiness, Startup"
 description: "Configure Spring Boot Actuator health probes for Kubernetes and understand when to use liveness, readiness, and startup checks without causing restart loops."
 tags:
-  - Spring Boot
-  - Kubernetes
-  - Spring Boot Actuator
-  - Reliability
+  - Software Development
 layout: single
 ---
 

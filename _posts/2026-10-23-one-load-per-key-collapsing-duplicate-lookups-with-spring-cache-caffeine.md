@@ -4,10 +4,7 @@ description: "Use Spring’s cache abstraction and Caffeine’s atomic per-key l
 date: 2026-10-23
 layout: single
 tags:
-  - Caching
-  - Java
-  - Performance
-  - Spring Boot
+  - Software Development
 source_url: https://dev.to/fialhorenato/one-load-per-key-collapsing-duplicate-lookups-with-spring-boots-cache-and-caffeine-390p
 ---
 

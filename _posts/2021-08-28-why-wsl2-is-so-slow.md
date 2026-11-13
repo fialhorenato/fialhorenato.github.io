@@ -1,9 +1,7 @@
 ---
 title: "Why WSL 2 File Access Can Slow Down Development"
 tags:
-  - WSL
-  - Windows
-  - Developer tools
+  - Software Development
 description: Learn why Linux tools in WSL 2 can slow down on a mounted Windows drive and where to keep your project files.
 last_modified_at: 2026-11-13
 layout: single

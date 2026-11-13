@@ -1,10 +1,7 @@
 ---
 title: "Graceful Shutdown for Spring Boot in Docker and Kubernetes"
 tags:
-  - Java
-  - Spring Boot
-  - Docker
-  - Kubernetes
+  - Software Development
 description: Configure graceful Spring Boot shutdowns so active requests can finish during container restarts in Kubernetes or ECS.
 last_modified_at: 2026-11-13
 layout: single

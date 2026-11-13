@@ -4,9 +4,7 @@ title: "How I Built a Multi-Agent AI Software Team with Claude Code"
 description: "A practical multi-agent AI software development workflow: separate design, coding, review, and naive-user testing, with tasks and checkpoints that preserve project context."
 tags:
   - AI
-  - AI agents
-  - Developer tools
-  - Software engineering
+  - Software Development
 layout: single
 ---
 

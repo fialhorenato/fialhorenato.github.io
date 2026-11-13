@@ -1,10 +1,7 @@
 ---
 title: "Process Large Datasets with Spring Data JPA: Page, Slice, or Stream"
 tags:
-  - Java
-  - Spring Data JPA
-  - Databases
-  - Performance
+  - Software Development
 description: Compare Page, Slice, and Stream in Spring Data JPA when processing large result sets.
 last_modified_at: 2026-11-13
 layout: single

@@ -1,9 +1,7 @@
 ---
 title: "Fixing npm EXDEV Errors in Docker Containers"
 tags:
-  - Docker
-  - Node.js
-  - npm
+  - Software Development
 description: Troubleshoot npm EXDEV cross-device rename errors during Docker image builds and dependency installation.
 last_modified_at: 2026-11-13
 layout: single

@@ -1,8 +1,7 @@
 ---
 title: "How to Launch a Side Project Online for Less Than $1 Up Front"
 tags:
-  - Side projects
-  - Web hosting
+  - Software Development
 description: A 2020 walkthrough of the low-cost domain, hosting, email, and HTTPS setup I used to launch a side project.
 last_modified_at: 2026-11-13
 layout: single

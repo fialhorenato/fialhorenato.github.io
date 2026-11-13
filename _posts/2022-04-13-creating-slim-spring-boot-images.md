@@ -1,10 +1,7 @@
 ---
 title: "Build Smaller Spring Boot Docker Images with jlink"
 tags:
-  - Java
-  - Spring Boot
-  - Docker
-  - jlink
+  - Software Development
 description: Use jdeps and jlink to build a smaller custom Java runtime for a Spring Boot Docker image.
 last_modified_at: 2026-11-13
 layout: single

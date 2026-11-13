@@ -1,9 +1,7 @@
 ---
 title: "Java 19 Virtual Threads: An Early Look at Project Loom"
 tags:
-  - Java
-  - Virtual threads
-  - Concurrency
+  - Software Development
 description: An early look at Java 19 preview virtual threads, platform threads, and Project Loom.
 last_modified_at: 2026-11-13
 layout: single

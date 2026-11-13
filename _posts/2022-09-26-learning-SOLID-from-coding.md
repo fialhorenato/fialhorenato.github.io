@@ -1,9 +1,7 @@
 ---
 title: "Learn the SOLID Principles with Java Examples"
 tags:
-  - Java
-  - SOLID
-  - Software design
+  - Software Development
 description: Learn the five SOLID design principles through Java examples covering responsibility, extension, substitution, interfaces, and dependencies.
 last_modified_at: 2026-11-13
 layout: single

@@ -4,10 +4,7 @@ title: "Secure Spring AI Tool Calling: A Practical Checklist"
 description: "Secure Spring AI tool calling with narrow tools, server-side authorization, input validation, approval gates, and audit trails. A practical checklist for MCP applications."
 tags:
   - AI
-  - Spring AI
-  - Security
-  - AI agents
-  - Security
+  - Software Development
 layout: single
 ---
 

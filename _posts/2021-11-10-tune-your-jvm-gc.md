@@ -1,10 +1,7 @@
 ---
 title: "JVM Garbage Collection Tuning: G1 GC Tips for Java 8"
 tags:
-  - Java
-  - JVM
-  - Performance
-  - Garbage collection
+  - Software Development
 description: A historical overview of G1 garbage collection settings and JVM memory tuning for Java 8 services.
 last_modified_at: 2026-11-13
 layout: single

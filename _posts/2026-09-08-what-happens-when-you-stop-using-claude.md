@@ -5,9 +5,7 @@ date: 2026-09-08
 layout: single
 tags:
   - AI
-  - Software engineering
-  - Developer tools
-  - AI agents
+  - Software Development
 source_url: https://www.linkedin.com/pulse/what-happens-when-you-stop-using-claude-coding-assistant-fialho-os7ce/
 ---
 

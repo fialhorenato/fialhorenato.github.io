@@ -1,10 +1,7 @@
 ---
 title: "Migrating from Spring Boot 2.7 to 3.0: Kotlin Notes"
 tags:
-  - Java
-  - Kotlin
-  - Spring Boot
-  - Migration
+  - Software Development
 description: Notes from migrating a Kotlin application from Spring Boot 2.7 to 3.0, including Spring Security and Jakarta package changes.
 last_modified_at: 2026-11-13
 layout: single
