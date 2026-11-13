@@ -1,9 +1,8 @@
 ---
 title: "Juros Compostos: Por Que Começar a Investir Cedo"
 tags:
-  - Finanças
-  - Investimentos
-  - Educação financeira
+  - Personal finance
+  - Investing
 description: Uma simulação hipotética ilustra como o tempo e os juros compostos podem afetar investimentos de longo prazo.
 last_modified_at: 2026-11-13
 layout: single

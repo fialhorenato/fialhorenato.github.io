@@ -2,9 +2,8 @@
 title: "Installing Ruby with rbenv or RVM on Ubuntu 22.04"
 tags:
   - Ruby
-  - rbenv
-  - RVM
-  - Ubuntu
+  - Ruby
+  - Linux
 description: Troubleshoot OpenSSL build dependencies when installing Ruby with rbenv or RVM on Ubuntu 22.04.
 last_modified_at: 2026-11-13
 layout: single

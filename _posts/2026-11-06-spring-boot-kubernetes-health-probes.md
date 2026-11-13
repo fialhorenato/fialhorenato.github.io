@@ -5,7 +5,7 @@ description: "Configure Spring Boot Actuator health probes for Kubernetes and un
 tags:
   - Spring Boot
   - Kubernetes
-  - Actuator
+  - Spring Boot Actuator
   - Reliability
 layout: single
 ---

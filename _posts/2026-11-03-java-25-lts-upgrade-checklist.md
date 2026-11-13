@@ -4,7 +4,6 @@ title: "Java 25 LTS Upgrade Checklist for Spring and Java Applications"
 description: "Plan a Java 25 LTS migration with this checklist for dependency compatibility, CI and containers, runtime testing, observability, and safe rollout."
 tags:
   - Java
-  - Java 25
   - Migration
   - Spring Boot
 layout: single

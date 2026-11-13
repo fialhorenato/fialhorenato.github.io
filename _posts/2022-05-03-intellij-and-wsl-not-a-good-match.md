@@ -2,7 +2,7 @@
 title: "Running IntelliJ IDEA Inside WSLg: A Gradle Setup That Worked for Me"
 tags:
   - IntelliJ IDEA
-  - WSL 2
+  - WSL
   - Gradle
   - Developer tools
 description: A 2022 account of running IntelliJ IDEA inside WSLg to work around slow Gradle project imports from Windows.

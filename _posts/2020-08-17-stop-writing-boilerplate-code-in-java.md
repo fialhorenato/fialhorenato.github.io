@@ -2,7 +2,7 @@
 title: "Reduce Java Boilerplate with Project Lombok"
 tags:
   - Java
-  - Project Lombok
+  - Lombok
   - Developer tools
 description: See how Project Lombok generates Java getters, setters, constructors, equals, hashCode, and logging code from annotations.
 last_modified_at: 2026-11-13

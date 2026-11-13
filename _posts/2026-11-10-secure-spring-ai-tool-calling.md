@@ -6,7 +6,8 @@ tags:
   - AI
   - Spring AI
   - Security
-  - MCP
+  - AI agents
+  - Security
 layout: single
 ---
 

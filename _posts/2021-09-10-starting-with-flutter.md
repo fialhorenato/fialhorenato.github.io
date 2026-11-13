@@ -3,7 +3,7 @@ title: "Setting Up Flutter on Windows with Android Studio"
 tags:
   - Flutter
   - Dart
-  - Android development
+  - Mobile development
 description: A historical walkthrough of setting up the Flutter SDK, Android Studio, and an Android development environment on Windows.
 last_modified_at: 2026-11-13
 layout: single
