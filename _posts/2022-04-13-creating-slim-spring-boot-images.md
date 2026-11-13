@@ -1,19 +1,22 @@
 ---
-title: How to create slim Spring Boot docker images
-tags: Java Technology Docker Spring Spring-Boot
-style: fill
-color: dark
-description: How to create slim docker images for running your Spring Boot applications
-layout: post
+title: "Build Smaller Spring Boot Docker Images with jlink"
+tags:
+  - Java
+  - Spring Boot
+  - Docker
+  - jlink
+description: Use jdeps and jlink to build a smaller custom Java runtime for a Spring Boot Docker image.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-In this post, I will explain how you can create slim docker images by creating customized JREs using `jlink` and `jmods`.
+This 2022 walkthrough shows how I used `jdeps` and `jlink` to build a smaller Java runtime for a Spring Boot Docker image. It uses Java 17-era image names and commands; review the base images, Java version, and module list for your current application before adopting it.
 
 Those commands are present on JDKs since Java 9, but actually being mature enough since Java 11, they bring a new way to create your customized JRE with only the modules that you need from Java, and then, creating smaller Docker images to run your Java applications (Mainly focused in Spring Boot applications), saving some good bucks in your Container Repository application (ECR, Artifactory, Docker Hub).
 
 ## But, how do we start?
 
-Assuming you already have a JDK installed in your machine, if not, i strongly suggest you to use [sdkman.io](https://sdkman.io/) and install Java 17 version (Which is the latest LTS as of the date of this post)
+Assuming you already have a JDK installed, use a JDK version supported by your application. At the time of writing, Java 17 was the latest LTS release.
 
 First of all, we need to get the list produced from `jdeps` based in your jarfile from Spring Boot, for example:
 

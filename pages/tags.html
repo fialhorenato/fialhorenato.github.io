@@ -1,5 +1,16 @@
 ---
-layout: page
+layout: archive
+title: Topics
 permalink: /blog/tags
 ---
-{% include tags.html %}
+
+{% for tag in site.tags %}
+  <section class="taxonomy-section" id="{{ tag[0] | slugify }}">
+    <h2>{{ tag[0] }}</h2>
+    <ul class="taxonomy-list">
+      {% for post in tag[1] %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a><span>{{ post.date | date: "%Y" }}</span></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endfor %}

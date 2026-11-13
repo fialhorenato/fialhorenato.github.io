@@ -1,15 +1,17 @@
 ---
-title: Working with virtual threads on Java 19
-tags: Java Development
-style: fill
-color: secondary
-description: How to use the new virtual threads on Java 19
-layout: post
+title: "Java 19 Virtual Threads: An Early Look at Project Loom"
+tags:
+  - Java
+  - Virtual threads
+  - Concurrency
+description: An early look at Java 19 preview virtual threads, platform threads, and Project Loom.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-## What?
+## What are virtual threads?
 
-[Java 19](https://jdk.java.net/19/release-notes) is coming, and with this new version of Java, it brings an amazing new feature, virtual threads.
+[Java 19](https://jdk.java.net/19/release-notes) introduced virtual threads as a preview feature. They are lightweight threads designed to make high-throughput concurrent applications easier to write and maintain. This article captures an early preview; virtual threads became a permanent feature in Java 21. See Oracle’s [Java 19 preview notes](https://docs.oracle.com/en/java/javase/19/core/virtual-threads.html) and [Java 21 migration guide](https://docs.oracle.com/en/java/javase/21/migrate/significant-changes-jdk-release.html) for the version history.
 
 This update comes to reduce the effort of writing, maintaining, and observing high-throughput, concurrent applications.
 
@@ -19,7 +21,7 @@ Don't worry, you will still be able to use the platform threads.
 
 ## How?
 
-Currently, those implementations are on preview mode, so you must provide the `--enable-preview` flag to the JVM.
+In Java 19, this API was in preview, so compiling and running the example required the `--enable-preview` flag. That requirement applies to this Java 19 example, not to the final API in Java 21 and later.
 
 If you are an IntelliJ user, you can tell IntelliJ to use this flag by going into the `Open Module Settings -> Project -> Language Level` and choose the `Java 19 (Preview)`.
 

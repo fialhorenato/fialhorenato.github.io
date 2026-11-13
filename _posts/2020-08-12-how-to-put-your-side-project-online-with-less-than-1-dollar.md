@@ -1,17 +1,17 @@
 ---
-title: How to put your sideproject online with less than $1
-tags: Entrepreneurship Technology
-style: fill
-color: primary
-description: All the tips to get your sideproject online spending less than $1
-layout: post
+title: "How to Launch a Side Project Online for Less Than $1 Up Front"
+tags:
+  - Side projects
+  - Web hosting
+  - Entrepreneurship
+description: A 2020 walkthrough of the low-cost domain, hosting, email, and HTTPS setup I used to launch a side project.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-If you are like me, an enthusiast of development, new languages or new frameworks, there's a high chance that you have a sideproject waiting to be kicked off, and probably because of **laziness**, **lack of time** or **lack of money**, you never put it into production.
+If you enjoy building with new languages and frameworks, you may have a side project waiting to go live. Time and motivation can get in the way, but cost is another common concern.
 
-Don't worry, that happens very often.
-
-This post is focused on helping with the main reason which developers are resistant on putting those projects in production: **Money**.
+This is the low-cost setup I used in 2020 to get a small application online. Provider plans and free tiers change, so treat the prices below as a historical example and check each provider’s current terms before signing up.
 
 This is the proposed setup:
 
@@ -21,23 +21,17 @@ This is the proposed setup:
 - A [mailserver](https://www.zoho.com/workplace/pricing.html?src=zmail) with 5GB of space per user, 10 users max.
 - A [service](https://www.cloudflare.com/) that provides HTTP (SSL) and cache to your application
 
-Wait? What? All of this for lsess than $6?
+At the time, the initial domain cost was under $1, while promotional credit covered the server for a limited period.
 
 ## Show me the money!
 
 ### First step: Domain Purchase
 
-Do you usually click on Adwords ads on google searches? Me neither. 
-
-But on this case, the main goal is to [look at those ads](https://www.google.com/search?q=.com+domains+sale&oq=.com+domains+sale&gs_l=psy-ab.3..0i22i30k1l4.933.1276.0.1422.5.4.0.0.0.0.229.229.2-1.1.0....0...1.1.64.psy-ab..4.1.227.L1LdrHkPymY) and find our gold pot.
-
-Go to google and type "domain .com sale" and look at the ads:
+In 2020, I searched for introductory .com registration offers and found one advertised for $0.90 for the first year. Promotional prices and renewal rates vary, so compare the full renewal cost before buying:
 
 ![alt text](/images/domaincomsearch.png "Search for cheap domains on google")
 
-With this link, we can get even domains for $0.90/yr? Sounds like a deal!
-
-After the checkout steps and process, *voala*, you have your new .com domaing for $.90 cents!
+After checkout, I had a .com domain for the promotional price.
 
 **Current cost : $0.90**
 
@@ -45,7 +39,7 @@ After the checkout steps and process, *voala*, you have your new .com domaing fo
 
 Have you ever heard about [DigitalOcean](https://m.do.co/c/a35e5b64be59)? 
 
-In my opinion, they give you the cheapest and with the best benefits server that you can have.
+I used a DigitalOcean virtual private server. The article’s linked plan and price reflect the options I saw in 2020; check the provider’s current pricing before choosing a server.
 
 With only $5 per month, you can have
 
@@ -54,7 +48,7 @@ With only $5 per month, you can have
 - 25GB SSD Disk
 - 1TB Transfer
 
-But, since i want your success, i'll give you a **[DISCOUNT COUPON](https://m.do.co/c/a35e5b64be59)** that gives you **$100** for 2 months, so you can use to spin a droplet, create a database for your service, volumes to store files, everything **FOR FREE!**
+The referral offer linked in the original article provided $100 in promotional credits for two months at the time. Offers change and may not be available to every account or region.
 
 After creating an account using the link above, you can create an account and from your control panel, just get a droplet choosing your plan, region and distro.
 
@@ -68,7 +62,7 @@ Wait a little for the DNS to reflect the changes and Done! You have a domain and
 
 ### Third step: Getting an e-mail service
 
-Pretty much all application need to send e-mails, right? It can be a sign up e-mail or only notifications. So for that we chose [MailChimp](http://eepurl.com/c3xOub).
+Many applications need to send email, whether for account verification or notifications. In this 2020 setup, I used [Mailchimp](http://eepurl.com/c3xOub). Check the provider’s current plans and sending limits before relying on this option.
 
 Using the service, you can send 12k e-mails trough SMTP per month, or 250 per hour! **FOR FREE!**
 
@@ -78,23 +72,13 @@ MailChimp is very simple, you create an account and it's almost ready.
 
 ### Fourth step: Getting a mailbox
 
-On this step, we gonna get a nice mailbox for you, so then you can have a nice me@mydomain.com email.
-
-And for that, we gonna use [ZohoMail](https://www.zoho.com/workplace/pricing.html?src=zmail), which offers us 5GB space per account, limited to 25 accounts and 1 domain **FOR FREE**
-
-Go ahead and create your account, it's very easy and simple!
+For an inbox on your domain, I used [Zoho Mail](https://www.zoho.com/workplace/pricing.html?src=zmail). Its free plan, storage, and domain limits may have changed; check the current plan details before relying on them.
 
 **Current cost : $0.90**
 
 ### Fifth step: Getting SSL (https://...)
 
-Is very important to keep your information safe, and having a SSL setted up in our application will help a lot!
-
-We gonna use [CloudFlare](https://www.cloudflare.com/). It gives us SSL **FOR FREE** ! (It takes around 48 hours to be activated).
-
-Cloudflare offers us another functions too, as assets cache, optimization, DDoS prevention, you can check everything [here](https://www.cloudflare.com/overview)
-
-Vamos utilizar a CloudFlare . Ela nos oferece SSL de graça ! ( Demora em torno de 48h para ser ativado) e inúmeras outras funcionalidades como cache de assets, optimização, prevenção contra DDOS. Veja todas as vantagens aqui: https://www.cloudflare.com/overview
+HTTPS protects traffic between visitors and your site. I used [Cloudflare](https://www.cloudflare.com/) for TLS and caching. Its features and plan limits can change; see the current [product overview](https://www.cloudflare.com/overview/).
 
 After that you need to change your NS servers to cloudflare and some further settings, but everything is explained on each service website.
 
@@ -109,6 +93,6 @@ Well, it took some time, but after everything you have:
 - A web application running over HTTPS(SSL) with cache.
 - 2 e-mail servers, 1 for SMTP and other for your inbox.
 
-And for how much? **$0.90** cents for right now and you gonna start spending money in only 2 months, because you have the $100 coupon that i gave to you!
+The domain’s initial promotional price was $0.90, while hosting credit covered the server for a limited period. Recurring costs applied after that. Estimate renewal and ongoing service costs—not just signup prices—before launching.
 
 Have fun!

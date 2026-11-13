@@ -1,17 +1,17 @@
 ---
-title: Stop writing boilerplate code in Java with Project Lombok
-tags: Java Technology
-style: fill
-color: dark
-description: Stop writing getters, setters, toString and other boilerplate code in Java POJOs
-layout: post
+title: "Reduce Java Boilerplate with Project Lombok"
+tags:
+  - Java
+  - Project Lombok
+  - Developer tools
+description: See how Project Lombok generates Java getters, setters, constructors, equals, hashCode, and logging code from annotations.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-How many time did you already lose writing boilerplate code in Java? Or generating those in your IDE?
+Have you spent time writing—or generating in an IDE—the same Java getters, setters, constructors, and utility methods? A simple data class can require getters, setters, constructors, toString, equals, and hashCode.
 
-A simple POJO has as least *getters*, *setters*, *constructors*, *toString*, *equals*, *hashCode* and that's a lot of code!
-
-Other programming languages such as Scala and Kotlin provides dynamic access to properties without no extra boilerplate code, but there's a solution for Java? **Yes**
+Languages such as Kotlin and Scala reduce some of this boilerplate. Java developers can also use Project Lombok, which generates common methods from annotations.
 
 # Project Lombok
 That's how project Lombok describes themselves:
@@ -19,7 +19,7 @@ That's how project Lombok describes themselves:
 > Project Lombok is a java library that automatically plugs into your editor and build tools, spicing up your java.
 > Never write another getter or equals method again, with one annotation your class has a fully featured builder, Automate your logging variables, and much more.
 
-Lombok is all based in annotations and generates all the boilerplate code in compile-time, which makes the code more readable, less error-prone and makes the development way more productive!
+Lombok uses annotations and generates code during compilation. This can keep source files shorter, though teams should weigh that convenience against the extra IDE and build configuration.
 
 ![alt text](/images/annotations-everywhere.jpg "Annotations Everywhere")
 
@@ -62,14 +62,14 @@ public class Person{
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Person person = (Person) p;
+    Person person = (Person) o;
     return name == person.name &&
         age == person.age;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, age, chassisCode);
+    return Objects.hash(name, age);
   }
 
   @Override
@@ -104,14 +104,14 @@ Check the [@Log](https://projectlombok.org/features/log) page.
 
 ## Immutable classes
 
-The [@Value](https://projectlombok.org/features/Value) annotation makes immutable classes very easy!
+The [@Value](https://projectlombok.org/features/Value) annotation can make immutable classes more concise:
 
->@Value is the immutable variant of @Data; all fields are made private and final by default, and setters are not generated. The class itself is also made final by default, because immutability is not something that can be forced onto a subclass. Like @Data, useful toString(), equals() and hashCode() methods are also generated, each field gets a getter method, and a constructor that covers every argument (except final fields that are initialized in the field declaration) is also generated.
+> `@Value` is the immutable variant of `@Data`: fields are private and final by default, setters are not generated, and Lombok generates methods such as `toString()`, `equals()`, `hashCode()`, getters, and an all-arguments constructor. See the [official `@Value` documentation](https://projectlombok.org/features/Value) for details.
 
 I'll write a post in the future of the pros and cons for Immutable classes in Java, but it's a great POJO pattern and you should [check](https://www.baeldung.com/java-immutable-object) it!
 
-## Conclusion
+## When Lombok is a good fit
 
-Project lombok is one of your best friends when writing Java POJO's and even classes, and even Spring Boot suggests it as one of the dependencies on [Spring Initialzr](http://www.start.spring.io).
+Lombok can make Java data classes and logging setup more concise. Agree on the annotations your team will use and configure every developer’s IDE and build consistently. Spring Initializr can also add Lombok to a generated project.
 
-Please check the [Lombok Project](https://projectlombok.org/) and it's [documentation](https://projectlombok.org/features/all) page to know more of this powerful tool.
+See the [Project Lombok site](https://projectlombok.org/) and its [feature documentation](https://projectlombok.org/features/all) for details.

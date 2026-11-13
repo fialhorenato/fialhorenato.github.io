@@ -1,22 +1,24 @@
 ---
-title: Iterating over large datasets using Spring Data JPA
-tags: Java Development Spring
-style: fill
-color: warning
-description: Findings on learning how to iterate over large datasets using Spring Data JPA
-layout: post
+title: "Process Large Datasets with Spring Data JPA: Page, Slice, or Stream"
+tags:
+  - Java
+  - Spring Data JPA
+  - Database
+  - Performance
+description: Compare Page, Slice, and Stream in Spring Data JPA when processing large result sets.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-In this post, I'll explain some learnings on how to iterate through large data sets retrieved with Spring Data JPA.
+When processing a large Spring Data JPA result set, the choice between `Slice`, `Page`, and `Stream` affects count queries, resource lifetime, and memory use. This guide compares the trade-offs and shows when each return type can fit.
 
 ## Pagination
 
-When iterating over large datasets from a Database, the first and easiest idea is to use pagination to fetch and process the data in bulks, but not a lot of developers know that there is 2 different ways of
-fetching data on Spring Data JPA and what is the difference between them.
+Pagination fetches results in batches. Spring Data JPA’s `Slice` and `Page` both represent a batch, but a `Page` also exposes total counts, which may require an additional count query.
 
-First, lets explain the `Slice`.
+First, consider `Slice`.
 
-For the examples provided in this post, i'll use a ficticious `Person` entity.
+The examples use a simple `Person` entity.
 
 ```java
 @Entity
@@ -81,12 +83,11 @@ Another option aside `Slice`, there is the `Page` interface that we can use as a
 ```java
 @Repository
 public interface PersonRepository extends JpaRepository<Person, UUID> {
-    Slice<Person> findAllBy(Pageable page);
     Page<Person> findAllBy(Pageable page);
 }
 ```
 
-The `Page` interface extends the `Slice` interface and adds two other methods to it: `getTotalPages()` and `getTotalElements()`.
+For a `Page` query, declare the repository method with `Page<Person>` as its return type. `Page` extends `Slice` and adds `getTotalPages()` and `getTotalElements()`.
 
 It is an extra information that helps the client to know how many more pages are needed in order to fetch all elements of the dataset at the cost of an extra query on the DB that can
 take some time.
@@ -115,25 +116,23 @@ void processAll() {
 [main] DEBUG org.hibernate.SQL - select count(person0_.id) as col_0_0_ from person person0_
 ```
 
-Since `Page` is clearly less performant than the `Slice`, we should only use page when we need to know the total number of entities.
+The count query can add database work, so use `Page` when the total count or number of pages is useful to the caller. If the caller only needs to know whether another batch exists, `Slice` avoids requesting that total.
 
 
 ## Streams (Java 8+)
 
 In Spring Data JPA there is another option which is return a stream of elements, but as a result, we can only process the entities one by one.
 
-As a leverage, we don´t load all the entities into memory at the same time.
+This can avoid collecting every result into a list at once, although actual fetching and memory behavior depends on the persistence provider and JDBC driver.
 
 ```java
 @Repository
 public interface PersonRepository extends JpaRepository<Person, UUID> {
-    Slice<Person> findAllBy(Pageable page);
-    Page<Person> findAllBy(Pageable page);
     Stream<Person> findAllBy();
 }
 ```
 
-Spring Data require us to manually close the stream created by the Spring Data JPA with a try-with-resource block, and as well, use a `@Transactional(readOnly=true)` annotation to the method called by the repository.
+Close the stream with try-with-resources and consume it inside a transaction. A `Stream` does not by itself guarantee incremental fetching; actual memory use depends on the JPA provider, JDBC driver, and fetch-size configuration. See the [Spring Data JPA reference](https://docs.spring.io/spring-data/jpa/reference/repositories/query-return-types-reference.html).
 
 ```java
 private final EntityManager entityManager;
@@ -152,6 +151,6 @@ public void processAll() {
 
 We should always use:
 
-- `Slice` if the number of entities is not relevant to us, and it is the most performance way of fecthing this data
-- `Page` if the number of entities is relevant, but at the cost of an extra query
-- `Stream` if we do not have a lot of memory and a sequential processing of the dataset is not a problem
+- `Slice` when the caller needs batches and a “has next” indicator, but not a total count.
+- `Page` when the caller needs total elements or pages, accepting the possible cost of a count query.
+- `Stream` when streaming fits the persistence provider and driver behavior; close it promptly and process it inside a transaction.

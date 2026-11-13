@@ -1,13 +1,16 @@
 ---
-title: IntelliJ slow using Gradle inside WSL, here is your fix
-tags: Windows IntelliJ IDEA Jetbrains Java Kotlin Technology Gradle
-style: fill
-color: dark
-description: IntelliJ and WSL is a source of issues, let me tell you how did i fix for me
-layout: post
+title: "Running IntelliJ IDEA Inside WSLg: A Gradle Setup That Worked for Me"
+tags:
+  - IntelliJ IDEA
+  - WSL 2
+  - Gradle
+  - Developer tools
+description: A 2022 account of running IntelliJ IDEA inside WSLg to work around slow Gradle project imports from Windows.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-Hello again!
+This is a 2022 account of running IntelliJ IDEA inside WSLg after I had trouble importing a Gradle project through my Windows IDE setup. WSL and JetBrains support have changed since then, so check the current [JetBrains WSL development documentation](https://www.jetbrains.com/help/idea/how-to-use-wsl-development-environment-in-product.html) before following these steps.
 
 As I mentioned [here](/blog/why-wsl2-is-so-slow), I'm trying to use WSL for my development setup.
 
@@ -19,7 +22,7 @@ From previous experiences, I always regret on having dual boot with an Ubuntu an
 
 So, a friend of mine introduced me then the magic world of WSL (Windows Subsystem for Linux) and the capability of running an Ubuntu machine inside Windows without doing the 1000 hacks for making it work inside a Virtualbox image, that sounded AMAZING, almost like magic.
 
-But then, reality hits, at that moment, Jetbrains and IntelliJ (Which i'm a heavy user as well) didn't have good support to running Java/Kotlin projects using Gradle inside the WSL machine, and this still holds true until today, but i need to give the Jetbrains engineers a tap in the back, it is a challenge of itself to create a boundary where the files from the WSL machine (Which is a virtual machine BTW) and the host machine, and running the projects with Gradle inside of it.
+At the time, I ran into slow Gradle imports when IntelliJ on Windows worked with project files and Gradle inside WSL. Keeping the IDE and project tools in one environment was the workaround I chose; it was a personal experience, not a claim about current JetBrains support.
 
 IntelliJ 2022.1 was launched and as a "early adopter", I installed it to check some nice features that i wanted (For example Lombok support to the new records in Java), but at the same time, I have some "pet projects" in Kotlin using gradle, and it became very painfully and slow the indexing of libraries using the Gradle inside WSL (Like, hours to import a project).
 

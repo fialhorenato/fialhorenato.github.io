@@ -1,27 +1,30 @@
 ---
-title: Migrating your Spring Boot application to Spring Boot 3.0.0 from 2.7.x
-tags: Java Development Spring
-style: fill
-color: primary
-description: Some findings when porting my pet project to Spring Boot 3.0.0
-layout: post
+title: "Migrating from Spring Boot 2.7 to 3.0: Kotlin Notes"
+tags:
+  - Java
+  - Kotlin
+  - Spring Boot
+  - Migration
+description: Notes from migrating a Kotlin application from Spring Boot 2.7 to 3.0, including Spring Security and Jakarta package changes.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-This post is about my experience on migrating my "pet project" [SpringBootstrap](https://github.com/fialhorenato/SpringBootstrap) from Spring 2.7.x to the new Spring Boot 3.0.0 that went GA a couple days ago.
+This is a historical account of migrating my [SpringBootstrap](https://github.com/fialhorenato/SpringBootstrap) project from Spring Boot 2.7 to 3.0 in 2022. The examples reflect that release; for a current upgrade, use the migration guide for your target Spring Boot version.
 
 You can see the PR with the changes [here](https://github.com/fialhorenato/SpringBootstrap/pull/215)
 
 
 ## Disclaimer
 
-There is an [official](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Migration-Guide) Spring Boot 3.0.0 migration guide.
+There is an [official Spring Boot 3.0 migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Migration-Guide). Check the Spring documentation for the migration guide matching the version you plan to use.
 
 Even though Spring 3.0.0 is GA, the version 2.7.x will receive OSS Support until the end of 2023, and commercial support until begin 2025.
 
-**I DO NOT ENCOURAGE TO MIGRATE TO SPRING BOOT 3.0.0 ON ENTERPRISE APPLICATIONS WITHOUT PROPER TESTING**
+For production systems, plan and test framework upgrades against your application’s dependencies and operational requirements.
 
 
-## Wait? Spring Boot 3.0.0
+## What changed in Spring Boot 3.0?
 
 Yes! And it is bringing Spring 6 support to Spring Boot, which will bring some breaking changes but a lot of great support to new features of the language and to the future of Jakarta EE (Former JavaEE).
 
@@ -29,7 +32,7 @@ As well, it will bring more support to the GraalVM and Native applications, maki
 
 ## Migrating
 
-Per say, the application that I migrated to Spring 3.0.0 is a "small" application that I usually use as base for other projects when I need, it doesn´t have many dependencies but I consider it well tested.
+The application I migrated to Spring Boot 3.0 was a small project that I use as a starting point for other work. It had a limited dependency set and an established test suite.
 
 Another thing to mention is that my application was already designed for **Java 17**, which is the minimum to run the Spring Boot 3.0.0, if you didn´t had time to migrate your applications to Java 17, please do it, it worth.
 
@@ -67,7 +70,7 @@ This is how it is using the `WebSecurityConfigurerAdapter` on Spring 2.7.x.
 
 ### How it is now
 
-Since `WebSecurityConfigurerAdapter` has been removed, the dependencies doesn´t get injected, and then, we must add the `@Configuration` annotation to inject the beans.
+Since `WebSecurityConfigurerAdapter` was removed, the security configuration moves to a `SecurityFilterChain` bean. The class is annotated with `@Configuration` so Spring can register the bean.
 
 The `@EnableGlobalMethodSecurity` is being deprecated as well in favor of `@EnableMethodSecurity`
 

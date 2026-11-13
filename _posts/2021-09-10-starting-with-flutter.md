@@ -1,23 +1,21 @@
 ---
-title: Starting with Flutter - Part 1
-tags: Flutter Technology
-style: fill
-color: primary
-description: Learning from start working with Flutter in Windows
-layout: post
+title: "Setting Up Flutter on Windows with Android Studio"
+tags:
+  - Flutter
+  - Dart
+  - Android development
+description: A historical walkthrough of setting up the Flutter SDK, Android Studio, and an Android development environment on Windows.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-Hello!
+This is the first part of my notes from learning Flutter and Dart on Windows. I’ll walk through the setup I used with the Flutter SDK and Android Studio.
 
-I've been challenging myself to learn new languages/technologies during since last year, but ~~laziness~~ because of work, it was hard to find time, 
-but then i ~~stopped being lazy~~ found some time to learn a framework and language that i've been postponing since last year, ~~Go and Protobuf~~ **Flutter and Dart**!
-
-I'll try to bring here how was my learning process, biggest difficulties (Since i'm doing this in a Windows Desktop) and how to work them out.
+**Historical note:** The steps and screenshots reflect the Flutter 2.5 and Android Studio versions available when I wrote this in 2021. Use the current [Flutter installation guide](https://docs.flutter.dev/get-started/install) for a new setup.
 
 ## Installing
 
-I never thought that i would say this after 10+ years in the software development, but installing Flutter on Windows is hard, there are a lot of its and bits and
-even using Android Studio, i faced some issues.
+I expected the Flutter setup to be straightforward, but I ran into several configuration steps on Windows, including when using Android Studio.
 
 ### First things first, download
 

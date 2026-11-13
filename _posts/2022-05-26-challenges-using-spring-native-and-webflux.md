@@ -1,13 +1,18 @@
 ---
-title: Learnings from migrating a pet project to Spring Native and Webflux with PostgreSQL on Heroku
-tags: Java Spring Native GraalVM 
-style: fill
-color: warning
-description: I implemented a pet project using Spring Native and Webflux on Heroku, and those are my learning from it
-layout: post
+title: "Spring Native and WebFlux: Lessons from a PostgreSQL App"
+tags:
+  - Spring
+  - WebFlux
+  - GraalVM
+  - Kotlin
+description: Lessons from an early Spring Native and WebFlux experiment with PostgreSQL, R2DBC, and GraalVM.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-In my spare time last year, I created a pet project that aggregate news from some sources and delivers them to an Android app that I developed using Flutter, but that pet project is a topic for another post.
+This is a report from a 2022 experiment with Spring Native, WebFlux, and R2DBC in a small news aggregation project. Spring Native has since been superseded by native-image support in Spring Boot 3. For a current project, start with the [Spring Boot native image documentation](https://docs.spring.io/spring-boot/reference/packaging/native-image/index.html); the limitations below describe the earlier stack and should be read as historical observations.
+
+In my spare time, I created a pet project that aggregates news from several sources and delivers them to an Android app built with Flutter. The backend initially used:
 
 The backend for this pet project was firstly built using:
 
@@ -33,7 +38,7 @@ Usually on my pet projects, I try to implement some new ideas (On this one, I im
 
 Skipping some time, I went to the We Are Developers Worldwide Conference in Berlin a couple weeks ago, where a lot of talks were showcasing the new Spring Native and the already "known" Spring Webflux.
 
-So then, I gave that stack a try and those are my learnings from it:
+I tried that stack and recorded the issues I encountered at the time:
 
 ## First mistakes
 
@@ -78,7 +83,7 @@ One issue for production grade applications is observability and monitoring, so 
 
 ### You must provide some hints to the GraalVM, and some of them are not 100% clear
 
-I faced an issue when running my application as a native app because the database URL was becoming malformed somehow, then, after a lot of research I found the [samples repo]() from Spring that had a lot of tips to use Spring Native with some specific technologies.
+I faced an issue when running the application as a native image: the database URL appeared malformed. Spring’s [native samples repository](https://github.com/spring-attic/spring-native/tree/main/samples) had hints for specific technologies.
 
 The error that i was facing was an `<unresolved>` showing up from nowhere in the middle of my database URL:
 

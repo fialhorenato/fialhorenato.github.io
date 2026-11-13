@@ -1,19 +1,17 @@
 ---
-title: Learning from using Docker and Node - EXDEV Error
-tags: Docker Technology
-style: fill
-color: danger
-description: Possible problems by using Node and NPM inside a Docker image
-layout: post
+title: "Fixing npm EXDEV Errors in Docker Containers"
+tags:
+  - Docker
+  - Node.js
+  - npm
+description: Troubleshoot npm EXDEV cross-device rename errors during Docker image builds and dependency installation.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-As part of a gig, i had to work with Dockerfile that install and build a Node project (Angular 9+).
+While working on a project, I used a Dockerfile to install dependencies and build an Angular 9 application. This post records an EXDEV error I encountered and the workaround I tried. Docker and npm behavior can vary by version and build setup, so treat this as a troubleshooting example rather than a universal fix.
 
-Today in this post, i'll try to share my challenges and more painful discoveries while trying to make this project to work with Node and Docker.
-
-Here is the list!
-
-## EXDEV : cross-device link not permitted
+## What the npm EXDEV error means
 
 If you try to update or install any npm dependency in an image that already have npm installed (any node images)
 
@@ -23,9 +21,9 @@ docker run node:latest npm install/update -g npm
 
 You will probably experience this error.
 
-Being more specific, this errors happens whenever NPM tries to use `fs.rename`.
+More specifically, this error can occur when npm tries to rename a file across filesystem boundaries. A rename is atomic only within the same filesystem, so crossing that boundary can produce `EXDEV` (cross-device link).
 
-A smart and clever solution, found by @nordluf on [github](https://github.com/npm/npm/issues/9863) is this:
+One workaround suggested in this [npm issue](https://github.com/npm/npm/issues/9863) was to move the directory before installing:
 
 ```
 RUN mv ./node_modules ./node_modules.tmp \
@@ -39,11 +37,7 @@ When you try to use `fs.rename` on this filesystem, Docker tries to copy all the
 
 Then, Docker aborts the operation throwing an EXDEV error, and since your application does not know how to handle this error, it ends up.
 
-## Containers are stateless and have ephemeral storage!
+## Keep container builds reproducible
 
-Docker containers don't keep state, and if you want to move from A to B, you will potentially lose any changes done to the container.
-
-You should always try to commit any container required files to the code repository, or generate them during the build time of the image.
-
-If you need to have sensitive information, try to use ENV variables.
+Containers are replaceable, so build-time dependencies should be reproducible from source and lockfiles. Generate required artifacts during the image build or include them in the build context. Pass secrets at runtime through an appropriate secret-management mechanism; don’t bake them into the image.
 

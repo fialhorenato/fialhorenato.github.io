@@ -1,10 +1,13 @@
 ---
-title: How to use rbenv or rvm with Ubuntu 22.04
-tags: Ruby Ubuntu Linux
-style: fill
-color: light
-description: Quick reminder of problems by using rbenv or rvm in Ubuntu 22.04
-layout: post
+title: "Installing Ruby with rbenv or RVM on Ubuntu 22.04"
+tags:
+  - Ruby
+  - rbenv
+  - RVM
+  - Ubuntu
+description: Troubleshoot OpenSSL build dependencies when installing Ruby with rbenv or RVM on Ubuntu 22.04.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
 As I previously mentioned [here](/blog/why-wsl2-is-so-slow) and [here](/blog/intellij-and-wsl-not-a-good-match), I've been trying to use Windows with Windows Subsystem for Linux (WSL) recently, and unfortunately, failed miserably, it is super slow and unfortunately any Jetbrains IDE and Eclipse have a hard time on scanning the storage for the WSL.
@@ -13,16 +16,10 @@ Then, I bought a brand new SSD and installed Ubuntu on its newest version (22.04
 
 Well, as you probably know, this blog uses [jekyll](https://jekyllrb.com/) under the hood, and jekyll is built on top of Ruby, making it necessary for me to have Ruby installed in my computer, and to try to break things in a controlled way, I always tend to install virtual environments that can be "easily" destroyed.
 
-For ruby, I always used [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv), and both of them gave me some "hard" time installing in the newest Ubuntu 22.04 due to the deprecation of OpenSSL 1.0.
+For Ruby version management, I have used [RVM](https://rvm.io/) and [rbenv](https://github.com/rbenv/rbenv). In 2022, an older Ruby build on Ubuntu 22.04 led me to install an archived OpenSSL 1.1 package manually.
 
-I'll update this post later in the future, but this is the trick you need to make it happen:
+That archived-package workaround is removed here: it pins an obsolete system library and should not be treated as current installation advice. Ruby build prerequisites vary by Ruby and Ubuntu version. Update `ruby-build` and follow its [current troubleshooting guidance](https://github.com/rbenv/ruby-build/wiki); for an OpenSSL build error, install supported development headers for your distribution rather than downloading an old `.deb` from an archive.
 
-```shell
-wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1ubuntu1.6_amd64.deb 
-&& 
-sudo dpkg -i libssl1.1_1.1.1l-1ubuntu1.6_amd64.deb
-```
-
-This command will download the LibSSL 1.1 for ubuntu and install it using the package manager `dpkg`, that should fix the issue!
+The main lesson from this setup was to check the Ruby version’s OpenSSL compatibility and the version manager’s build instructions before compiling. This article records my Ubuntu 22.04 experience from 2022, not a current installation recipe.
 
 Any questions, just [send me a message](/contact).

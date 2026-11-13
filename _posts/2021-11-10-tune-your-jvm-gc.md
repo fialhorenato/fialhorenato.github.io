@@ -1,17 +1,19 @@
 ---
-title: How to improve your JVM Garbage Collector performance
-tags: Java Technology
-style: fill
-color: warning
-description: How to improve your JVM memory performance and GC optimization in cold starts
-layout: post
+title: "JVM Garbage Collection Tuning: G1 GC Tips for Java 8"
+tags:
+  - Java
+  - JVM
+  - Garbage collection
+description: A historical overview of G1 garbage collection settings and JVM memory tuning for Java 8 services.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-In this post, i'll bring you some improvements for your Java service that needs better latency and/or better troughput.
+This article collects G1 garbage-collection tuning notes from a Java 8 service. It covers pause-time goals, heap sizing, and a few flags worth understanding.
 
-# JVM Garbage Collector
+**Historical note:** JVM defaults and garbage collector behavior vary by JDK version and workload. Treat these as Java 8-era observations, not settings to copy blindly. Measure your application on its target JDK before changing JVM flags.
 
-This post is focused on how to improve the JVM Garbage Collector performance, but if i explain everything for every GC in every Java version, this post will be huge, so i'll try to cover some basics here. And since Java 8 is the older LTS version, I will only focus on G1 GC , which is available since Java 8 Update 20.
+# G1 garbage collection
 
 ## Minor GC vs Major GC vs Full GC
 
@@ -33,7 +35,7 @@ For most backend services that uses micrometer as the metrics framework, you can
 
 # Tips
 
-## Set the initial memory to maximum memory
+## Set initial and maximum heap sizes deliberately
 
 `-XX:InitialRAMPercentage` and `-XX:MaxRAMPercentage` should be the same.
 
@@ -53,7 +55,7 @@ G1 GC algorithm modifies young generation size at runtime to meet its pause-time
 
 Remove JVM arguments related to old GC algorithms. This won't have effect, or it can even respond in a negative way.
 
-## Eliminates String duplicates
+## Consider string deduplication
 
 Eliminate duplicate strings when you pass the `-XX:+UseStringDeduplication` argument. [Here](http://java-performance.info/java-string-deduplication/) is a good explanation about it and [here](https://dzone.com/articles/memory-wasted-by-spring-boot-application) it shows how Spring Boot services memory management can be improved by this.
 
@@ -70,4 +72,4 @@ Eliminate duplicate strings when you pass the `-XX:+UseStringDeduplication` argu
 | XX:G1NewSizePercent=5 | Sets the percentage of the heap to use as the minimum for the young generation size. The default value is 5 percent of your Java heap.|
 | XX:G1MaxNewSizePercent=60 | Sets the percentage of the heap size to use as the maximum for young generation size. The default value is 60 percent of your Java heap. |
 | XX:G1OldCSetRegionThresholdPercent | Sets an upper limit on the number of old regions to be collected during a mixed garbage collection cycle. The default is 10 percent of the Java heap. |
-| XX:G1ReservePercent | Sets the percentage of reserve memory to keep free. The default is 10 percent. G1 Garbage collectors will try to keep 10% of the heap to be free always. |
+| `-XX:G1ReservePercent` | Sets the percentage of heap capacity to keep available as reserve during evacuation; the default is 10 percent. Check the documentation for the exact JDK you run. |

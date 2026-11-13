@@ -1,13 +1,15 @@
 ---
-title: How to learn SOLID design principles using Java
-tags: Java Development
-style: fill
-color: primary
-description: How to learn the SOLID principles by coding using Java
-layout: post
+title: "Learn the SOLID Principles with Java Examples"
+tags:
+  - Java
+  - SOLID
+  - Software design
+description: Learn the five SOLID design principles through Java examples covering responsibility, extension, substitution, interfaces, and dependencies.
+last_modified_at: 2026-11-13
+layout: single
 ---
 
-The main idea from this article is to show the SOLID design principles and provide examples of implementations of those principles using Java as the main language.
+This guide explains the five SOLID principles—Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion—with Java examples. Treat them as design heuristics: apply them when they make a system easier to change and understand, rather than as rules that require extra abstractions everywhere.
 
 ## What is SOLID?
 
@@ -23,7 +25,7 @@ The main idea from this article is to show the SOLID design principles and provi
 
 [**D**ependency Inversion Principle](#dependency-inversion-principle)
 
-Design principles in general helps us to write better software. And also improves the developer experience of the developers that share the same codebase with you.
+Design principles can help a team write software that is easier to maintain and work on together.
 
 ## Single Responsibility Principle
 
@@ -56,9 +58,9 @@ class UserService {
 }
 ```
 
-What happens if the requirements of this class change? What if now we must send a tex now we have to send an App Notification via push or SMS?
+What happens if the notification requirements change? If the class also handles email, push notifications, and SMS, those responsibilities can change for different reasons.
 
-Then, we must separate the concerns and responsability by creating a `NotificationService` that will handle all of our communications.
+We can separate the notification responsibility into a `NotificationService` that handles communication channels.
 
 ```java
 class UserService {
@@ -91,15 +93,15 @@ class NotificationService {
 }
 ```
 
-Even though it can have better approaches here, the idea is to separate concerns, the other solutions to solve this kind of problem is a different topic.
+There are several ways to structure this example. The key idea is to separate responsibilities that change for different reasons.
 
-## Open Closed Principle
+## Open/Closed Principle
 
-Software entities (classes, modules, functions, etc.) should be opened to extension but closed to modification.
+Software entities (classes, modules, and functions) should be open to extension and closed to modification.
 
 ## Example
 
-Think that we have an CoffeeApp class
+Suppose we have a `CoffeeApp` class:
 
 ```java
 public class CoffeeApp {
@@ -329,9 +331,9 @@ public class DatabaseRepository implements PersonRepository {
 }
 ```
 
-In this way, the high-level PersonService doesn't care if you are using a LocalDatabase for development or a real database for production.
+With this design, the high-level `PersonService` depends on the `PersonRepository` abstraction. The implementation can be replaced without changing the service’s core logic.
 
-And for example, you can change your Hibernate implementation to another solution without your high-level service knowing what's going on.
+For example, you can replace the persistence implementation without making the service depend directly on Hibernate details.
 
 ---
 
