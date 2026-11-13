@@ -1,17 +1,15 @@
 ---
-title: "Spring Native and WebFlux: Lessons from a PostgreSQL App"
+title: "Spring Native and WebFlux: What I Learned from a PostgreSQL App"
 tags:
   - Software Development
-description: Lessons from an early Spring Native and WebFlux experiment with PostgreSQL, R2DBC, and GraalVM.
+description: "A historical account of testing Spring Native, WebFlux, and R2DBC with PostgreSQL, including native-image build, persistence, and observability trade-offs."
 last_modified_at: 2026-11-13
 layout: single
 ---
 
-This is a report from a 2022 experiment with Spring Native, WebFlux, and R2DBC in a small news aggregation project. Spring Native has since been superseded by native-image support in Spring Boot 3. For a current project, start with the [Spring Boot native image documentation](https://docs.spring.io/spring-boot/reference/packaging/native-image/index.html); the limitations below describe the earlier stack and should be read as historical observations.
+This is a report from a 2022 experiment with Spring Native, WebFlux, and R2DBC in a small news aggregation project. Spring Native was an experimental project that preceded the native-image support now integrated with Spring Boot 3. For a current project, start with the [Spring Boot native image documentation](https://docs.spring.io/spring-boot/reference/packaging/native-image/index.html); the limitations below describe the earlier stack and should be read as historical observations.
 
 In my spare time, I created a pet project that aggregates news from several sources and delivers them to an Android app built with Flutter. The backend initially used:
-
-The backend for this pet project was firstly built using:
 
 ```
 Kotlin
@@ -21,74 +19,54 @@ PostgreSQL (Liquibase for migrations)
 Deployed on a heroku free tier dyno (Validating the idea)
 ```
 
-As I mentioned above, the stack is currently deployed in a Heroku free tier dyno, and that is a must for me to validate the idea for this project without spending tons of money. 
+At the time, I deployed the MVP on Heroku’s free tier while validating the idea. Heroku later discontinued its free dynos, so this deployment detail is historical.
 
-The MVP was deployed in heroku using one of their buildpacks for Gradle and everything was working fine with some struggles:
+The MVP was deployed on Heroku using a Gradle buildpack. I noticed two limitations: response times increased while importing content, and the dyno could sleep during idle periods, making the next startup slow (around 14 seconds in my observation).
 
-1 - When I was enriching the DB (POSTing more content), the response times increased a little bit.
+I was concerned about response times and startup delay, so I explored Spring WebFlux and R2DBC. I wanted to learn whether the reactive stack could help this workload, while recognizing that it would add complexity and would not automatically remove the need to scale infrastructure.
 
-2 - Since it is a pet project, the dyno running my app sleep sometimes during the day, and the initialization was very slow (Around 14 seconds)
+I often use side projects to learn new technologies. This project helped me practice Kotlin and learn Dart and Flutter. At the time, I was unsure whether Spring Native and WebFlux were a good fit for the application, which had more than 500 monthly active users.
 
-Those problems were already bothering me, and I already saw a couple things about the reactive stack for Spring (Webflux / R2DBC) that could help me handle more requests on a peak load without scaling my infrasctructure.
-
-Usually on my pet projects, I try to implement some new ideas (On this one, I improved my knowledge in Kotlin and learned Dart and Flutter), but I wasn't 100% sure that Webflux and Spring Native were mature enough for being used in this project (Even though is a pet project, there are currently 500+ MAU)
-
-Skipping some time, I went to the We Are Developers Worldwide Conference in Berlin a couple weeks ago, where a lot of talks were showcasing the new Spring Native and the already "known" Spring Webflux.
-
-I tried that stack and recorded the issues I encountered at the time:
+After attending WeAreDevelopers World Congress in Berlin in 2022, where Spring Native and WebFlux appeared in several talks, I tried the stack and recorded the issues I encountered:
 
 ## First mistakes
 
-Those 2 technologies are somehow "new" and AFAIK, not being used in a lot of production grade environments.
+In hindsight, my first mistake was adopting both technologies at once. When something failed, I could not tell whether the cause was WebFlux, Spring Native, or my application code. Introducing one major change at a time would have made the experiment easier to diagnose.
 
-Even the Spring project promises a lot of great improvements on Spring 6 and Spring Boot 3.0 for the GraalVM and Spring Native support.
+The following sections describe what I observed in that experiment; they are not a complete list of current framework limitations.
 
-With that being said, after some time, i realized that my first mistake was jumping into **BOTH** of the new technologies at the same time.
+### Native-image builds added deployment work
 
-That created a feeling of not knowing if the issue was because of Webflux or Spring Native (I lost a couple nights of a lot of Stackoverflow and Github Issues trying to resolve the problems).
-
-Then, I'll try to showcase the ones that I took notes and remember, please let me know if you faced other problems and we can spread the knowledge. 
-
-### Heroku doesn't support Spring Native out of the box. Yet.
-
-By it's nature of the AOT (Ahead of Time) compiler for the GraalVM, the Spring Native build consumes a lot of resources (It is a huge memory hog) and Heroku doesn't support it yet, so instead, you must build the image yourself or in your CI running `./gradlew bootBuildImage` , that will use a buildpack to build and generate a Docker image for you with your application.
-
-Then, you just need to tag it with the `registry.heroku.com/<your_app_name>/<build>` , push and run `heroku container:release web -a <your_app_name>`.
-
-Heroku has Docker containers support out of the box, so then it is the same as deploying using one of theirs buildpack.
+In 2022, producing a GraalVM native image required a build pipeline that could handle the ahead-of-time compilation and its resource needs. I used Spring Boot buildpacks via `./gradlew bootBuildImage` and deployed the resulting image using the platform’s container workflow. Platform support and command syntax change; check the current provider and Spring Boot documentation rather than treating these historical commands as current instructions.
 
 
-### Spring Data Webflux and R2DBC drivers don't support a lot of nice features from relational databases
+### R2DBC required different persistence patterns
 
-We know that Spring Webflux wasn't meant to be used with relational database since the JDBC drivers are I/O blocking, but the R2DBC initiative does it's job quite nicely.
+WebFlux does not require R2DBC, but blocking JDBC calls can undermine an end-to-end reactive request path. R2DBC offers non-blocking database access, with a different programming model from JPA. In the Spring Data R2DBC version I used, JPA-style relationship mapping such as `@OneToMany` and `@ManyToOne` was not available; data modeling and queries needed to account for that. APIs and capabilities have evolved, so check the current reference for your version.
 
-Some features, such as the `@OneToMany` or `@ManyToMany` or `@ManyToOne` or `@OneToOne` are not supported (yet!) , and in order to make some things to work, you must add some annotations that are a little bit different, such as if you need auditing with the `@CreatedAt` and other annotations , you must add the `@EnableR2dbcAuditing` annotation.
+### Liquibase needed native-image configuration
 
-Well, AFAIK, Quarkus and Micronaut already support some of those features with Native builds, so maybe this is something that Spring Data R2DBC will bring in the near future.
-
-### Liquibase is NOT supported. Yet.
-
-My first thought when implementing this project was to literally "copy/paste" most of the code from the project that is currently successfully running. 
+I initially tried to reuse code from another project that was already running successfully.
 
 And the database migration management tool that I was using is Liquibase (Wasn't a must, but instead, a good to have tool).
 
-I started adding the Liquibase dependency and a lot of issues happened when building the native image, I resolved a lot of them but at the end, struggled with the fact that Liquibase currently doesn't support Spring Native with GraalVM out of the box, this is an issue for the future, hopefully when they chose their [issue](https://github.com/liquibase/liquibase/issues/1552) on Github, if you are interested, give a +1 on the thumbs up @ the issue!
+In this 2022 experiment, Liquibase needed additional work to build into the native image. Native-image compatibility depends on the Liquibase and Spring versions and runtime features used. Check current Liquibase documentation and its [native-image issue history](https://github.com/liquibase/liquibase/issues/1552) before drawing conclusions for a new application.
 
-### Most of the monitoring tools are not available. Yet.
+### Observability agent compatibility required checking
 
-One issue for production grade applications is observability and monitoring, so far, I couldn't find any way to make the Newrelic java agent to work together with the GraalVM and Spring Native builds (So, no APM yet!). But you can still instrument your application using the Metrics provided by the actuator and Micrometer with the interfaces to the best providers in the market (Datadog, Newrelic, Prometheus and others).
+Observability was another gap in my setup: the New Relic Java agent I used did not work with that native-image build. Actuator and Micrometer metrics remained options, but instrumentation support depends on the agent, framework, and native-image configuration. Verify compatibility with your current observability stack.
 
-### You must provide some hints to the GraalVM, and some of them are not 100% clear
+### Native-image reflection and resource hints
 
 I faced an issue when running the application as a native image: the database URL appeared malformed. Spring’s [native samples repository](https://github.com/spring-attic/spring-native/tree/main/samples) had hints for specific technologies.
 
-The error that i was facing was an `<unresolved>` showing up from nowhere in the middle of my database URL:
+The error I encountered included `<unresolved>` in the database host:
 
 ```
 Caused by: io.r2dbc.postgresql.PostgresqlConnectionFactory$PostgresConnectionException: Cannot connect to localhost/<unresolved>:5432
 ```
 
-In my case, in order to use the R2DBC PostgreSQL and Spring Native, i had to add this hint to the GraalVM:
+In my case, I added this hint for the R2DBC PostgreSQL driver:
 
 ```
 @NativeHint(
@@ -100,11 +78,11 @@ In my case, in order to use the R2DBC PostgreSQL and Spring Native, i had to add
 ```
 
 
-You can have a `META-INF/native/reflect-config.json` file as well.
+Reflection configuration can also be expressed in a `reflect-config.json` file. The exact mechanism depends on the GraalVM and Spring versions; use current Spring AOT and native-image documentation for new projects.
 
 ## Results
 
-Well, now, let's come to the results measured so far:
+In this experiment, startup logs showed the following comparison:
 
 Before:
 
@@ -118,4 +96,4 @@ Now:
 Started MyApplication in 0.129 seconds (JVM running for 0.132)
 ```
 
-I'll try to update this post later with some insights on CPU and Memory consumption, but so far, nothing to complain!
+These are startup-time observations from one application, not a benchmark. I did not record comparable CPU and memory measurements, so the numbers alone do not show overall resource efficiency. For a current decision, measure cold and warm startup, memory, throughput, and latency under representative load.

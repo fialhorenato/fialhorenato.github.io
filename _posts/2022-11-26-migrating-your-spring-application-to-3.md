@@ -1,48 +1,35 @@
 ---
-title: "Migrating from Spring Boot 2.7 to 3.0: Kotlin Notes"
+title: "Migrating a Kotlin Application from Spring Boot 2.7 to 3.0"
 tags:
   - Software Development
-description: Notes from migrating a Kotlin application from Spring Boot 2.7 to 3.0, including Spring Security and Jakarta package changes.
+description: "A historical migration report covering Spring Security configuration and the javax-to-Jakarta package change in Spring Boot 3.0."
 last_modified_at: 2026-11-13
 layout: single
 ---
 
-This is a historical account of migrating my [SpringBootstrap](https://github.com/fialhorenato/SpringBootstrap) project from Spring Boot 2.7 to 3.0 in 2022. The examples reflect that release; for a current upgrade, use the migration guide for your target Spring Boot version.
+This article documents my 2022 migration of [SpringBootstrap](https://github.com/fialhorenato/SpringBootstrap) from Spring Boot 2.7 to 3.0. See the changes in [pull request 215](https://github.com/fialhorenato/SpringBootstrap/pull/215).
 
-You can see the PR with the changes [here](https://github.com/fialhorenato/SpringBootstrap/pull/215)
+> **Historical guide:** The examples target Spring Boot 3.0. For a current upgrade, use the migration guide for your target Spring Boot release.
 
+## Before migrating
 
-## Disclaimer
-
-There is an [official Spring Boot 3.0 migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Migration-Guide). Check the Spring documentation for the migration guide matching the version you plan to use.
-
-Even though Spring 3.0.0 is GA, the version 2.7.x will receive OSS Support until the end of 2023, and commercial support until begin 2025.
-
-For production systems, plan and test framework upgrades against your application’s dependencies and operational requirements.
-
+Spring Boot 2.7 and 3.0 support timelines have moved on. Check the lifecycle information for the distribution you use. For production systems, plan and test framework upgrades against your dependencies and operational requirements.
 
 ## What changed in Spring Boot 3.0?
 
-Yes! And it is bringing Spring 6 support to Spring Boot, which will bring some breaking changes but a lot of great support to new features of the language and to the future of Jakarta EE (Former JavaEE).
+Spring Boot 3.0 is based on Spring Framework 6 and requires Java 17. The upgrade also introduced breaking changes, including the move from Java EE `javax.*` APIs to Jakarta EE `jakarta.*` APIs. Spring Boot 3.0 also added support for native-image workloads, though build configuration and library compatibility require separate evaluation.
 
-As well, it will bring more support to the GraalVM and Native applications, making the Spring Boot applications more competitive on containers and cloud environments.
+The application was a small starter project with a limited dependency set and an established test suite. It already targeted Java 17, the minimum for Spring Boot 3.0. If your application uses an older JDK, include the Java upgrade in the plan and validate it in the deployment environment.
 
-## Migrating
+The main changes I encountered were the Spring Security `SecurityFilterChain` configuration and the move from affected `javax.persistence.*` and `javax.servlet.*` APIs to their `jakarta.*` equivalents.
 
-The application I migrated to Spring Boot 3.0 was a small project that I use as a starting point for other work. It had a limited dependency set and an established test suite.
+## Replace `WebSecurityConfigurerAdapter` with `SecurityFilterChain`
 
-Another thing to mention is that my application was already designed for **Java 17**, which is the minimum to run the Spring Boot 3.0.0, if you didn´t had time to migrate your applications to Java 17, please do it, it worth.
+Spring Security no longer uses `WebSecurityConfigurerAdapter` in this configuration style. Define a `SecurityFilterChain` bean to configure HTTP request authorization and related security behavior.
 
-My main pain points bringing it up to date were the new Spring Security way of implementing `SecurityFilterChain` and the changes from `javax.persistence.*` to `jakarta.persistence.*` and `javax.servlet.*` to `jakarta.servlet.*`.
+### Before: Spring Boot 2.7
 
-
-## WebSecurityConfigurerAdapter is gone
-
-Well, as the name of the section states, the `WebSecurityConfigurerAdapter` is gone, and Spring now relies in a `SecurityFilterChain` bean to configure your http requests security configuration.
-
-### How it was
-
-This is how it is using the `WebSecurityConfigurerAdapter` on Spring 2.7.x.
+This is the configuration pattern used by my Spring Security 5.7-era application before the migration:
 ```java
     @EnableWebSecurity
     @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -65,11 +52,11 @@ This is how it is using the `WebSecurityConfigurerAdapter` on Spring 2.7.x.
     }
 ```
 
-### How it is now
+### After: Spring Boot 3.0
 
-Since `WebSecurityConfigurerAdapter` was removed, the security configuration moves to a `SecurityFilterChain` bean. The class is annotated with `@Configuration` so Spring can register the bean.
+After removing `WebSecurityConfigurerAdapter`, I moved the rules into a `SecurityFilterChain` bean registered by a `@Configuration` class.
 
-The `@EnableGlobalMethodSecurity` is being deprecated as well in favor of `@EnableMethodSecurity`
+For this migration, I also replaced `@EnableGlobalMethodSecurity` with `@EnableMethodSecurity`. Check the API appropriate to your Spring Security version.
 
 ```java
 @Configuration
@@ -100,18 +87,14 @@ class SecurityConfig(private val jwtAuthorizationFilter: JwtAuthorizationFilter)
     }
 ```
 
+## Migrate Java EE imports to Jakarta EE
 
-## Javax is gone, welcome Jakarta
+Jakarta EE is the continuation of Java EE under the Eclipse Foundation. Spring Boot 3 uses Jakarta EE APIs for the areas covered by this migration.
 
-The JavaEE project was taken over by the Eclipse foundation and became [JakartaEE](https://jakarta.ee/), which will be the future standard for building enterprise applications using Java.
+For affected APIs, imports move from `javax.*` to `jakarta.*`. Do not blindly replace every `javax` package: Java SE packages such as `javax.sql` remain under `javax`, so review compiler errors and dependency documentation.
 
-With that said, the `javax.*` package naming must be substituted by `jakarta.*`.
+The namespace change can affect application code, dependencies, configuration, and generated sources, so compile and run integration tests after updating dependencies.
 
-Some changes were made in the persistence part of Jakarta, but usually this change shouldn´t break anything in your project.
+## Takeaway
 
-One easy way of doing this is by replacing every `javax` entry in your code to `jakarta`, but be in mind that problems can happen and you must be able to troubleshoot.
-
-
-## Conclusions
-
-With that being said, the migration from 2.7.x to 3.0.0 was easier than I expected, but I'm super excited for the future of the Spring Boot versions and the new support to JakartaEE
+For this project, the migration was easier than I expected. The main work was concentrated in the security configuration and namespace changes. Your effort will depend on dependency compatibility, test coverage, and application-specific use of the affected APIs.

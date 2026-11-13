@@ -1,7 +1,7 @@
 ---
 date: 2026-11-12
-title: "How I Built a Multi-Agent AI Software Team with Claude Code"
-description: "A practical multi-agent AI software development workflow: separate design, coding, review, and naive-user testing, with tasks and checkpoints that preserve project context."
+title: "Build a Multi-Agent AI Software Team with Claude Code"
+description: "A practical multi-agent software development workflow using scoped tasks, design and code lanes, independent reviews, usability checks, and persistent context."
 tags:
   - AI
   - Software Development

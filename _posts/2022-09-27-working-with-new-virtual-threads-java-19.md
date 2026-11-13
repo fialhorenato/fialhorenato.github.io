@@ -1,8 +1,8 @@
 ---
-title: "Java 19 Virtual Threads: An Early Look at Project Loom"
+title: "Java Virtual Threads: From the Java 19 Preview to Java 21"
 tags:
   - Software Development
-description: An early look at Java 19 preview virtual threads, platform threads, and Project Loom.
+description: "An updated overview of Java virtual threads, including how the Java 19 preview example differs from the finalized Java 21 API."
 last_modified_at: 2026-11-13
 layout: single
 ---
@@ -11,13 +11,9 @@ layout: single
 
 [Java 19](https://jdk.java.net/19/release-notes) introduced virtual threads as a preview feature. They are lightweight threads designed to make high-throughput concurrent applications easier to write and maintain. This article captures an early preview; virtual threads became a permanent feature in Java 21. See Oracle’s [Java 19 preview notes](https://docs.oracle.com/en/java/javase/19/core/virtual-threads.html) and [Java 21 migration guide](https://docs.oracle.com/en/java/javase/21/migrate/significant-changes-jdk-release.html) for the version history.
 
-This update comes to reduce the effort of writing, maintaining, and observing high-throughput, concurrent applications.
+Virtual threads are part of Project Loom and let applications use the familiar `Thread` API with many lightweight threads. They can help workloads that spend substantial time waiting on I/O; they do not make CPU-bound work faster or remove the need to manage downstream concurrency. Platform threads remain available for work that needs them.
 
-This is part of the [Project Loom](https://www.infoworld.com/article/3652596/project-loom-understand-the-new-java-concurrency-model.html), a project that aims to bring a new concurrency model to java, but preserving the same simple abstraction to the developers.
-
-Don't worry, you will still be able to use the platform threads.
-
-## How?
+## Create a virtual thread (Java 19 preview example)
 
 In Java 19, this API was in preview, so compiling and running the example required the `--enable-preview` flag. That requirement applies to this Java 19 example, not to the final API in Java 21 and later.
 
@@ -43,11 +39,11 @@ The output will be:
     Thread[#24,Thread-0,5,main]
 ```
 
-Now you see that we have a virtual thread executing on a worker thread of the Fork-Join pool, and another platform thread running on the main process.
+The output shows the virtual thread mounted on a carrier worker and a separate platform thread. Runtime output varies by JDK and execution timing.
 
-## Seamless integration between platform and virtual threads
+## Coordinate virtual and platform threads
 
-Synchronized blocks will work transparent in between virtual and platform threads, as it is shown in this example.
+Virtual threads support ordinary Java synchronization. In early JDK releases, blocking while holding a monitor could pin a carrier thread; consult the JDK-version-specific guidance when diagnosing pinning. The example below demonstrates coordination, not a general performance recommendation.
 
 ```java
 class VirtualThreads {

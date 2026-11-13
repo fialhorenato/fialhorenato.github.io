@@ -1,6 +1,6 @@
 ---
-title: "What Happens When You Stop Using Claude as a Coding Assistant—and Start Treating It Like an Engineer?"
-description: "A long-running engineering harness changed how I use Claude: small scoped tasks, durable project memory, model routing, and validation built into the workflow."
+title: "Building a Reliable AI Coding Workflow with Claude"
+description: "How a long-running engineering harness uses scoped tasks, project memory, model routing, checkpoints, and validation to make AI coding more reliable."
 date: 2026-09-08
 layout: single
 tags:

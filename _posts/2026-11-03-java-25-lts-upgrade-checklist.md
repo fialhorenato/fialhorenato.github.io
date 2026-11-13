@@ -1,7 +1,7 @@
 ---
 date: 2026-11-03
-title: "Java 25 LTS Upgrade Checklist for Spring and Java Applications"
-description: "Plan a Java 25 LTS migration with this checklist for dependency compatibility, CI and containers, runtime testing, observability, and safe rollout."
+title: "Java 25 Upgrade Checklist for Spring Applications"
+description: "Plan a Java 25 LTS migration with a checklist for dependency compatibility, CI and container images, runtime testing, observability, and rollback."
 tags:
   - Software Development
 layout: single

@@ -2,20 +2,20 @@
 title: "Build Smaller Spring Boot Docker Images with jlink"
 tags:
   - Software Development
-description: Use jdeps and jlink to build a smaller custom Java runtime for a Spring Boot Docker image.
+description: "Use jdeps and jlink to create a custom Java runtime for a Spring Boot Docker image, with a historical Java 17 example and compatibility caveats."
 last_modified_at: 2026-11-13
 layout: single
 ---
 
 This 2022 walkthrough shows how I used `jdeps` and `jlink` to build a smaller Java runtime for a Spring Boot Docker image. It uses Java 17-era image names and commands; review the base images, Java version, and module list for your current application before adopting it.
 
-Those commands are present on JDKs since Java 9, but actually being mature enough since Java 11, they bring a new way to create your customized JRE with only the modules that you need from Java, and then, creating smaller Docker images to run your Java applications (Mainly focused in Spring Boot applications), saving some good bucks in your Container Repository application (ECR, Artifactory, Docker Hub).
+`jdeps` and `jlink` have been available since Java 9. They can help create a custom runtime containing selected JDK modules, which may reduce the size of a Java application image. The result depends on the application, dependencies, base image, and build process; measure the final image and test the runtime carefully.
 
-## But, how do we start?
+## Inspect the application dependencies
 
-Assuming you already have a JDK installed, use a JDK version supported by your application. At the time of writing, Java 17 was the latest LTS release.
+Use a JDK version supported by your application and build the runtime with the same JDK release. The commands below reflect a Java 17 setup from 2022.
 
-First of all, we need to get the list produced from `jdeps` based in your jarfile from Spring Boot, for example:
+Start by inspecting the application with `jdeps`:
 
 ```shell
 $ jdeps --list-deps --ignore-missing-deps  your-fat-jar.jar
@@ -23,15 +23,13 @@ $ jdeps --list-deps --ignore-missing-deps  your-fat-jar.jar
    java.logging
 ```
 
-Well, that doesn't seems right, huh?
+If the output looks incomplete, that is expected for a Spring Boot executable archive:
 
-Spring Boot has a strategy by default to generate a fat jar with all the needed dependencies inside of it, and `jdeps` currently can't get all the dependencies recursively inside the jars from the fat-jar.
+Spring Boot packages application dependencies inside a nested `BOOT-INF/lib` directory. A basic `jdeps` run on the outer archive may not analyze every nested dependency recursively.
 
-So, what you can do is to extract all the contents from the fat-jar and run jdeps against every jar in the `lib` folder.
+Extract the archive and analyze the application classes and dependency JARs individually, or use a build-time dependency-analysis workflow. Then verify the module list by running the application with the linked runtime and exercising code paths that may load classes reflectively. A `ClassNotFoundException` at runtime is a late signal, so include integration tests.
 
-Or, you can try with try and error, and see which ClassNotFoundException you will get from each JRE version
-
-But, from some previous experience, we usually need those packages in our minimal JRE:
+In my previous projects, the following modules were common starting points—not a guaranteed list for every Spring Boot application:
 
 ```
 java.compiler
@@ -47,9 +45,9 @@ jdk.httpserver
 jdk.naming.dns
 ```
 
-But my suggestion is to try yourself and see which packages you will really need in your slim JRE
+Treat this list as a starting point from one application, not a reusable module set. Determine the required modules for your own app and libraries, and rerun analysis when dependencies change.
 
-## Creating my Java slim JRE
+## Build a custom Java runtime with jlink
 
 You can use `jlink` locally to create your customized JRE, the command is somehow like this:
 
@@ -91,16 +89,16 @@ Explaining each flag:
 --output <path>                   Location of output path
 ```
 
-You can get those informations as well by running `jlinks --help` in your command line tool.
+For the options supported by your installed JDK, run `jlink --help`.
 
-## But then, how do I create my slim Spring Boot application docker image
+## Package the runtime with a Spring Boot application
 
-Well, take this as an example, as i mentioned, it's using the OpenJDK 17 version (Latest LTS by the time this post was written)
+This illustrative multi-stage Dockerfile uses Java 17-era image names and should be updated for a supported base image and the target JDK before use.
 
 ```Dockerfile
-# Build our minimal JRE using jlink
+# Build a minimal runtime with jlink
 
-FROM openjdk:17 as builder
+FROM openjdk:17 AS builder
 
 USER root
 
@@ -116,25 +114,25 @@ RUN jlink \
 
 USER app
 
-# Now it is time for us to build our real image on top of an slim debian image
+# Assemble the application image on a compatible base
 
 FROM bitnami/minideb:bullseye
 
-# Copy the JRE created in the last step into our $JAVA_HOME
+# Add the custom runtime
 
 COPY --from=builder /opt/jre-minimal $JAVA_HOME
 
-# For gradle
+# Copy the application JAR built by Gradle
 # COPY build/libs/app.jar app.jar
 
-# For maven
+# Or copy the application JAR built by Maven
 # COPY target/app.jar app.jar
 
 
 ENTRYPOINT ["java","-jar","/app.jar"]
 ```
 
-But, how efficient is this?
+## Measure the image-size result
 
-For example, in a regular spring boot application, it saved 200Mb of storage for every image generated, from `543.03` to `349.98`, assuming that you always have 10 versions of your application in your container registry, you can save **2** GB of storage space for each application!
+In my 2022 example, the resulting image was about 200 MB smaller than the original. Your result will vary with the application and base image, and registries may deduplicate shared layers, so measure actual stored and transferred size rather than assuming the same saving.
 

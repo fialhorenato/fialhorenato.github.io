@@ -2,7 +2,7 @@
 title: "Fixing npm EXDEV Errors in Docker Containers"
 tags:
   - Software Development
-description: Troubleshoot npm EXDEV cross-device rename errors during Docker image builds and dependency installation.
+description: "Understand why npm can hit EXDEV cross-device rename errors in Docker builds and review a historical workaround and safer build practices."
 last_modified_at: 2026-11-13
 layout: single
 ---
@@ -11,17 +11,11 @@ While working on a project, I used a Dockerfile to install dependencies and buil
 
 ## What the npm EXDEV error means
 
-If you try to update or install any npm dependency in an image that already have npm installed (any node images)
-
-```
-docker run node:latest npm install/update -g npm
-```
-
-You will probably experience this error.
+The `EXDEV` error means an operation crossed a filesystem boundary. It is not specific to Docker, and the exact trigger depends on npm, the filesystem, and how the image layers are used. In my case, it appeared while changing npm-related files during a container build.
 
 More specifically, this error can occur when npm tries to rename a file across filesystem boundaries. A rename is atomic only within the same filesystem, so crossing that boundary can produce `EXDEV` (cross-device link).
 
-One workaround suggested in this [npm issue](https://github.com/npm/npm/issues/9863) was to move the directory before installing:
+A workaround discussed in this [npm issue](https://github.com/npm/npm/issues/9863) was to move the directory before installing:
 
 ```
 RUN mv ./node_modules ./node_modules.tmp \
@@ -29,11 +23,7 @@ RUN mv ./node_modules ./node_modules.tmp \
   && npm install 
 ```
 
-The solution is kind of "hacky" but makes sense after all. The problem happens inside the filesystem for Docker. Docker filesystem is layered, and the union of those layers gives the complete picture of the Docker's image filesystem.
-
-When you try to use `fs.rename` on this filesystem, Docker tries to copy all the data that it wants to use to the current layer from the read-only layer to perform the `fs.rename`. And since the operation require data from another read-only layer below and recursively, this is a very expensive operation.
-
-Then, Docker aborts the operation throwing an EXDEV error, and since your application does not know how to handle this error, it ends up.
+This was a workaround for the specific environment I encountered, not a general Docker fix. Container filesystems use layers, and rename behavior can differ across filesystems and mounts. Before adopting the workaround, reproduce the error with your current Node.js and npm versions and inspect which paths are on which filesystem. Prefer a supported install/build flow that produces dependencies in the same filesystem layer where they will be used.
 
 ## Keep container builds reproducible
 

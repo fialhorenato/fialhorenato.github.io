@@ -1,42 +1,41 @@
 ---
-title: "Setting Up Flutter on Windows with Android Studio"
+title: "Set Up Flutter on Windows with Android Studio"
 tags:
   - Software Development
-description: A historical walkthrough of setting up the Flutter SDK, Android Studio, and an Android development environment on Windows.
+description: "A historical Flutter 2.5 walkthrough covering the Windows SDK setup, Android Studio plugin, flutter doctor, and where to find current instructions."
 last_modified_at: 2026-11-13
 layout: single
 ---
 
-This is the first part of my notes from learning Flutter and Dart on Windows. I’ll walk through the setup I used with the Flutter SDK and Android Studio.
+This post records how I set up Flutter 2.5 and Android Studio on Windows in 2021. It is a historical walkthrough, not a current installation recipe; use the official [Flutter installation guide](https://docs.flutter.dev/get-started/install) for up-to-date commands and prerequisites.
 
-**Historical note:** The steps and screenshots reflect the Flutter 2.5 and Android Studio versions available when I wrote this in 2021. Use the current [Flutter installation guide](https://docs.flutter.dev/get-started/install) for a new setup.
+## Set up the development environment
 
-## Installing
+A working Flutter setup needs the SDK, an editor or IDE, and the platform tools for the targets you want to build. In 2021, I used Android Studio on Windows; the steps below preserve that context.
 
-I expected the Flutter setup to be straightforward, but I ran into several configuration steps on Windows, including when using Android Studio.
+### 1. Install the Flutter SDK
 
-### First things first, download
+Download the Flutter SDK using the official [Flutter installation guide](https://docs.flutter.dev/get-started/install). In this historical example, I focus on Windows because it was the setup I knew best at the time.
 
-You'll need to download the latest Flutter SDK from the [webpage](https://flutter.dev/docs/get-started/install), i'll deep dive more in the Windows setup since is the one
-I have more recent experience with and it is for sure the most complex.
+### 2. Choose an editor or IDE
 
-### Android Studio with Flutter
+Flutter supports several editors and IDEs, including Visual Studio Code and IntelliJ-based IDEs. This walkthrough uses Android Studio, which you can download from the [Android Studio website](https://developer.android.com/studio/). If you already use JetBrains products, [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) is another way to manage IDE installations.
 
-Well, flutter supports a lot of IDEs such as Visual Studio Code, IntelliJ, Eclipse, but the main one that everyone loves is the ~~in~~famous Android Studio, that you can
-download for free [here](https://developer.android.com/studio/) or if you already use other IntelliJ products, i suggest you to download the [Jetbrains Toolbox](https://www.jetbrains.com/toolbox-app/) and download it from there.
+### 3. Check the toolchain
 
-### Configuring
+At the time, I found Flutter on WSL 2 less straightforward than a native Windows setup. Support and workflows may have changed, so consult the current Flutter and Microsoft documentation if you want to use WSL.
 
-Even though i mostly use Flutter in WSL2, unfortunately it doesn't work very well with Flutter, there is a [tutorial](https://stackoverflow.com/questions/62857688/how-to-make-flutter-work-on-wsl2-using-hosts-emulator) on Stackoverflow on how to install and use WSL2, i wanted to have a better experience, but if you want to adventure yourself, go ahead!
+The commands below use PowerShell and reflect the Windows setup I used in 2021.
 
-In this post i'll focus here most on using in the ~~in~~famous Powershell.
+If Flutter is not on your `PATH`, set `<FLUTTER_PATH>` to the location of `flutter.bat`, for example `D:\Frameworks\Flutter\flutter-2.5.0\flutter\bin\flutter.bat`.
 
-Assuming that you won't add Flutter to your PATH on Windows, lets agree that <FLUTTER_PATH> is the path of your Flutter.bat file (Eg: `D:\Frameworks\Flutter\flutter-2.5.0\flutter\bin\Flutter.bat`).
+Run the diagnostic command and use its output to identify missing components:
 
+```powershell
+<FLUTTER_PATH> doctor
+```
 
-Then you need to run `<FLUTTER_PATH> doctor` to understand what you need to do in order to configure your environment! 
-
-The output should be something like this:
+A Flutter 2.5 installation in 2021 could report results like these:
 
 ```
 [√] Flutter (Channel stable, 2.5.0, on Microsoft Windows [Version 10.0.19042.1165], locale en-US)
@@ -49,40 +48,33 @@ The output should be something like this:
 [X] Connected device
 ```
 
-First things first, you must run `<FLUTTER_PATH> config --android-studio-dir="<PATH_TO_YOUR_ANDROID_STUDIO"` (Eg: `flutter config --android-studio-dir="C:\Program Files\Android\Android Studio"`)
+If Flutter did not detect Android Studio automatically, the 2021 CLI offered this setting (replace the path with your installation):
 
-That will let Flutter Know which Android Studio you want to use with it!
+```powershell
+<FLUTTER_PATH> config --android-studio-dir="C:\Program Files\Android\Android Studio"
+```
 
-### Android Studio
+This tells the Flutter command-line tool which Android Studio installation to use. You may not need this option if Flutter detects the IDE automatically.
 
-After telling flutter with Android Studio are you using, open the ~~in~~famous IDE, as i'm writing this post, the version used is `2020.3.1`, i'll promise to try to update this post (or the following ones) if something breaks/changes, but that is the most recent version I have.
+### 4. Configure Android Studio
 
-After opening Android Studio, go to `File > Settings > Plugins > Marketplace` and search for `Flutter`, it is the first [result](https://plugins.jetbrains.com/plugin/9212-flutter)
+After configuring the IDE path, open Android Studio. The screenshots and version references in this article are from 2021, so menu names may differ in current releases.
 
-This is the official plugin from the Flutter team and it is essential to work with Flutter on Android Studio.
+In Android Studio, open the plugin manager, search for the official [Flutter plugin](https://plugins.jetbrains.com/plugin/9212-flutter), and install it. UI labels can differ across Android Studio releases.
 
-Then, after downloading and restarting your Android Studio, create a new Flutter Project!
-
-You will be presented with a Screen to pinpoint your Flutter SDK path, point it to the root of your Flutter folder , for example `D:\Frameworks\flutter_windows_2.5.0-stable\flutter`
-
-Then, select your Project Name, Location and everything, and wait for Android Studio to do its magic and bring the project to you.
+Restart the IDE if requested, create a Flutter project, and select the Flutter SDK directory when prompted. For my 2021 installation, it looked like `D:\Frameworks\flutter_windows_2.5.0-stable\flutter`.
 
 
+## Create and run a starter project
 
-### Default Project
-
-When you create a Flutter Project on Android Studio, it already brings you an example of project for you to Run against the emulators you have or to rely on some code to start your life with Flutter. Use it with wisdom, since it is only an example and it doesn't provide you a good architecture/organization of a big project.
-
+A new Flutter project includes a small sample application you can run on an emulator or connected device. Treat it as a learning scaffold; a production app needs an architecture and organization suited to its requirements.
 
 
-### Moving forward
+## Continue learning
 
-I'll end this part from here, in the next post i'll focus more on the inner bits of Flutter and Dart (Which has a syntax very close to Java).
+This setup is only the starting point; continue with the current Flutter learning resources to explore Dart and build a complete application.
 
-But if you don't want to wait and have a need to keep moving forward, i suggest you to check the `examples` folder inside the Flutter SDK and/or the famous [Startup name generator](https://flutter.dev/docs/get-started/codelab) tutorial that the flutter team gives to you.
+For current setup instructions and projects, start with the [Flutter documentation](https://docs.flutter.dev/) and its learning resources.
 
-The [documentation](https://flutter.dev/docs/get-started/editor) is a good start point as well!
-
-
-My first app is about to be released in the Google Play store and i'm super excited about it!
+When I wrote the original notes, I was excited to be preparing my first app for Google Play. Looking back, this post is a record of that learning milestone as much as it is a setup guide.
 

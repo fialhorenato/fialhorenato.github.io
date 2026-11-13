@@ -1,39 +1,35 @@
 ---
-title: "Learn the SOLID Principles with Java Examples"
+title: "The SOLID Principles Explained with Java Examples"
 tags:
   - Software Development
-description: Learn the five SOLID design principles through Java examples covering responsibility, extension, substitution, interfaces, and dependencies.
+description: "Learn the five SOLID object-oriented design principles through Java examples and understand the trade-offs behind applying them."
 last_modified_at: 2026-11-13
 layout: single
 ---
 
 This guide explains the five SOLID principles—Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion—with Java examples. Treat them as design heuristics: apply them when they make a system easier to change and understand, rather than as rules that require extra abstractions everywhere.
 
-## What is SOLID?
+## The five principles at a glance
 
-**S.O.L.I.D** stands for:
+| Principle | Short version |
+| --- | --- |
+| [Single Responsibility](#single-responsibility-principle) | Keep a module focused around a cohesive responsibility. |
+| [Open/Closed](#openclosed-principle) | Make expected variation possible without repeatedly changing stable code. |
+| [Liskov Substitution](#liskov-substitution-principle) | Subtypes should preserve the behavior callers expect from the base type. |
+| [Interface Segregation](#interface-segregation-principle) | Keep interfaces focused on the needs of their clients. |
+| [Dependency Inversion](#dependency-inversion-principle) | Let high-level policy depend on abstractions, not low-level details. |
 
-[**S**ingle Responsibility Principle](#single-responsibility-principle)
-
-[**O**pen Closed Principle](#open-closed-principle)
-
-[**L**iskov Substitution Principle](#liskov-substitution-principle)
-
-[**I**nterface Segregation Principle](#interface-segregation-principle)
-
-[**D**ependency Inversion Principle](#dependency-inversion-principle)
-
-Design principles can help a team write software that is easier to maintain and work on together.
+These are design heuristics for making change safer and code easier to understand. The examples below show one way to apply each idea; they are not templates to copy without considering the problem.
 
 ## Single Responsibility Principle
 
 A class should have only one responsibility.
 
-It helps into onboarding new members into the code, as well to test, maintain and grow our codebase.
+A well-defined responsibility can make a class easier to understand, test, and change. The useful boundary depends on the reasons the behavior changes; splitting every method into its own class is not the goal.
 
 ### Example
 
-Imagine that you have a `UserService` that is like this:
+Suppose a `UserService` creates and looks up users, but also sends notifications:
 
 ```java
 class UserService {
@@ -58,7 +54,7 @@ class UserService {
 
 What happens if the notification requirements change? If the class also handles email, push notifications, and SMS, those responsibilities can change for different reasons.
 
-We can separate the notification responsibility into a `NotificationService` that handles communication channels.
+If notification behavior changes independently, it may belong in a separate collaborator:
 
 ```java
 class UserService {
@@ -97,7 +93,7 @@ There are several ways to structure this example. The key idea is to separate re
 
 Software entities (classes, modules, and functions) should be open to extension and closed to modification.
 
-## Example
+### Example: vary behavior behind an interface
 
 Suppose we have a `CoffeeApp` class:
 
@@ -116,13 +112,11 @@ public class CoffeeApp {
 }
 ```
 
-Imagine that everytime our system needs to support a new type of coffee, we must change the Machine in order to add a new type.
-
-Lets use of simple abstraction and polymorphism to improve this
+If each new coffee type requires editing the same class, the class accumulates conditionals and reasons to change. An abstraction can move variation behind a stable interface, although this is useful only when the variation is real and expected.
 
 ```java
 public class CoffeeApp {
-    public static void greet(CoffeeMachine coffeeMachine) {
+    public static void serve(CoffeeMachine coffeeMachine) {
         coffeeMachine.brewCoffee(ESPRESSO);
     }
 }
@@ -170,15 +164,15 @@ public class PremiumCoffeeMachine implements CoffeeMachine {
 }
 ``` 
 
-Now that class is opened for extension (ItalianMachine, ColombianMachine, FrenchPressMachine) and closed for modification (won’t have a method with a different logic being added every time a new machine is added to the app).
+The example introduces a `CoffeeMachine` abstraction so the application can work with different implementations. The principle does not mean code can never change; it means stable policy should not need repeated edits for every expected variation. Add an abstraction when the variations justify its cost.
 
 ## Liskov Substitution Principle
 
-A class can be replaced by its subclass in all practical usage scenarios, meaning that you should use inheritance only for substitutability.
+Code that accepts a base type should continue to work when given a subtype. A subtype should preserve the promises and constraints of the base type rather than surprising callers with unsupported operations.
 
-## Example
+### Example: model behavior contracts
 
-Using an Animal example
+An interface that requires every animal to fly and swim forces some implementations to reject valid calls:
 
 ```java
 interface Animal {
@@ -215,7 +209,7 @@ public class Hawk implements Animal {
 }
 ```
 
-Even though, both a `Dog` and a `Hawk` are animals, we can break up the inheritance to follow up this principle
+Separate capabilities so a type only promises behaviors it can support:
 
 ```java
 interface Animal {
@@ -247,11 +241,9 @@ public class Hawk implements Bird {
 
 A client shouldn’t be forced to implement an interface that it doesn’t use.
 
-## Example
+### Example: split capabilities
 
-Thinking about the last example, even though a Dog can only swim, some `Animal`s can swim and fly.
-
-Isn't easier if we just implement the interfaces like this
+Small capability interfaces let clients depend only on the operations they use:
 
 ```java
 interface Swimmer {
@@ -297,9 +289,9 @@ public class Duck implements Swimmer, Bird {
 
 We should invert the classic dependency between higher level modules and lower level modules, by abstracting their interaction.
 
-### Example
+### Example: depend on a repository contract
 
-Let's say we have some implementations over a database
+The service depends on a repository contract rather than a concrete storage technology:
 
 ```java
 public class PersonService {
@@ -336,4 +328,6 @@ For example, you can replace the persistence implementation without making the s
 ---
 
 
-In case if you have any questions or suggestions, feel free to send me a [message](/contact)
+## Applying SOLID in practice
+
+SOLID is a set of design heuristics, not a checklist that every class must satisfy in isolation. Start with the simplest design that meets today’s requirements, then introduce abstractions when change, duplication, or testing pain provides a reason. Evaluate the result by whether the code is easier to understand and safely modify.

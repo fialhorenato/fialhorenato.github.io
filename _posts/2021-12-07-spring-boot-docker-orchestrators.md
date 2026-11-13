@@ -2,7 +2,7 @@
 title: "Graceful Shutdown for Spring Boot in Docker and Kubernetes"
 tags:
   - Software Development
-description: Configure graceful Spring Boot shutdowns so active requests can finish during container restarts in Kubernetes or ECS.
+description: "Configure Spring Boot graceful shutdown and align container termination grace periods so active requests can finish during deployments."
 last_modified_at: 2026-11-13
 layout: single
 ---
@@ -11,31 +11,33 @@ When an orchestrator stops a container, the application usually receives SIGTERM
 
 ## Why graceful shutdown matters
 
-I'll try to make this as simple as possible, and for that, i'll try to bring an illustration on how a "regular" architecture of a Spring Boot Service looks like inside an orchestrator:
+A typical request path includes a load balancer, an orchestrator, and one or more Spring Boot instances:
 
-![alt text](/images/springbootapp.png "Your amazing spring boot app")
+![Diagram of a load balancer routing requests to Spring Boot service instances](/images/springbootapp.png "Spring Boot service behind an orchestrator")
 
-The issue happens when the load balancer needs to drain the connections towards that task, but we still need to handle the `keep-alive` connections, just as saw in this image from AWS ELB on ECS instances:
+During deployment or scale-in, the load balancer and orchestrator need to stop routing new work to an instance while existing requests finish:
 
-![alt text](/images/awselb.png "ELB Connection Drain")
+![Illustration of a load balancer draining connections from an ECS task](/images/awselb.png "Load balancer connection draining")
 
-And weirdly (or not), the Spring Boot web containers are by default, expected to shutdown `IMMEDIATELY` instead of `GRACEFULLY` , and that can cause some keep-alive connections to fail on the ingress car, and consequently, returns 5xx errors in the load balancer.
+Without coordinated draining and graceful shutdown, requests can be interrupted and clients may see errors. The exact sequence depends on the load balancer, orchestrator, server, and application configuration.
 
 ## Enable graceful shutdown
 
 For Spring Boot versions that support graceful shutdown, enable it in `application.properties` or `application.yml`:
 
-```
-    server.shutdown=graceful
+```properties
+server.shutdown=graceful
 ```
 
-OR
+This property was introduced in Spring Boot 2.3; confirm it is supported by your application version.
 
-```yml
+Or use YAML:
+
+```yaml
 server:
-    shutdown: graceful
+  shutdown: graceful
 ```
 
-This shutdown allows the web server to support graceful shutdown, allowing active requests time to complete and closing the `keep-alive` connections towards your service.
+This setting tells supported Spring Boot web servers to stop accepting new requests and give active requests time to complete. Check the reference for your Spring Boot version and embedded server.
 
-Set the phase timeout to match the longest request you intend to let finish, and configure the container platform’s termination grace period to allow at least that long plus time for the process to stop. The exact behavior depends on the server and Spring Boot version; see the [Spring Boot graceful shutdown reference](https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html).
+Set the Spring lifecycle shutdown timeout and container termination grace period together. Allow time for load-balancer deregistration, active requests, and process shutdown; the correct values depend on the orchestrator and application. The exact behavior depends on the server and Spring Boot version; see the [Spring Boot graceful shutdown reference](https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html).

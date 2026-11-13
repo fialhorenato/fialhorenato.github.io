@@ -2,7 +2,7 @@
 title: "Process Large Datasets with Spring Data JPA: Page, Slice, or Stream"
 tags:
   - Software Development
-description: Compare Page, Slice, and Stream in Spring Data JPA when processing large result sets.
+description: "Compare Spring Data JPA Page, Slice, and Stream for large result sets, including count queries, batching, memory use, and resource handling."
 last_modified_at: 2026-11-13
 layout: single
 ---
@@ -33,7 +33,7 @@ public class Person {
 
 ### Slice
 
-In order to create a query that finds all entities of Person paginated, we need to create a JpaRepository that receives a `Pageable` as a parameter and return a `Slice` as a return type.
+To fetch people in batches, declare a repository method that accepts a `Pageable` and returns a `Slice<Person>`.
 
 ```java
 @Repository
@@ -42,12 +42,11 @@ public interface PersonRepository extends JpaRepository<Person, UUID> {
 }
 ```
 
-The return type of the method `findAllBy` is of `Slice<Person>`, which returns the first batch of entities to be processed based on the values provided by the `Pageable`.
+`Slice<Person>` contains the current batch and paging metadata, based on the supplied `Pageable`.
 
-The `Slice` interface exposes a `hasNext()` method that allows us to know if there is another page of entities or not. As well, the interface exposes the `nextPageable()` method that returns
-the next `Pageable` object that we need to query for the next page.
+Use `hasNext()` to check whether another batch exists and `nextPageable()` to request it.
 
-Saying this, a good way to iterate and call a function `doSomething(Person p)` over every person fecthed is:
+For example, the following loop processes each batch before fetching the next one:
 
 ```java
 void processAll() {
@@ -75,7 +74,7 @@ If we debug the queries executed by the method above, Hibernate will log this:
 
 ### Page
 
-Another option aside `Slice`, there is the `Page` interface that we can use as a return type of the query.
+Use `Page<Person>` when the caller also needs total counts or page counts.
 
 ```java
 @Repository
@@ -86,8 +85,7 @@ public interface PersonRepository extends JpaRepository<Person, UUID> {
 
 For a `Page` query, declare the repository method with `Page<Person>` as its return type. `Page` extends `Slice` and adds `getTotalPages()` and `getTotalElements()`.
 
-It is an extra information that helps the client to know how many more pages are needed in order to fetch all elements of the dataset at the cost of an extra query on the DB that can
-take some time.
+The total count helps a client display the number of results or pages, but computing it can add database work. Spring Data may optimize or skip a count in some cases; inspect generated queries for your query and version.
 
 ```java
 void processAll() {
@@ -118,7 +116,7 @@ The count query can add database work, so use `Page` when the total count or num
 
 ## Streams (Java 8+)
 
-In Spring Data JPA there is another option which is return a stream of elements, but as a result, we can only process the entities one by one.
+A repository can also return a `Stream<Person>` for sequential processing. This can avoid collecting every result into one application-side list, but it does not automatically guarantee incremental fetching.
 
 This can avoid collecting every result into a list at once, although actual fetching and memory behavior depends on the persistence provider and JDBC driver.
 
@@ -146,8 +144,10 @@ public void processAll() {
 
 ## Conclusion
 
-We should always use:
+Choose based on what the caller needs:
 
-- `Slice` when the caller needs batches and a “has next” indicator, but not a total count.
-- `Page` when the caller needs total elements or pages, accepting the possible cost of a count query.
-- `Stream` when streaming fits the persistence provider and driver behavior; close it promptly and process it inside a transaction.
+- Use `Slice` for batches and a “has next” indicator without requesting total counts.
+- Use `Page` when the client needs total elements or pages, while checking the cost of count queries.
+- Use `Stream` when provider and driver behavior support your memory goals; close it promptly and consume it inside a transaction.
+
+For very large or frequently changing datasets, also consider keyset scrolling, bounded persistence-context growth, stable ordering, transaction duration, and database indexes. Benchmark the generated SQL and memory behavior with representative data.

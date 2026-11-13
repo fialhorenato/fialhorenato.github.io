@@ -1,6 +1,6 @@
 ---
-title: "One Load per Key: Collapsing Duplicate Lookups with Spring Boot’s Cache and Caffeine"
-description: "Use Spring’s cache abstraction and Caffeine’s atomic per-key loading to collapse concurrent duplicate lookups, with notes on empty values, metrics, eviction, and testing."
+title: "Spring Cache and Caffeine: Collapse Concurrent Loads per Key"
+description: "Use Spring Cache with Caffeine to collapse concurrent duplicate lookups, and understand empty results, failures, metrics, eviction, and testing."
 date: 2026-10-23
 layout: single
 tags:
