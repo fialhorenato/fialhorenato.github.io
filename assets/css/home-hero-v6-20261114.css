@@ -1,6 +1,6 @@
 /* Cache-busted homepage layout rules. */
 .home-intro {
-  margin-top: 2.5rem !important;
+  margin-top: 2rem !important;
   padding-top: 0 !important;
 }
 
@@ -30,11 +30,11 @@
 }
 
 .home-lede {
-  margin-top: 3.5rem !important;
+  margin-top: 3rem !important;
 }
 
 @media (max-width: 600px) {
   .home-lede {
-    margin-top: 2.5rem !important;
+    margin-top: 2rem !important;
   }
 }
