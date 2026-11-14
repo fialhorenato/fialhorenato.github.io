@@ -1,0 +1,40 @@
+/* Cache-busted homepage layout rules. */
+.home-intro {
+  margin-top: 2.5rem !important;
+  padding-top: 0 !important;
+}
+
+.home-intro h1 {
+  max-width: none;
+  font-size: clamp(3rem, 4.2vw, 4rem);
+}
+
+.home-actions {
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 600px) {
+  .home-intro {
+    margin-top: 1rem !important;
+    padding-top: 0.5rem !important;
+  }
+
+  .home-intro h1 {
+    max-width: 12ch;
+    font-size: clamp(3rem, 13vw, 4.5rem);
+  }
+
+  .home-actions {
+    margin-top: 0;
+  }
+}
+
+.home-lede {
+  margin-top: 3.5rem !important;
+}
+
+@media (max-width: 600px) {
+  .home-lede {
+    margin-top: 2.5rem !important;
+  }
+}

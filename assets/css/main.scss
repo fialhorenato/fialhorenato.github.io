@@ -145,7 +145,7 @@ body {
 
 .home-lede {
   max-width: 620px;
-  margin: 1.8rem 0;
+  margin: 3.5rem 0 1.8rem;
   color: $muted-text-color;
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   line-height: 1.65;
@@ -266,6 +266,10 @@ body {
   .home-intro h1 {
     max-width: 12ch;
     font-size: clamp(3rem, 13vw, 4.5rem);
+  }
+
+  .home-lede {
+    margin-top: 2.5rem;
   }
 
   .recent-post {
