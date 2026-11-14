@@ -128,10 +128,11 @@ body {
 }
 
 .home-intro h1 {
+  max-width: 12ch;
   margin: 0;
   color: $color-ink;
   font-family: $header-font-family;
-  font-size: clamp(3rem, 8vw, 6.2rem);
+  font-size: clamp(3rem, 6.2vw, 5.25rem);
   font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 0.98;
@@ -251,6 +252,11 @@ body {
   .home-intro {
     margin-top: 1rem;
     margin-bottom: 4rem;
+  }
+
+  .home-intro h1 {
+    max-width: 12ch;
+    font-size: clamp(3rem, 13vw, 4.5rem);
   }
 
   .recent-post {
