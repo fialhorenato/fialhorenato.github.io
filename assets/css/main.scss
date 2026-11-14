@@ -114,8 +114,8 @@ body {
 
 .home-intro {
   max-width: 790px;
-  margin: 2rem auto 6rem;
-  padding: clamp(2rem, 7vw, 6rem) 0 0;
+  margin: 0 auto 6rem;
+  padding: clamp(1.5rem, 4vw, 3.5rem) 0 0;
 }
 
 .eyebrow {
@@ -128,11 +128,11 @@ body {
 }
 
 .home-intro h1 {
-  max-width: 12ch;
+  max-width: 16ch;
   margin: 0;
   color: $color-ink;
   font-family: $header-font-family;
-  font-size: clamp(3rem, 6.2vw, 5.25rem);
+  font-size: clamp(3.25rem, 5vw, 4.5rem);
   font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 0.98;
