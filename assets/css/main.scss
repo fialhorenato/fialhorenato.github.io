@@ -114,8 +114,8 @@ body {
 
 .home-intro {
   max-width: 790px;
-  margin: 0 auto 6rem;
-  padding: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+  margin: 2.5rem auto 6rem;
+  padding: 0;
 }
 
 .eyebrow {
@@ -252,6 +252,7 @@ body {
   .home-intro {
     margin-top: 1rem;
     margin-bottom: 4rem;
+    padding-top: 0.5rem;
   }
 
   .home-intro h1 {
