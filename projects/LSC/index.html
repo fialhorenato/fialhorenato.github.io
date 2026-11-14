@@ -1,1034 +1,331 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>New Vermont | Renato Fialho</title>
-    <meta name="description" content="Data visualization about protein and ligands">
-    <meta name="author" content="Renato da Silva Reis Fialho">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-
-    <script src="js/jquery2.js" charset="utf-8"></script>
-    <script src="js/d3.min.js" charset="utf-8"></script>
-    <script src="js/bootstrap.min.js" charset="utf-8"></script>
-    <script src="js/index.js" charset="utf-8"></script>
-    <script src="js/3Dmol-nojquery-min.js"></script>
-    <script src="js/bootstrap-colorpicker.min.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-colorpicker.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-    <style type="text/css">
-svg {
-  border: 1px solid #ccc;
-}
-body {
-  font: 12px "PT Sans";
-}
-circle.node {
-  stroke: #555;
-  stroke-width: 1px;
-}
-circle.leaf {
-  stroke: #fff;
-  stroke-width: 1px;
-}
-path.hull {
-  fill-opacity: 0.3;
-}
-
-path.link {
-  stroke: #ccc;
-  stroke-opacity: 1;
-  fill: none;
-}
-
-.d3-tip {
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #7CDBAE;
-  border-radius: 2px;
-  z-index: 2;
-  max-width: 40%;
-}
-
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8)
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
-}
-
-/* Style northward tooltips differently */
-.d3-tip.n:after {
-  margin: -1px 0 0 0;
-  top: 100%;
-  left: 0;
-}
-    </style>
-  </head>
-  <body>
-
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-            NEW VERMONT
-          </a>
-        </div>
-
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f4">
+  <meta name="description" content="Explore protein structures from the Protein Data Bank in a clear, interactive 3D viewer.">
+  <title>Foldspace — Protein Structure Explorer</title>
+  <link rel="preconnect" href="https://3dmol.org">
+  <link rel="preconnect" href="https://files.rcsb.org">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="interaction-data.js"></script>
+  <script src="https://3dmol.org/build/3Dmol-min.js"></script>
+  <style>
+    :root{color-scheme:light;--bg:#f3f5f2;--panel:#fff;--panel2:#f7f8f6;--line:#dce3de;--muted:#68766f;--text:#1e2a25;--accent:#147d64;--blue:#236b89;--orange:#bd671e}
+    *{box-sizing:border-box}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 "DM Sans","Avenir Next",Avenir,"Segoe UI",ui-sans-serif,system-ui,sans-serif;min-height:100vh}
+    button,input{font:inherit}button{color:inherit}.shell{max-width:1480px;margin:auto;padding:30px clamp(18px,4vw,56px) 42px}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:46px}.brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}.brand-mark{width:32px;height:32px;border:1px solid #9bc9b8;border-radius:10px;display:grid;place-items:center;color:var(--accent);font-size:19px}.top-actions{display:flex;align-items:center;gap:18px}.top-link{color:var(--muted);font-size:13px;text-decoration:none}.top-link:hover{color:var(--text)}.language-switch{display:flex;border:1px solid var(--line);background:white;border-radius:9px;padding:3px;gap:2px}.language-switch button{border:0;background:transparent;border-radius:6px;padding:5px 9px;color:var(--muted);font-size:11px;font-weight:700;cursor:pointer}.language-switch button[aria-pressed="true"]{background:#e5f2ed;color:#125f4d}
+    .intro{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:28px}.eyebrow{color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}.intro h1{font-size:clamp(34px,5vw,58px);line-height:1.03;letter-spacing:-.045em;margin:12px 0 12px;font-weight:620}.intro p{margin:0;color:#a4b1bf;max-width:610px;font-size:16px}.source-note{font-size:12px;color:var(--muted);text-align:right;padding-bottom:4px}
+    .searchbar{display:flex;gap:10px;max-width:690px;padding:8px;background:#111a24;border:1px solid #2b3c4d;border-radius:14px;box-shadow:0 12px 35px #0003;margin:26px 0 28px}.searchbar:focus-within{border-color:#5caa98;box-shadow:0 0 0 3px #78e0c01a}.search-icon{align-self:center;color:#91a2b1;padding-left:10px}.searchbar input{width:100%;min-width:0;background:transparent;border:0;outline:0;color:var(--text);padding:9px 3px;font-size:15px}.searchbar input::placeholder{color:#68798a}.searchbar button,.tool-button{border:1px solid #355d56;background:#78e0c0;color:#092019;border-radius:9px;font-weight:700;padding:10px 17px;cursor:pointer;transition:.18s}.searchbar button:hover{background:#9aecd4;transform:translateY(-1px)}button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.suggestion{color:#8090a0;font-size:12px;margin:-16px 0 24px 3px}.suggestion button{border:0;background:none;color:var(--blue);cursor:pointer;padding:0 2px}
+    .workspace{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:16px;align-items:stretch}.viewer-card,.detail-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 28px #273a3010}.viewer-head{height:62px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.structure-label{display:flex;align-items:center;gap:10px;min-width:0}.structure-label strong{font-size:14px}.structure-label span{color:var(--muted);font-size:12px}.status-dot{width:7px;height:7px;background:var(--accent);border-radius:50%}.view-controls{display:flex;gap:4px;background:#f0f3f1;padding:4px;border-radius:9px}.view-controls button{border:0;background:transparent;color:#65736c;padding:6px 10px;border-radius:6px;font-size:12px;cursor:pointer}.view-controls button[aria-pressed="true"]{background:#fff;color:#1e2a25;box-shadow:0 1px 4px #21352b1c}.viewer{height:min(64vh,620px);min-height:390px;position:relative;background:radial-gradient(ellipse at center,#f4f7f5 0,#eaf0ed 100%)}#protein-view{position:absolute;inset:0}.viewer-hint{position:absolute;left:17px;bottom:14px;color:#75847b;font-size:11px;pointer-events:none;letter-spacing:.03em}.viewer-state{position:absolute;inset:0;display:grid;place-items:center;color:#6c7a72;text-align:center;padding:28px;pointer-events:none}.viewer-state[hidden]{display:none}.state-inner{max-width:310px}.state-icon{font-size:34px;color:var(--accent);margin-bottom:12px}.state-inner strong{display:block;color:#24332c;font-size:15px;margin-bottom:5px}.state-inner p{font-size:13px;margin:0;color:#6c7a72}.viewer-foot{height:43px;padding:0 18px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;color:#68766f;font-size:11px}.viewer-foot a{color:var(--blue);text-decoration:none}
+    .detail-card{padding:21px 20px}.detail-top{display:flex;align-items:start;justify-content:space-between;gap:10px}.detail-top h2{font-size:14px;margin:0;font-weight:650}.pdb-badge{font:700 11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--accent);background:#1b3533;border:1px solid #315653;border-radius:6px;padding:4px 7px}.protein-name{font-size:20px;line-height:1.3;letter-spacing:-.02em;margin:15px 0 5px}.organism{font-size:12px;color:var(--muted);margin:0}.divider{height:1px;background:var(--line);margin:20px 0}.stats{display:grid;grid-template-columns:1fr 1fr;gap:17px 10px}.stat-label{font-size:10px;letter-spacing:.1em;color:#8494a3;text-transform:uppercase}.stat-value{font-size:19px;font-weight:600;margin-top:3px}.stat-value small{font-size:12px;color:#99a8b5;font-weight:400}.section-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#8695a2;margin-bottom:11px}.chain-list{display:flex;flex-wrap:wrap;gap:7px}.chain-chip{border:1px solid #314254;background:#182430;color:#c3d1dc;border-radius:7px;font:12px ui-monospace,monospace;padding:5px 8px}.legend{display:flex;align-items:center;gap:8px;color:#a7b4bf;font-size:12px;margin:9px 0}.legend i{display:block;width:9px;height:9px;border-radius:50%;background:#65c9b2}.legend i.ligand{background:#f2a960}.notice{margin-top:19px;padding:11px 12px;border:1px solid #293a49;border-radius:9px;color:#95a4b2;font-size:11px;line-height:1.45}.notice b{color:#cbd6df;font-weight:600}.error{color:#ffb6a7!important}
+    @media(max-width:850px){.workspace{grid-template-columns:1fr}.detail-card{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.detail-card>.divider{grid-column:1/-1}.detail-card>.section-title,.chain-list,.legend,.notice{grid-column:1/-1}.viewer{height:58vh}.intro{grid-template-columns:1fr}.source-note{text-align:left}}
+    @media(max-width:540px){.shell{padding:20px 14px 30px}.topbar{margin-bottom:34px}.intro h1{font-size:39px}.intro p{font-size:14px}.searchbar button{padding:9px 12px}.viewer{min-height:330px;height:52vh}.viewer-head{padding:0 12px}.structure-label span{display:none}.view-controls button{padding:6px 7px;font-size:11px}.detail-card{padding:18px 16px}.source-note{font-size:11px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+    .network-card{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 28px #273a3010}.network-header{padding:21px 23px 17px;display:flex;justify-content:space-between;align-items:start;gap:16px;border-bottom:1px solid var(--line)}.network-header h2{margin:3px 0 4px;font-size:20px;letter-spacing:-.025em}.network-header p{margin:0;color:var(--muted);font-size:12px}.dataset-badge{white-space:nowrap;border:1px solid #cbd9d1;border-radius:7px;padding:5px 8px;color:#476156;background:#f4f8f5;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}.network-layout{display:grid;grid-template-columns:minmax(0,1fr) 280px}.network-stage{position:relative;min-width:0;min-height:480px;background:radial-gradient(ellipse at center,#f3f7f4,#edf2ee 72%);overflow:hidden}#interaction-map{display:block;width:100%;height:520px;touch-action:none;cursor:grab}#interaction-map:active{cursor:grabbing}.network-count{position:absolute;top:15px;left:18px;color:#65766c;font-size:11px;pointer-events:none}.network-tooltip{position:absolute;display:none;z-index:2;max-width:250px;background:#fff;border:1px solid #cbd9d1;border-radius:8px;padding:8px 10px;color:#26352d;font-size:11px;box-shadow:0 8px 25px #283b3018;pointer-events:none}.network-controls{padding:20px 19px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:18px}.control-label{display:block;color:#68786f;text-transform:uppercase;font-size:10px;letter-spacing:.12em;margin-bottom:9px}.network-search{width:100%;padding:9px 10px;border-radius:8px;background:#fff;border:1px solid #d4ddd7;color:var(--text);outline:0;font-size:12px}.network-search:focus{border-color:#62a38e}.filter-list{display:grid;gap:8px}.filter-option{display:flex;align-items:center;gap:8px;color:#4b5b52;font-size:12px;cursor:pointer}.filter-option input{accent-color:#147d64}.filter-swatch{width:8px;height:8px;border-radius:50%}.network-select{width:100%;padding:9px;background:#fff;border:1px solid #d4ddd7;border-radius:8px;color:#35453c;font-size:12px}.network-range{width:100%;accent-color:#147d64;margin:4px 0}.range-labels{display:flex;justify-content:space-between;color:#78867e;font-size:10px}.range-labels strong{color:#405248;font-size:10px}.toggle-label{display:flex;align-items:center;gap:8px;color:#4b5b52;font-size:12px;cursor:pointer}.toggle-label input{accent-color:#147d64}.network-divider{height:1px;background:var(--line);margin:18px 0}.network-help{color:#68776e;font-size:11px;line-height:1.5;margin:0}.network-footer{border-top:1px solid var(--line);padding:10px 18px;color:#68776e;font-size:10px;display:flex;justify-content:space-between;gap:12px}
+    @media(min-width:1120px){.explorer-row{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(440px,.88fr);gap:16px;align-items:stretch}.explorer-row>.network-card{margin-top:0}.explorer-row .network-layout{grid-template-columns:minmax(0,1fr) 210px}.explorer-row .network-stage{min-height:390px}.explorer-row #interaction-map{height:440px}.explorer-row .network-controls{padding:16px 13px;gap:14px}}
+    @media(max-width:1119px){.explorer-row{display:block}.explorer-row>.network-card{margin-top:18px}}
+    @media(max-width:850px){.network-layout{grid-template-columns:1fr}.network-controls{border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}.network-controls>.network-divider{display:none}.network-controls>.network-help{grid-column:1/-1;margin:0}.network-controls>.filter-block{grid-row:span 2}}
+    @media(max-width:540px){.network-header{padding:18px 15px;display:block}.dataset-badge{display:inline-block;margin-top:12px}.network-stage{min-height:350px}#interaction-map{height:380px}.network-controls{padding:16px;grid-template-columns:1fr}.network-controls>.filter-block{grid-row:auto}.network-footer{display:block}.network-footer span{display:block;margin:3px 0}}
+    .searchbar{background:#fff;border-color:#d8e1db;box-shadow:0 8px 24px #273a3010}.searchbar:focus-within{border-color:#5b9b86;box-shadow:0 0 0 3px #147d641a}.search-icon{color:#708078}.searchbar input::placeholder{color:#849189}.searchbar button,.tool-button{border-color:#147d64;background:#147d64;color:#fff}.searchbar button:hover{background:#0f6a54}.suggestion{color:#68766f}.suggestion button{color:#236b89}.error{color:#aa3d2d!important}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><div class="brand"><span class="brand-mark" aria-hidden="true">⌬</span> Foldspace</div><div class="top-actions"><div class="language-switch" role="group" aria-label="Language"><button type="button" data-language="en" aria-pressed="true">EN</button><button type="button" data-language="pt" aria-pressed="false">PT</button></div><a class="top-link" href="https://www.rcsb.org/" target="_blank" rel="noreferrer" data-i18n="pdb_link">Protein Data Bank ↗</a></div></header>
+    <section class="intro" aria-labelledby="page-title"><div><div class="eyebrow" data-i18n="eyebrow">A clearer view of molecular structure</div><h1 id="page-title" data-i18n="title">Explore a protein.</h1><p data-i18n="intro">Turn any Protein Data Bank entry into an interactive 3D structure and a concise, useful summary.</p></div><div class="source-note" data-i18n="source">Structure data provided by RCSB PDB</div></section>
+    <form class="searchbar" id="search-form" role="search"><span class="search-icon" aria-hidden="true">⌕</span><label class="sr-only" for="pdb-id" data-i18n="pdb_id">PDB identifier</label><input id="pdb-id" name="pdb" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="4" placeholder="Enter a PDB ID, e.g. 1BGA" aria-describedby="search-hint" data-i18n-placeholder="placeholder"><button type="submit"><span data-i18n="explore">Explore</span> <span aria-hidden="true">→</span></button></form>
+    <p class="suggestion" id="search-hint"><span data-i18n="try_classic">Try a classic:</span> <button type="button" data-example="1BGA">1BGA, beta-galactosidase</button></p>
+    <div class="explorer-row"><section class="workspace" aria-label="Protein structure explorer">
+      <article class="viewer-card"><div class="viewer-head"><div class="structure-label"><i class="status-dot" id="status-dot"></i><strong id="viewer-title" data-i18n="ready">Ready to explore</strong><span id="viewer-subtitle" data-i18n="viewer_subtitle">Interactive molecular view</span></div><div class="view-controls" role="group" aria-label="Structure representation"><button type="button" data-style="cartoon" aria-pressed="true" data-i18n="cartoon">Cartoon</button><button type="button" data-style="stick" aria-pressed="false" data-i18n="stick">Stick</button><button type="button" data-style="sphere" aria-pressed="false" data-i18n="spacefill">Spacefill</button></div></div><div class="viewer"><div id="protein-view" aria-label="Interactive 3D protein structure"></div><div class="viewer-state" id="viewer-state"><div class="state-inner"><div class="state-icon" aria-hidden="true">⌬</div><strong data-i18n="context">Your structure, in context</strong><p data-i18n="load_hint">Enter a four-character PDB ID above. Drag to rotate, scroll to zoom.</p></div></div><div class="viewer-hint" data-i18n="viewer_hint">DRAG TO ROTATE&nbsp; · &nbsp;SCROLL TO ZOOM</div></div><div class="viewer-foot"><span id="structure-caption" data-i18n="search_pdb">Search the PDB to load a structure</span><a id="pdb-link" href="https://www.rcsb.org/" target="_blank" rel="noreferrer" data-i18n="about_pdb">About the PDB ↗</a></div></article>
+      <aside class="detail-card" aria-live="polite"><div class="detail-top"><h2 data-i18n="overview">Structure overview</h2><span class="pdb-badge" id="pdb-badge">—</span></div><h3 class="protein-name" id="protein-name" data-i18n="waiting">Waiting for a structure</h3><p class="organism" id="organism" data-i18n="enter_id">Enter a PDB ID to see its details.</p><div class="divider"></div><div class="stats"><div><div class="stat-label" data-i18n="residues">Residues</div><div class="stat-value" id="residue-count">—</div></div><div><div class="stat-label" data-i18n="atoms">Atoms</div><div class="stat-value" id="atom-count">—</div></div><div><div class="stat-label" data-i18n="chains">Chains</div><div class="stat-value" id="chain-count">—</div></div><div><div class="stat-label" data-i18n="ligands">Ligands</div><div class="stat-value" id="ligand-count">—</div></div></div><div class="divider"></div><div class="section-title" data-i18n="chain_entry">Chains in this entry</div><div class="chain-list" id="chain-list"><span class="chain-chip">—</span></div><div class="divider"></div><div class="section-title" data-i18n="color_key">Color key</div><div class="legend"><i></i><span data-i18n="protein_backbone">Protein backbone</span></div><div class="legend"><i class="ligand"></i><span data-i18n="small_molecules">Small molecules</span></div><div class="notice"><b data-i18n="about_view">About this view</b><br><span data-i18n="view_note">Residue and chain counts are calculated from the coordinates loaded for this structure. Water molecules are excluded from the ligand count.</span></div></aside>
+    </section>
+    <section class="network-card" aria-labelledby="network-title">
+      <header class="network-header"><div><div class="eyebrow" data-i18n="network">Residue contact map</div><h2 id="network-title" data-i18n="connections">How residues connect</h2><p data-i18n="network_desc">Explore contacts between residues. Select one to locate it in 3D.</p></div><span class="dataset-badge" id="dataset-badge">Original data · 1BGA</span></header>
+      <div class="network-layout"><div class="network-stage"><canvas id="interaction-map" aria-label="Interactive residue interaction network. Drag to pan and scroll to zoom."></canvas><div class="network-count" id="network-count">Loading interaction map…</div><div class="network-tooltip" id="network-tooltip"></div></div>
+        <aside class="network-controls" aria-label="Interaction map filters">
+          <div><label class="control-label" for="chain-filter" data-i18n="chain">Chain</label><select class="network-select" id="chain-filter"><option value="*" data-i18n="all_chains">All chains</option></select></div>
+          <div><label class="control-label" for="contact-threshold" data-i18n="contact_strength">Contact strength</label><input class="network-range" id="contact-threshold" type="range" min="1" max="8" value="2"><div class="range-labels"><span data-i18n="one_pair">1 pair</span><strong id="threshold-value">2+ pairs</strong><span data-i18n="eight_pairs">8+ pairs</span></div></div>
+          <label class="toggle-label"><input id="show-all-residues" type="checkbox"><span data-i18n="show_isolated">Show isolated residues</span></label>
+          <div><label class="control-label" for="residue-search" data-i18n="find_residue">Find a residue</label><input class="network-search" id="residue-search" type="search" placeholder="e.g. PHE10" autocomplete="off" data-i18n-placeholder="residue_placeholder"></div>
+          <div class="filter-block"><span class="control-label" data-i18n="show_contacts">Show contacts</span><div class="filter-list" id="interaction-filters"></div></div>
+          <div><label class="control-label" for="color-scheme" data-i18n="residue_colors">Residue colors</label><select class="network-select" id="color-scheme"><option value="cinema">Cinema</option><option value="clustal">Clustal</option><option value="lesk">Lesk</option></select></div>
+          <p class="network-help" data-i18n="network_help">Search for a residue. Drag to pan and scroll to zoom.</p>
+        </aside>
       </div>
-    </div>
-  </nav>
-
-
-  <div class="col-md-2 col-md-offset-1">
-    <div class="page-header" align="center">
-      <h3> Labels </h3>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading" align="center">
-        <h3 class="panel-title">EDGES</h3>
-      </div>
-      <div class="panel-body">
-        <div class='row'>
-          <div class='col-md-12'>
-            <i class="fa fa-long-arrow-right" aria-hidden="true" style="color:#E36262"> Aromatic stacking</i></br></br>
-            <i class="fa fa-long-arrow-right" aria-hidden="true" style="color:#02B7DB"> Hydrogen bond</i></br></br>
-            <i class="fa fa-long-arrow-right" aria-hidden="true" style="color:#F0ED67"> Hydrophobic</i></br></br>
-            <i class="fa fa-long-arrow-right" aria-hidden="true" style="color:#512B8B"> Repulsive</i></br></br>
-            <i class="fa fa-long-arrow-right" aria-hidden="true" style="color:#519136"> Salt bridge</i></br></br>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel-heading">
-        <h3 class="panel-title" id="titulopanel" align="center">CINEMA</h3>
-      </div>
-      <div class="panel-body">
-        <div class="col-md-12" id = "edges">
-
-          <div class='row'>
-            <div class='col-md-12'>
-              <h5 style='color:#1240AB'> Polar Positive </h5>
-              <i class='fa fa-circle' aria-hidden='true' style='color:#1240AB'> H,K,R</i></br>
-            </div>
-
-            <div class='col-md-12'>
-              <h5 style='color:#BF3030'> Polar Negative </h5>
-              <i class='fa fa-circle' aria-hidden='true' style='color:#BF3030'> D,E</i></br>
-            </div>
-          </div>
-          <div class='row'>
-            <div class='col-md-12'>
-              <h5 style='color:#9F3ED5'> Polar Neutral </h5>
-              <i class='fa fa-circle' aria-hidden='true' style='color:#9F3ED5'> N,Q,S,T</i></br>
-            </div>
-
-            <div class='col-md-12'>
-              <h5 style='color:#4EA429'> Non-Polar Aliphatic </h5>
-              <i class='fa fa-circle' aria-hidden='true' style='color:#4EA429'> A,G,I,L,M,V</i></br>
-            </div>
-          </div>
-          <div class='row'>
-            <div class='col-md-12'>
-              <h5 style='color:#009999'> Non-Polar Rings </h5>
-              <i class='fa fa-circle' aria-hidden='true' style='color:#009999'> F,P,W,Y</i></br>
-            </div>
-
-            <div class='col-md-12'>
-              <h5 style='color:#FFAA00'> Cysteine </h5>
-              <i class='fa fa-circle' aria-hidden='true' style='color:#FFAA00'> C</i></br>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-  </div>
-  <div class="col-md-6" id="grafo" align="center">
-    <div class="page-header">
-      <h3> Grafo </h3>
-    </div>
-  </div>
-  <div class="col-md-2  ">
-    <div class="page-header" align="center">
-      <h3> Filters </h3>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title" align="center">FILTER BY LINK TYPE</h3>
-      </div>
-      <div class="panel-body">
-        <div  class="btn-group multiselect-div inter-select">
-          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <span class="multiselect-selected-text">Select the interactions</span> <span class="caret"></b>
-            </button>
-            <ul class="dropdown-menu" id="linkinter">
-              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Aromatic stacking" checked>Aromatic stacking</label></a></li>
-              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Hydrogen bond" checked>Hydrogen bond</label></a></li>
-              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Hydrophobic" checked>Hydrophobic</label></a></li>
-              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Repulsive" checked>Repulsive</label></a></li>
-              <li><a tabindex="0"><label class="checkbox"><input type="checkbox" value="Salt bridge" checked>Salt bridge</label></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="panel-heading">
-          <h3 class="panel-title" align="center">SEARCH BY RESIDUE NAME</h3>
-        </div>
-        <div class="panel-body">
-          <div class="input-group input-color-picker">
-            <input type="text" class="form-control input-md" id="searchNodes" placeholder="Ex: THR2, THR, PHE, PHE10">
-            <span class="input-group-addon"><i></i></span>
-          </div>
-
-          <div class="btn-group" role="group" aria-label="true">
-            <button type="button" class="btn btn-success btn-xs" id="searchNodesBtn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
-            <button type="button" class="btn btn-danger btn-xs" id="clearSearchBtn"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear</button>
-          </div>
-        </div>
-
-        <div class="panel-heading">
-          <h3 class="panel-title" align="center">FILTER BY RESIDUE TYPE</h3>
-        </div>
-        <div class="panel-body">
-          <div class="btn-group multiselect-div atom-select">
-            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <span class="multiselect-selected-text"> Select the residue types </span> <b class="caret"></b>
-            </button>
-            <ul class="dropdown-menu" id = "filterbyresidue">
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB' checked>Polar Positive</label></a></li>
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030' checked>Polar Negative</label></a></li>
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#9F3ED5' checked>Polar Neutral</label></a></li>
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#4EA429' checked>Non-Polar Aliphatic</label></a></li>
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#009999' checked>Non-Polar Rings</label></a></li>
-              <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FFAA00' checked>Cysteine</label></a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="panel-heading">
-          <h3 class="panel-title" align="center">CHANGE COLOR PATTERN</h3>
-        </div>
-
-        <div class = "panel-body">
-          <div class="input-group">
-            <input type="TextBox" ID="datebox" Class="form-control" value = "CINEMA"></input>
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                <span class="caret"></span>
-              </button>
-              <ul id="colorlist" class="dropdown-menu">
-                <li><a href="#">CINEMA</a></li>
-                <li><a href="#">CLUSTAL</a></li>
-                <li><a href="#">LESK</a></li>
-              </ul>
-            </div>
-          </div>
-
-
-        </div>
-
-        <div class="panel-heading">
-          <h3 class="panel-title" align="center">3DMOL</h3>
-        </div>
-        <div class = "panel-body">
-          <div style="height: 200px; width: 200px; position: relative;" class='col-md-12 viewer_3Dmoljs' data-pdb='1BGA' data-backgroundcolor='0xffffff' data-style='stick'></div>
-        </div>
-      </div>
-
-
-
-
-
-    <script type="text/javascript">
-
-    $(function(){
-      $('.input-color-picker').colorpicker( { input: '' }).colorpicker('setValue', "blue");
-    });
-
-var width = 800,     // svg width
-    height = 600,     // svg height
-    dr = 4,      // default point radius
-    off = 15,    // cluster hull offset
-    expand = {}, // expanded clusters
-    data, net, force, hullg, hull, linkg, link, nodeg, node;
-
-var curve = d3.svg.line()
-    .interpolate("cardinal-closed")
-    .tension(.85);
-
-//var fill = d3.scale.category20();
-
-function noop() { return false; }
-
-function nodeid(n) {
-  return n.size ? "_g_"+n.group : n.name;
-}
-
-function linkid(l) {
-  var u = nodeid(l.source),
-      v = nodeid(l.target);
-  return u<v ? u+"|"+v : v+"|"+u + "|" + l.type;
-}
-
-function getGroup(n) { return n.group; }
-
-// constructs the network to visualize
-function network(data, prev, index, expand) {
-  expand = expand || {};
-  var gm = {},    // group map
-      nm = {},    // node map
-      lm = {},    // link map
-      gn = {},    // previous group nodes
-      gc = {},    // previous group centroids
-      nodes = [], // output nodes
-      links = []; // output links
-
-  // process previous nodes for reuse or centroid calculation
-  if (prev) {
-    prev.nodes.forEach(function(n) {
-      var i = index(n), o;
-      if (n.size > 0) {
-        gn[i] = n;
-        n.size = 0;
-      } else {
-        o = gc[i] || (gc[i] = {x:0,y:0,count:0});
-        o.x += n.x;
-        o.y += n.y;
-        o.count += 1;
+      <footer class="network-footer"><span id="dataset-source">Original precomputed 1BGA map.</span><span data-i18n="contacts_calculated">Contacts are calculated from the loaded PDB coordinates.</span></footer>
+    </section></div>
+  </main>
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const translations={
+        en:{pdb_link:'Protein Data Bank ↗',eyebrow:'A clearer view of molecular structure',title:'Explore a protein.',intro:'Turn any Protein Data Bank entry into an interactive 3D structure and a concise, useful summary.',source:'Structure data provided by RCSB PDB',pdb_id:'PDB identifier',placeholder:'Enter a PDB ID, e.g. 1BGA',explore:'Explore',try_classic:'Try a classic:',ready:'Ready to explore',viewer_subtitle:'Interactive molecular view',cartoon:'Cartoon',stick:'Stick',spacefill:'Spacefill',context:'Your structure, in context',load_hint:'Enter a four-character PDB ID above. Drag to rotate, scroll to zoom.',viewer_hint:'DRAG TO ROTATE · SCROLL TO ZOOM',search_pdb:'Search the PDB to load a structure',about_pdb:'About the PDB ↗',overview:'Structure overview',waiting:'Waiting for a structure',enter_id:'Enter a PDB ID to see its details.',residues:'Residues',atoms:'Atoms',chains:'Chains',ligands:'Ligands',chain_entry:'Chains in this entry',color_key:'Color key',protein_backbone:'Protein backbone',small_molecules:'Small molecules',about_view:'About this view',view_note:'Residue and chain counts come from the loaded coordinates. Water is excluded from the ligand count.',network:'Residue contact map',connections:'How residues connect',network_desc:'Explore contacts between residues. Select one to locate it in 3D.',chain:'Chain',all_chains:'All chains',contact_strength:'Contact strength',one_pair:'1 pair',eight_pairs:'8+ pairs',show_isolated:'Show isolated residues',find_residue:'Find a residue',residue_placeholder:'e.g. PHE10',show_contacts:'Show contacts',residue_colors:'Residue colors',network_help:'Search for a residue. Drag to pan and scroll to zoom.',contacts_calculated:'Contacts are calculated from the loaded PDB coordinates.',loading:'Loading structure…',fetching:'Retrieving coordinates…',connecting:'Connecting to RCSB Protein Data Bank',loaded:'Structure loaded',invalid_id:'Enter a valid 4-character PDB ID',not_found:'PDB entry {id} was not found.',pdb_error:'RCSB returned {status}. Please try again.',no_coordinates:'This entry has no coordinate records in PDB format.',load_failed:'Could not load this structure',unavailable:'Structure unavailable',check_connection:'Check the identifier or your connection',organism_missing:'Organism information is not listed in this entry.',view_entry:'View entry at RCSB ↗',chain_name:'Chain {chain}',calculated:'Calculated contacts · {id}',original:'Original data · 1BGA',original_source:'Original precomputed 1BGA map.',live_source:'Calculated from {id} coordinates · {count} atom contacts (≤5 Å).',count:'{residues} connected residues · {pairs} residue pairs · {chains} · {threshold}+ atom contacts',all_chains_name:'all chains',chain_only:'chain {chain}',contact_close:'Close contact',contact_near:'Proximity',hydrogen:'Hydrogen bond',hydrophobic:'Hydrophobic',salt:'Salt bridge',aromatic:'Aromatic stacking',repulsive:'Repulsive',attractive:'Attractive',disulfide:'Disulfide bond'},
+        pt:{pdb_link:'Banco de Dados de Proteínas ↗',eyebrow:'Uma visão mais clara da estrutura molecular',title:'Explore uma proteína.',intro:'Transforme qualquer entrada do Protein Data Bank em uma estrutura 3D interativa e um resumo claro.',source:'Dados estruturais fornecidos pelo RCSB PDB',pdb_id:'Identificador PDB',placeholder:'Digite um código PDB, ex.: 1BGA',explore:'Explorar',try_classic:'Um exemplo clássico:',ready:'Pronto para explorar',viewer_subtitle:'Visualização molecular interativa',cartoon:'Fita',stick:'Varetas',spacefill:'Esferas',context:'Sua estrutura em contexto',load_hint:'Digite um código PDB de quatro caracteres. Arraste para girar e role para ampliar.',viewer_hint:'ARRASTE PARA GIRAR · ROLE PARA AMPLIAR',search_pdb:'Busque no PDB para carregar uma estrutura',about_pdb:'Sobre o PDB ↗',overview:'Visão geral da estrutura',waiting:'Aguardando uma estrutura',enter_id:'Digite um código PDB para ver os detalhes.',residues:'Resíduos',atoms:'Átomos',chains:'Cadeias',ligands:'Ligantes',chain_entry:'Cadeias nesta entrada',color_key:'Legenda de cores',protein_backbone:'Estrutura da proteína',small_molecules:'Moléculas pequenas',about_view:'Sobre esta visualização',view_note:'As contagens de resíduos e cadeias vêm das coordenadas carregadas. A água não entra na contagem de ligantes.',network:'Mapa de contatos entre resíduos',connections:'Como os resíduos se conectam',network_desc:'Explore contatos entre resíduos. Selecione um para localizá-lo em 3D.',chain:'Cadeia',all_chains:'Todas as cadeias',contact_strength:'Intensidade do contato',one_pair:'1 par',eight_pairs:'8+ pares',show_isolated:'Mostrar resíduos isolados',find_residue:'Encontrar resíduo',residue_placeholder:'ex.: PHE10',show_contacts:'Mostrar contatos',residue_colors:'Cores dos resíduos',network_help:'Busque um resíduo. Arraste para mover e role para ampliar.',contacts_calculated:'Os contatos são calculados a partir das coordenadas PDB carregadas.',loading:'Carregando estrutura…',fetching:'Buscando coordenadas…',connecting:'Conectando ao Protein Data Bank',loaded:'Estrutura carregada',invalid_id:'Digite um código PDB válido com 4 caracteres',not_found:'A entrada PDB {id} não foi encontrada.',pdb_error:'O RCSB retornou {status}. Tente novamente.',no_coordinates:'Esta entrada não contém coordenadas no formato PDB.',load_failed:'Não foi possível carregar esta estrutura',unavailable:'Estrutura indisponível',check_connection:'Confira o código ou sua conexão',organism_missing:'Informação do organismo não está disponível nesta entrada.',view_entry:'Ver entrada no RCSB ↗',chain_name:'Cadeia {chain}',calculated:'Contatos calculados · {id}',original:'Dados originais · 1BGA',original_source:'Mapa original pré-calculado de 1BGA.',live_source:'Calculado a partir das coordenadas de {id} · {count} contatos atômicos (≤5 Å).',count:'{residues} resíduos conectados · {pairs} pares de resíduos · {chains} · contatos de {threshold}+ átomos',all_chains_name:'todas as cadeias',chain_only:'cadeia {chain}',contact_close:'Contato próximo',contact_near:'Proximidade',hydrogen:'Ligação de hidrogênio',hydrophobic:'Hidrofóbica',salt:'Ponte salina',aromatic:'Empilhamento aromático',repulsive:'Repulsiva',attractive:'Atrativa',disulfide:'Ponte dissulfeto'}
+      };
+      Object.assign(translations.en,{uncertain_attractive:'Uncertain attractive',uncertain_repulsive:'Uncertain repulsive',uncertain_salt:'Uncertain salt bridge'});
+      Object.assign(translations.pt,{uncertain_attractive:'Atrativa incerta',uncertain_repulsive:'Repulsiva incerta',uncertain_salt:'Ponte salina incerta'});
+      let language=localStorage.getItem('foldspace-language')||'en';
+      const t=(key,values={})=>Object.entries(values).reduce((text,[name,value])=>text.replaceAll(`{${name}}`,value),translations[language][key]||translations.en[key]||key);
+      function applyLanguage(){document.documentElement.lang=language;document.querySelectorAll('[data-i18n]').forEach(element=>{element.textContent=t(element.dataset.i18n);});document.querySelectorAll('[data-i18n-placeholder]').forEach(element=>{element.placeholder=t(element.dataset.i18nPlaceholder);});document.querySelectorAll('[data-language]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.language===language)));if(graphReady)refreshDynamicTranslations();}
+      document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>{language=button.dataset.language;localStorage.setItem('foldspace-language',language);applyLanguage();}));
+      const form = $('search-form'), input = $('pdb-id');
+      const viewerElement = $('protein-view');
+      let viewer = null, currentPdb = '', currentPdbText = '', currentStyle = 'cartoon';
+      let structureLoadToken = 0;
+      const atomColor = '#68cdb5';
+      function ensureViewer() {
+        if (!window.$3Dmol) throw new Error('The molecular viewer could not be loaded. Check your connection and reload the page.');
+        if (!viewer) viewer = $3Dmol.createViewer(viewerElement, { backgroundColor: '#101821', antialias: true });
+        return viewer;
       }
-    });
-  }
-
-  // determine nodes
-  for (var k=0; k<data.nodes.length; ++k) {
-    var n = data.nodes[k],
-        i = index(n),
-        l = gm[i] || (gm[i]=gn[i]) || (gm[i]={group:i, size:0, nodes:[]});
-    if (expand[i]) {
-      // the node should be directly visible
-      nm[n.name] = nodes.length;
-
-      nodes.push(n);
-      if (gn[i]) {
-        // place new nodes at cluster location (plus jitter)
-        n.x = gn[i].x + Math.random();
-        n.y = gn[i].y + Math.random();
+      function setStatus(message, isError = false) {
+        $('viewer-title').textContent = message;
+        $('viewer-title').classList.toggle('error', isError);
+        $('status-dot').style.background = isError ? '#ff927e' : '#78e0c0';
       }
-    } else {
-      // the node is part of a collapsed cluster
-      if (l.size == 0) {
-        string = n.name.split("_");
-        l.name = string[3] + string[4];
-
-        l.cinema_color = n.cinema;
-        l.clustal_color = n.clustal;
-        l.lesk_color = n.lesk;
-        nm[i] = nodes.length;
-        nodes.push(l);
-        if (gc[i]) {
-          l.x = gc[i].x / gc[i].count;
-          l.y = gc[i].y / gc[i].count;
+      function parsePdb(text) {
+        const atoms = [], residueKeys = new Set(), chains = new Set(), ligands = new Set(), residues = new Map();
+        for (const line of text.split(/\r?\n/)) {
+          if (!(line.startsWith('ATOM  ') || line.startsWith('HETATM'))) continue;
+          const atom = {record:line.slice(0,6).trim(), name:line.slice(12,16).trim(), resn:line.slice(17,20).trim().toUpperCase(), chain:line.slice(21,22).trim() || '∅', resi:parseInt(line.slice(22,26),10), insertion:line.slice(26,27).trim(), altloc:line.slice(16,17).trim(), x:Number(line.slice(30,38)), y:Number(line.slice(38,46)), z:Number(line.slice(46,54)), element:line.slice(76,78).trim().toUpperCase()};
+          if (!Number.isFinite(atom.resi)) continue;
+          atoms.push(atom);
+          if (atom.record === 'ATOM') {
+            const key=`${atom.chain}:${atom.resi}:${atom.insertion}:${atom.resn}`;
+            residueKeys.add(key); chains.add(atom.chain);
+            if(!residues.has(key))residues.set(key,{key,chain:atom.chain,resid:atom.resi,insertion:atom.insertion,resname:atom.resn,atoms:[]});
+            if(!atom.altloc||atom.altloc==='A')residues.get(key).atoms.push(atom);
+          }
+          else if (atom.resn !== 'HOH' && atom.resn !== 'WAT' && atom.resn !== 'DOD') { chains.add(atom.chain); ligands.add(`${atom.resn}:${atom.chain}:${atom.resi}`); }
         }
+        return {atoms, residues:residueKeys.size, proteinResidues:[...residues.values()], chains:[...chains].sort(), ligands:ligands.size};
       }
-      n.cinema_color = n.cinema;
-      n.clustal_color = n.clustal;
-      n.lesk_color = n.lesk;
-      l.nodes.push(n);
-    }
-  // always count group size as we also use it to tweak the force graph strengths/distances
-    l.size += 1;
-  n.group_data = l;
-  }
-
-  for (i in gm) { gm[i].link_count = 0; }
-
-  // determine links
-  linkslidos = {};
-
-
-  for (k=0; k<data.links.length; ++k) {
-    var e = data.links[k],
-        u = index(e.source),
-        v = index(e.target);
-
-
-
-  if (u != v) {
-    gm[u].link_count++;
-    gm[v].link_count++;
-  }
-
- var sName = e.source.name.split("_");
- var k1 = (!expand[u]) ? sName[3] + sName[4] : e.source.name;
- var tName = e.target.name.split("_");
- var k2 = (!expand[v]) ? tName[3] + tName[4] : e.target.name;
-
- var key = k1 + "-" + k2;
- var obj = (key in linkslidos) ? linkslidos[key] : { "count": 0, "inter": {} };
-
- if ( key in linkslidos && !( e.type in obj["inter"] ) )
- {
-
-   var i = (u<v ? u+"|"+v : v+"|"+u) + "|" + e.type;
-        lm[i] = ({source:u, target:v, size:0});
-   lm[i].size += 1;
-   lm[i].color = e.color;
-   lm[i].type = e.type;
- }
- else {
-   u = expand[u] ? nm[e.source.name] : nm[u];
-   v = expand[v] ? nm[e.target.name] : nm[v];
-   var i = (u<v ? u+"|"+v : v+"|"+u )+ "|" + e.type,
-       l = lm[i] || (lm[i] = {source:u, target:v, size:0});
-   l.size += 1;
-   lm[i].color = e.color;
-   lm[i].type = e.type;
- }
-
- obj["count"] += 1;
- var interactions = obj["inter"];
- interactions[e.type] = 1;
- obj["inter"] = interactions;
- linkslidos[key] = obj;
-
-  }
-
-  for (i in lm) { links.push(lm[i]); }
-
-  return {nodes: nodes, links: links};
-}
-
-function convexHulls(nodes, index, offset) {
-  var hulls = {};
-  var colors = [];
-  for (var k=0; k<nodes.length; ++k) {
-    var n = nodes[k];
-
-    if (n.size) continue;
-    var i = index(n), l = hulls[i] || (hulls[i] = []);
-    l.push([n.x-offset, n.y-offset]);
-    l.push([n.x-offset, n.y+offset]);
-    l.push([n.x+offset, n.y-offset]);
-    l.push([n.x+offset, n.y+offset]);
-    hulls[i].cinema_color = n.cinema_color;
-    hulls[i].clustal_color = n.clustal_color;
-    hulls[i].lesk_color = n.lesk_color;
-    var string = n.name.split("_");
-    var name = string[3] + string[4];
-    hulls[i].name = name;
-  }
-
-
-  // create convex hulls
-  var hullset = [];
-  for (i in hulls) {
-    var name = string[3] + string[4];
-    hullset.push({name : hulls[i].name, clustal_color : hulls[i].clustal_color,lesk_color : hulls[i].lesk_color,cinema_color : hulls[i].cinema_color, group: i, path: d3.geom.hull(hulls[i])});
-  }
-
-  return hullset;
-}
-
-function drawCluster(d) {
-  return curve(d.path); // 0.8
-}
-
-// --------------------------------------------------------
-
-var groupsexpanded = 0;
-
-var nodetip = d3.tip()
-.attr('class', 'd3-tip atom-tip')
-.offset([-10, 0])
-.html(function(d) {
-  var html = "<strong>Name:</strong> <span style='color:white'>" + d.name + "</span><br><br>"
-  return html;
-});
-
-var linktip = d3.tip()
-.attr('class', 'd3-tip')
-.offset([-10, 0])
-.html(function(d) {
-  return "<strong>Edge: </strong> <span style='color:white'>" + d.source.name + " - " + d.target.name +  "</span><br><br>"
-  + "<strong>Type:</strong> <span style='color:white'>" + d.type + "</span><br><br>"
-  + "<strong>Interactions:</strong> <span style='color:white'>" + d.size + "</span><br><br>";
-});
-
-var hulltip = d3.tip()
-.attr('class', 'd3-tip')
-.offset([-10, 0])
-.html(function(d) {
-  return "<strong>Residue: </strong> <span style='color:white'>" + d.name  + "</span><br><br>"
-});
-
-var body = d3.select("#grafo");
-
-var vis = body.append("svg")
-   .attr("height", height)
-   .attr("class", "col-md-12")
-   .call(d3.behavior.zoom().on("zoom", function () {
-     vis.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")}))
-     .append("g")
-     .call(nodetip)
-     .call(linktip);
-
-
-d3.json("graph2.json", function(json) {
-  data = json;
-  for (var i=0; i<data.links.length; ++i) {
-    o = data.links[i];
-    o.source = data.nodes[o.source];
-    o.target = data.nodes[o.target];
-  }
-
-  hullg = vis.append("g");
-  linkg = vis.append("g");
-  nodeg = vis.append("g");
-
-  init();
-
-  vis.attr("opacity", 1e-6)
-    .transition()
-    .duration(1000)
-    .attr("opacity", 1);
-
-});
-
-function init() {
-
-
-  if (force) force.stop();
-
-  net = network(data, net, getGroup, expand);
-
-  //sort links by source, then target
-  net.links.sort(function(a,b) {
-    if (a.source > b.source) {return 1;}
-    else if (a.source < b.source) {return -1;}
-    else {
-      if (a.target > b.target) {return 1;}
-      if (a.target < b.target) {return -1;}
-      else {return 0;}
-    }
-  });
-  //any links with duplicate source and target get an incremented 'linknum'
-  for (var i=0; i<net.links.length; i++) {
-    if (i != 0 &&
-      net.links[i].source == net.links[i-1].source &&
-      net.links[i].target == net.links[i-1].target) {
-        net.links[i].linknum = net.links[i-1].linknum + 1;
-      }
-      else {net.links[i].linknum = 1;};
-    };
-
-  force = d3.layout.force()
-      .nodes(net.nodes)
-      .links(net.links)
-      .size([width, height])
-      .linkDistance(function(l, i) {
-      var n1 = l.source, n2 = l.target;
-    // larger distance for bigger groups:
-    // both between single nodes and _other_ groups (where size of own node group still counts),
-    // and between two group nodes.
-    //
-    // reduce distance for groups with very few outer links,
-    // again both in expanded and grouped form, i.e. between individual nodes of a group and
-    // nodes of another group or other group node or between two group nodes.
-    //
-    // The latter was done to keep the single-link groups ('blue', rose, ...) close.
-    return 30 +
-      Math.min(20 * Math.min((n1.size || (n1.group != n2.group ? n1.group_data.size : 0)),
-                             (n2.size || (n1.group != n2.group ? n2.group_data.size : 0))),
-           -30 +
-           30 * Math.min((n1.link_count || (n1.group != n2.group ? n1.group_data.link_count : 0)),
-                         (n2.link_count || (n1.group != n2.group ? n2.group_data.link_count : 0))),
-           100);
-      //return 150;
-    })
-    .linkStrength(function(l, i) {
-    return 1;
-    })
-    .gravity(0.5)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
-    .charge(-5000)    // ... charge is important to turn single-linked groups to the outside
-    .friction(0.7)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
-    .start();
-
-
-
-  hullg.selectAll("path.hull").remove();
-  hull = hullg.selectAll("path.hull")
-      .data(convexHulls(net.nodes, getGroup, off))
-      .enter().append("path")
-      .attr("class", "hull")
-      .attr("d", drawCluster)
-      .style("fill", function(d) {return d.clustal_color; })
-      .on("dblclick", function(d) {
-        expand[d.group] = false;
-        var canshow = false;
-        groupsexpanded--;
-        init();
-        if(groupsexpanded == 0) {
-          update_links();
-          update_nodes();
-        }
-
+      function buildContactMap(proteinResidues,pdbId){
+        const aa={ALA:'A',ARG:'R',ASN:'N',ASP:'D',CYS:'C',GLN:'Q',GLU:'E',GLY:'G',HIS:'H',ILE:'I',LEU:'L',LYS:'K',MET:'M',PHE:'F',PRO:'P',SER:'S',THR:'T',TRP:'W',TYR:'Y',VAL:'V'};
+        const palettes={cinema:{HKR:'#1240AB',DE:'#BF3030',NQST:'#9F3ED5',AGILMV:'#4EA429',FPWY:'#009999',C:'#FFAA00'},clustal:{GPST:'#FF9640',HKR:'#BF3030',FWY:'#1240AB',ILMV:'#008500',DE:'#BF3030',NQ:'#9F3ED5',C:'#FFAA00',A:'#9E9E9E'},lesk:{AGST:'#FF9640',CFILMPVWY:'#269926',HNQ:'#CD0077',DE:'#BF3030',KR:'#1240AB'}};
+        const nodes=proteinResidues.map((residue,index)=>{
+          const code=aa[residue.resname]||'X',number=`${residue.resid}${residue.insertion}`;
+          const node={name:`${residue.resname}${number}`,resname:residue.resname,resid:number,chain:residue.chain,key:residue.key,value:0};
+          for(const [scheme,palette] of Object.entries(palettes))node[`${scheme}_color`]=Object.entries(palette).find(([letters])=>letters.includes(code))?.[1]||'#A8B3BC';
+          return node;
         });
-
-  link = linkg.selectAll("path.link").data(net.links, linkid);
-  link.exit().remove();
-  link.enter().append("path")
-      .attr("class", "link")
-      // .attr("x1", function(d) {return d.source.x; })
-      // .attr("y1", function(d) { return d.source.y; })
-      // .attr("x2", function(d) { return d.target.x; })
-      // .attr("y2", function(d) { return d.target.y; })
-      .style("stroke-width", function(d) { if(d.size / 7 < 1) { return 1; } else { return d.size/7}; })
-      .style("stroke", function(d) {return d.color; })
-      .on('mouseover', linktip.show)
-      .on('mouseout', linktip.hide);
-
-
-
-
-      node = nodeg.selectAll("circle.node").data(net.nodes, nodeid);
-      node.exit().remove();
-
-
-
-      node.enter().append("circle")
-      .attr("class", function(d) { return "node" + (d.size?"":" leaf"); })
-      .attr("r", function(d) { return d.size / 18 ? (d.size + dr) / 2 : dr+1; })
-      .attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; })
-      .style("fill", function(d) {return d.clustal_color ; })
-      .on('mouseover', nodetip.show)
-      .on('mouseout', nodetip.hide)
-      .on("click", function(d) {
-      expand[d.group] = !expand[d.group];
-      d3.selectAll("circle").filter( function(d) {
-        if (!expand[d.group]) {
-          return 1
-        }
-      }).style("opacity", 0.2);
-      d3.selectAll(".link").style("opacity", 0);
-      groupsexpanded++;
-
-      init();
-      update_links();
-      update_nodes();
-      });
-
-  //node.call(force.drag);
-
-
-
-  force.on("tick", function() {
-    if (!hull.empty()) {
-      hull.data(convexHulls(net.nodes, getGroup, off))
-          .attr("d", drawCluster);
-    }
-
-    // link.attr("x1", function(d) { return d.source.x; })
-    // .attr("y1", function(d) { return d.source.y; })
-    // .attr("x2", function(d) { return d.target.x; })
-    // .attr("y2", function(d) { return d.target.y; })
-
-    link.attr("d", function(d) {
-    var dx = d.target.x - d.source.x,
-        dy = d.target.y - d.source.y,
-        dr = 1/d.linknum;  //linknum is defined above
-        return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
-    });
-
-
-
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; })
-
-
-
-  });
-
-  if ($('#datebox').val() == "CINEMA") {
-    d3.selectAll("circle")
-    .style("fill", function(d) {return d.cinema_color});
-
-    d3.selectAll(".hull")
-    .style("fill",function(d) {return d.cinema_color });
-  }
-
-  if($('#datebox').val() == "CLUSTAL") {
-    d3.selectAll("circle")
-    .style("fill", function(d) {return d.clustal_color});
-
-    d3.selectAll(".hull")
-    .style("fill",function(d) {return d.clustal_color });
-  }
-
-  if ($('#datebox').val() == "LESK") {
-    d3.selectAll("circle")
-    .style("fill", function(d) {return d.lesk_color});
-
-    d3.selectAll(".hull")
-    .style("fill",function(d) {return d.lesk_color });
-  }
-
-
-}
-
-    </script>
-
-<script>
-    $("#colorlist li").click(function(){
-      var choice = $(this).text();
-
-      $('#datebox').val($(this).text());
-      $('#titulopanel').text($(this).text());
-
-
-
-      if (choice == "CINEMA") {
-        var html = "\
-        <div class='row'>\
-        <div class='col-md-12'>\
-        <h5 style='color:#1240AB'> Polar Positive </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#1240AB'> H,K,R</i></br>\
-        </div>\
-        \
-        <div class='col-md-12'>\
-        <h5 style='color:#BF3030'> Polar Negative </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#BF3030'> D,E</i></br>\
-        </div>\
-        </div>\
-        <div class='row'>\
-        <div class='col-md-12'>\
-        <h5 style='color:#9F3ED5'> Polar Neutral </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#9F3ED5'> N,Q,S,T</i></br>\
-        </div>\
-        \
-        <div class='col-md-12'>\
-        <h5 style='color:#4EA429'> Non-Polar Aliphatic </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#4EA429'> A,G,I,L,M,V</i></br>\
-        </div>\
-        </div>\
-        <div class='row'>\
-        <div class='col-md-12'>\
-        <h5 style='color:#009999'> Non-Polar Rings </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#009999'> F,P,W,Y</i></br>\
-        </div>\
-        \
-        <div class='col-md-12'>\
-        <h5 style='color:#FFAA00'> Cysteine </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#FFAA00'> C</i></br>\
-        </div>\
-        </div>\
-        " ;
-
-        var filterhtml = "<li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB' checked>Polar Positive</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030' checked>Polar Negative</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#9F3ED5' checked>Polar Neutral</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#4EA429' checked>Non-Polar Aliphatic</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#009999' checked>Non-Polar Rings</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FFAA00' checked>Cysteine</label></a></li>\
-        ";
-        $('#filterbyresidue').html(filterhtml);
-        $('#edges').html(html);
-        d3.selectAll("circle")
-        .style("fill",function(d) {return d.cinema_color });
-
-        d3.selectAll(".hull")
-        .style("fill",function(d) {return d.cinema_color });
-      } else if(choice == "CLUSTAL") {
-        var html = "\
-        <div class='row'>\
-        <div class='col-md-12'>\
-        <h5 style='color:#FF9640'> GPST </h5>\
-        <i class='fa fa-circle' style='color:#FF9640'> G,P,S,T</i></br>\
-        </div>\
-        \
-        <div class='col-md-12'>\
-        <h5 style='color:#BF3030'> HKR </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#BF3030'> H,K,R</i></br>\
-        </div>\
-        </div>\
-        <div class='row'>\
-        <div class='col-md-12'>\
-        <h5 style='color:#1240AB'> FWY </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#1240AB'> F,W,Y</i></br>\
-        </div>\
-        \
-        <div class='col-md-12'>\
-        <h5 style='color:#008500'> ILMV </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#008500'> I,L,M,V</i></br>\
-        </div>\
-        " ;
-        $('#edges').html(html);
-
-        var filterhtml = "<li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FF9640' checked>GPST</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030' checked>HKR</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB' checked>FWY</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#008500' checked>ILMV</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#ccc' checked>Others</label></a></li>\
-        ";
-        $('#filterbyresidue').html(filterhtml);
-
-        d3.selectAll("circle")
-        .style("fill",function(d) { return d.clustal_color });
-
-        d3.selectAll(".hull")
-        .style("fill",function(d) { return d.clustal_color });
-
-      } else if (choice == "LESK") {
-        var html = "\
-        <div class='row'>\
-        <div class='col-md-12'>\
-        <h5 style='color:#FF9640'> Small Nonpolar </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#FF9640'> A,G,S,T</i></br>\
-        </div>\
-        \
-        <div class='col-md-12'>\
-        <h5 style='color:#269926'> Hydrophobic </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#269926'> C,F,I,L,M,P,V,W,Y</i></br>\
-        </div>\
-        </div>\
-        <div class='row'>\
-        <div class='col-md-12'>\
-        <h5 style='color:#CD0077'> Polar </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#CD0077'> H,N,Q</i></br>\
-        </div>\
-        \
-        <div class='col-md-12'>\
-        <h5 style='color:#BF3030'> Negatively Charged </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#BF3030'> D,E</i></br>\
-        </div>\
-        \
-        <div class='col-md-12'>\
-        <h5 style='color:#1240AB'> Positively Charged </h5>\
-        <i class='fa fa-circle' aria-hidden='true' style='color:#1240AB'> K,R</i></br>\
-        </div>\
-        " ;
-        $('#edges').html(html);
-
-        var filterhtml = "<li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#FF9640' checked>Small Nonpolar</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#269926' checked>Hydrophobic</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#CD0077' checked>Polar</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#BF3030' checked>Negatively Charged</label></a></li>\
-        <li><a tabindex='0'><label class='checkbox'><input type='checkbox' value='#1240AB' checked >Positively Charged</label></a></li>";
-        $('#filterbyresidue').html(filterhtml);
-        d3.selectAll("circle")
-        .style("fill",function(d) { return d.lesk_color });
-
-        d3.selectAll(".hull")
-        .style("fill",function(d) { return d.lesk_color });
-        update_links();
-        update_nodes();
-      }
-
-      update_links();
-      update_nodes();
-
-
-
-    });
-
-    $('#clearSearchBtn').on("click", function() {
-
-      if ($('#datebox').val() == "CINEMA") {
-        d3.selectAll("circle")
-        .style("fill", function(d) {return d.cinema_color});
-      }
-
-      if($('#datebox').val() == "CLUSTAL") {
-        d3.selectAll("circle")
-        .style("fill", function(d) {return d.clustal_color});
-      }
-
-      if ($('#datebox').val() == "LESK") {
-        d3.selectAll("circle")
-        .style("fill", function(d) {return d.lesk_color});
-      }
-      update_links();
-      update_nodes();
-
-    });
-
-
-    $('#searchNodesBtn').on("click", function() {
-      var searchValue = $('#searchNodes').val().toUpperCase();
-
-      if (searchValue === "") return;
-
-      var filterColor = $('.input-color-picker').colorpicker('getValue');
-      var nodes = d3.selectAll("circle").style("opacity", .2);
-      d3.selectAll("circle").filter(function(d) {
-        var array = d.name;
-
-        if (array.indexOf(searchValue) > -1) {
-          return d;
-        }
-      }).style("fill",filterColor).style("opacity", 1);
-
-    });
-
-
-    function update_links() {
-
-      var interColor = ["Aromatic stacking","Hydrogen bond","Hydrophobic","Repulsive","Salt bridge"];
-
-      var graphSelections = { "atoms": ["Acceptor","Aromatic", "Donor","Hydrophobic","Negative","Positive"],
-      "interactions": ["Aromatic stacking","Hydrogen bond","Hydrophobic","Repulsive","Salt bridge"] };
-
-
-      var multiselect = $("#linkinter").parents('.multiselect-div');
-      var selections = [];
-      multiselect.find('input[type="checkbox"]:checked').each(function() {
-        var item = $(this).val();
-        selections.push(item);
-      });
-      graphSelections.interactions = selections;
-      d3.selectAll(".link").style("opacity", 0);
-      d3.selectAll(".link").filter( function(d) {
-        if (groupsexpanded > 0) {
-          if(expand[d.source.group] || expand[d.target.group]) {
-            var types = d.type;
-            var linkNotSelected = false;
-              if ( $.inArray(types, graphSelections.interactions) !== -1) {
-                linkNotSelected = true;
+        const grid=new Map(),cellSize=5,edges=new Map();
+        for(let r=0;r<proteinResidues.length;r++){
+          const residue=proteinResidues[r];
+          for(const atom of residue.atoms){if(!Number.isFinite(atom.x)||!Number.isFinite(atom.y)||!Number.isFinite(atom.z))continue;
+            const gx=Math.floor(atom.x/cellSize),gy=Math.floor(atom.y/cellSize),gz=Math.floor(atom.z/cellSize);
+            for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++)for(let dz=-1;dz<=1;dz++){
+              const nearby=grid.get(`${gx+dx},${gy+dy},${gz+dz}`);if(!nearby)continue;
+              for(const other of nearby){if(other.residueIndex===r)continue;
+                const dr=Math.abs(proteinResidues[other.residueIndex].resid-residue.resid);
+                if(proteinResidues[other.residueIndex].chain===residue.chain&&dr<=2)continue;
+                const ddx=atom.x-other.x,ddy=atom.y-other.y,ddz=atom.z-other.z,d2=ddx*ddx+ddy*ddy+ddz*ddz;
+                if(d2>25)continue;
+                const a=Math.min(r,other.residueIndex),b=Math.max(r,other.residueIndex),pair=`${a}:${b}`;
+                const type=d2<=12.25?'Close contact':'Proximity';let edge=edges.get(`${pair}:${type}`);
+                if(!edge){edge={source:a,target:b,type,color:typeColors[type],count:0,minDistance:Infinity};edges.set(`${pair}:${type}`,edge);}
+                edge.count++;edge.minDistance=Math.min(edge.minDistance,Math.sqrt(d2));
               }
-            return linkNotSelected;
-          }
-        } else {
-          var types = d.type;
-          var linkNotSelected = false;
-            if ( $.inArray(types, graphSelections.interactions) !== -1) {
-              linkNotSelected = true;
             }
-          return linkNotSelected;
+            const key=`${gx},${gy},${gz}`;if(!grid.has(key))grid.set(key,[]);grid.get(key).push({residueIndex:r,atom});
+          }
         }
-
-      }).style("opacity", 1);
-
-    }
-
-    function update_nodes() {
-      var interColor = ["Aromatic stacking","Hydrogen bond","Hydrophobic","Repulsive","Salt bridge"];
-
-      var graphSelections = { "atoms": ["Acceptor","Aromatic", "Donor","Hydrophobic","Negative","Positive"],
-      "interactions": ["Aromatic stacking","Hydrogen bond","Hydrophobic","Repulsive","Salt bridge"] };
-
-      var multiselect = $("#filterbyresidue").parents('.multiselect-div');
-
-      var selections = [];
-      multiselect.find('input[type="checkbox"]:checked').each(function() {
-        var item = $(this).val();
-        selections.push(item);
-      });
-
-      graphSelections.atoms = selections;
-      d3.selectAll("circle").style("opacity", 0.2);
-      d3.selectAll("circle").filter( function(d) {
-          if(groupsexpanded > 0) {
-            if (expand[d.group]) {
-              if ($("#datebox").val() == "CINEMA") {
-                var types = d.cinema_color;
-              } else if ($("#datebox").val() == "CLUSTAL") {
-                var types = d.clustal_color;
-              } else if ($("#datebox").val() == "LESK") {
-                var types = d.lesk_color;
-              }
-              if ( $.inArray(types, graphSelections.atoms) !== -1 ) return 1;
-            }
-          } else {
-            if ($("#datebox").val() == "CINEMA") {
-              var types = d.cinema_color;
-            } else if ($("#datebox").val() == "CLUSTAL") {
-              var types = d.clustal_color;
-            } else if ($("#datebox").val() == "LESK") {
-              var types = d.lesk_color;
-            }
-            if ( $.inArray(types, graphSelections.atoms) !== -1 ) return 1;
+        const links=[...edges.values()];
+        for(const link of links){nodes[link.source].value+=link.count;nodes[link.target].value+=link.count;}
+        const duplicateNames=new Map();for(const node of nodes)duplicateNames.set(node.name,(duplicateNames.get(node.name)||0)+1);
+        for(const node of nodes)if(duplicateNames.get(node.name)>1)node.name=`${node.name} · ${node.chain}`;
+        return{metadata:{pdb_id:pdbId,source:'RCSB PDB coordinates',interaction_records:links.reduce((sum,link)=>sum+link.count,0)},nodes,links};
+      }
+      const selectedResidues=new Set();let syncSelection=()=>{};
+      async function loadStructure(id) {
+        const token=++structureLoadToken;
+        const pdb = id.trim().toUpperCase();
+        if (!/^[A-Z0-9]{4}$/.test(pdb)) { setStatus(t('invalid_id'), true); input.focus(); return; }
+        input.value = pdb; currentPdb = pdb; $('viewer-state').hidden = true;
+        $('viewer-subtitle').textContent = t('fetching'); $('structure-caption').textContent = t('connecting');
+        $('pdb-badge').textContent = pdb; setStatus(t('loading'));
+        try {
+          const response = await fetch(`https://files.rcsb.org/download/${pdb}.pdb`);
+          if (!response.ok) throw new Error(response.status === 404 ? t('not_found',{id:pdb}) : t('pdb_error',{status:response.status}));
+          const text = await response.text();
+          const info = parsePdb(text);
+          if (!info.atoms.length) throw new Error(t('no_coordinates'));
+          if(token!==structureLoadToken)return;
+          currentPdbText = text;
+          const v = ensureViewer(); v.clear();
+          const model = v.addModel(text, 'pdb');
+          const protein = {chain:info.chains.filter(c => c !== '∅')};
+          model.setStyle(protein, {cartoon:{color:atomColor, opacity:0.98}});
+          model.setStyle({hetflag:true, not:{resn:['HOH','WAT','DOD']}}, {stick:{colorscheme:'orangeCarbon', radius:0.18}});
+          v.setClickable(protein,true,(atom)=>{const chain=atom.chain||'∅',resid=String(atom.resi)+(atom.insertion||'');const key=`${chain}:${resid}:${atom.resn}`;selectedResidues.clear();selectedResidues.add(key);syncSelection(key);updateResidueHighlight();});
+          v.zoomTo(); v.render(); v.resize(); currentStyle = 'cartoon'; updateStyleButtons();
+          const titleMatch = text.match(/^TITLE\s{4,}(.*)$/m);
+          const title = titleMatch ? titleMatch[1].trim().replace(/\s+/g,' ').replace(/\.$/,'') : `PDB structure ${pdb}`;
+          const organismMatch = text.match(/^SOURCE\s+.*?ORGANISM_SCIENTIFIC:\s*([^;.]*)/m);
+          $('protein-name').textContent = title.length > 76 ? `${title.slice(0,73)}…` : title;
+          $('organism').textContent = organismMatch ? organismMatch[1].trim() : t('organism_missing');
+          $('residue-count').textContent = info.residues.toLocaleString(); $('atom-count').textContent = info.atoms.length.toLocaleString();
+          $('chain-count').textContent = info.chains.length.toLocaleString(); $('ligand-count').textContent = info.ligands.toLocaleString();
+          $('chain-list').replaceChildren(...info.chains.map(chain => { const chip=document.createElement('span'); chip.className='chain-chip'; chip.textContent=`Chain ${chain}`; return chip; }));
+          $('viewer-subtitle').textContent = `${info.chains.length} ${t('chains').toLowerCase()} · ${info.residues.toLocaleString()} ${t('residues').toLowerCase()}`;
+          $('structure-caption').textContent = `${language==='pt'?'Coordenadas':'Coordinates'}: RCSB PDB ${pdb}`;
+          $('pdb-link').href = `https://www.rcsb.org/structure/${pdb}`; $('pdb-link').textContent = t('view_entry');
+          const url = new URL(location.href); url.searchParams.set('pdb', pdb); history.replaceState(null, '', url);
+          setStatus(t('loaded'));
+          mountInteractionMap(buildContactMap(info.proteinResidues,pdb));
+        } catch (error) {
+          if(token!==structureLoadToken)return;
+          $('viewer-state').hidden = false; $('viewer-state').querySelector('strong').textContent = t('load_failed');
+          $('viewer-state').querySelector('p').textContent = error.message || t('check_connection');
+          $('viewer-state').querySelector('.state-icon').textContent = '↻'; $('viewer-subtitle').textContent = t('unavailable');
+          $('structure-caption').textContent = t('check_connection'); setStatus(error.message || t('load_failed'), true);
+          if (viewer) { viewer.clear(); viewer.render(); }
+        }
+      }
+      function updateStyleButtons() { document.querySelectorAll('[data-style]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.style===currentStyle))); }
+      function updateResidueHighlight(){
+        if(!viewer||!currentPdbText)return;
+        viewer.removeAllShapes();
+        const model=viewer.getModel(0);if(!model)return;
+        if(selectedResidues.size){
+          const selectors=[...selectedResidues].map(key=>{const[chain,resid,resn]=key.split(':');return{chain:chain==='∅'?'':chain,resi:Number.parseInt(resid,10),resn};});
+          for(const selector of selectors){
+            model.setStyle(selector,{stick:{color:'#ffbd7a',radius:0.28},sphere:{color:'#ffbd7a',scale:0.42}});
+            const atoms=model.selectedAtoms(selector);if(atoms.length)viewer.addLabel(`${atoms[0].resn}${atoms[0].resi} · chain ${atoms[0].chain||'∅'}`,{position:atoms.find(atom=>atom.atom==='CA')||atoms[0],backgroundColor:'#14202a',fontColor:'#fff0dc',borderColor:'#ffbd7a',fontSize:12,inFront:true});
           }
-
-      }).style("opacity", 1);
-    }
-
-
-    $('body').on("click", ".multiselect-div ul li input", function(event) {
-
-      var interColor = ["Aromatic stacking","Hydrogen bond","Hydrophobic","Repulsive","Salt bridge"];
-
-      var graphSelections = { "atoms": ["Acceptor","Aromatic", "Donor","Hydrophobic","Negative","Positive"],
-      "interactions": ["Aromatic stacking","Hydrogen bond","Hydrophobic","Repulsive","Salt bridge"] };
-
-      var multiselect = $(this).parents('.multiselect-div');
-
-      var selections = [];
-      multiselect.find('input[type="checkbox"]:checked').each(function() {
-        var item = $(this).val();
-        selections.push(item);
+        }
+        viewer.render();
+      }
+      function enableResiduePicking(v,protein){v.setClickable(protein,true,(atom)=>{const chain=atom.chain||'∅',resid=String(atom.resi)+(atom.insertion||'');const key=`${chain}:${resid}:${atom.resn}`;selectedResidues.clear();selectedResidues.add(key);syncSelection(key);updateResidueHighlight();});}
+      document.querySelectorAll('[data-style]').forEach(button => button.addEventListener('click', () => {
+        if (!viewer || !currentPdb) return;
+        currentStyle = button.dataset.style;
+        viewer.clear();
+        const model = viewer.addModel(currentPdbText, 'pdb');
+        const style = currentStyle === 'cartoon' ? {cartoon:{color:atomColor}} : currentStyle === 'stick' ? {stick:{colorscheme:'default'}} : {sphere:{colorscheme:'Jmol',scale:0.34}};
+        model.setStyle({}, style);
+        model.setStyle({hetflag:true,not:{resn:['HOH','WAT','DOD']}},{stick:{colorscheme:'orangeCarbon',radius:0.18}});
+        enableResiduePicking(viewer,{});
+        viewer.zoomTo(); viewer.render(); updateStyleButtons();
+      }));
+      const mapCanvas = $('interaction-map'), mapContext = mapCanvas.getContext('2d');
+      const mapStage = mapCanvas.parentElement, mapTooltip = $('network-tooltip');
+      const typeColors = {'Aromatic stacking':'#e88484','Hydrogen bond':'#63c9df','Hydrophobic':'#e5d46f','Repulsive':'#b39af0','Salt bridge':'#89cb79','Attractive':'#7bc8df','Uncertain attractive':'#8aa9b8','Uncertain repulsive':'#9683b5','Uncertain salt bridge':'#79a26f','Close contact':'#63c9df','Proximity':'#e5d46f'};
+      const typeTranslationKeys={'Close contact':'contact_close','Proximity':'contact_near','Hydrogen bond':'hydrogen','Hydrophobic':'hydrophobic','Salt bridge':'salt','Aromatic stacking':'aromatic','Repulsive':'repulsive','Attractive':'attractive','Disulfide bond':'disulfide','Uncertain attractive':'uncertain_attractive','Uncertain repulsive':'uncertain_repulsive','Uncertain salt bridge':'uncertain_salt'};
+      const colorKeys = {cinema:'cinema_color',clustal:'clustal_color',lesk:'lesk_color'};
+      let graphNodes = [], graphLinks = [], graphReady = false, graphWidth = 0, graphHeight = 0, graphZoom = 1, graphPanX = 0, graphPanY = 0, graphPointer = null, hoveredNode = null;
+      const activeTypes = new Set();
+      let interactionTypeCount = 0;
+      let chainFilter='*',minContactCount=2,showIsolatedResidues=false;
+      let currentMapMetadata={};
+      function refreshDynamicTranslations(){
+        const metadata=currentMapMetadata;
+        $('dataset-badge').textContent=metadata.source?t('calculated',{id:metadata.pdb_id||''}):t('original');
+        $('dataset-source').textContent=metadata.source?t('live_source',{id:metadata.pdb_id||'',count:(metadata.interaction_records||0).toLocaleString()}):t('original_source');
+        $('chain-filter').options[0].textContent=t('all_chains');
+        [...$('chain-filter').options].slice(1).forEach(option=>option.textContent=t('chain_name',{chain:option.value}));
+        $('threshold-value').textContent=`${minContactCount}+ ${language==='pt'?'pares':'pairs'}`;
+        document.querySelectorAll('#interaction-filters .filter-option span').forEach(span=>{if(span.dataset.typeKey)span.textContent=`${t(span.dataset.typeKey)} · ${span.dataset.count}`;});
+        if(graphReady)drawGraph();
+      }
+      function layoutGraph(nodes, links) {
+        const count = nodes.length;
+        nodes.forEach((node,index) => { const angle=index*2.399963229728653, radius=18+Math.sqrt(index/count)*260; node.x=Math.cos(angle)*radius; node.y=Math.sin(angle)*radius; node.vx=0;node.vy=0;node.degree=0;node.contacts=0;node.neighbors=new Set(); });
+        links.forEach(link=>{link.source.degree++;link.target.degree++;link.source.contacts+=link.count;link.target.contacts+=link.count;link.source.neighbors.add(link.target.index);link.target.neighbors.add(link.source.index);});
+        for(let tick=0;tick<90;tick++){
+          const fx=new Float32Array(count), fy=new Float32Array(count);
+          for(let i=0;i<count;i++) for(let j=i+1;j<count;j++){
+            const a=nodes[i],b=nodes[j],dx=b.x-a.x,dy=b.y-a.y,d2=dx*dx+dy*dy+0.1,d=Math.sqrt(d2),force=Math.min(2.8,360/d2),ux=dx/d,uy=dy/d;
+            fx[i]-=ux*force;fy[i]-=uy*force;fx[j]+=ux*force;fy[j]+=uy*force;
+          }
+          for(const link of links){const a=link.source,b=link.target,dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)+0.01,force=(d-54)*0.006,ux=dx/d,uy=dy/d;fx[a.index]+=ux*force;fy[a.index]+=uy*force;fx[b.index]-=ux*force;fy[b.index]-=uy*force;}
+          for(const node of nodes){node.vx=(node.vx+fx[node.index]-node.x*0.0018)*0.76;node.vy=(node.vy+fy[node.index]-node.y*0.0018)*0.76;node.x+=node.vx;node.y+=node.vy;}
+        }
+      }
+      function drawGraph(){
+        if(!graphReady)return;
+        const rect=mapCanvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;
+        if(!rect.width||!rect.height)return;
+        if(mapCanvas.width!==Math.round(rect.width*dpr)||mapCanvas.height!==Math.round(rect.height*dpr)){mapCanvas.width=Math.round(rect.width*dpr);mapCanvas.height=Math.round(rect.height*dpr);}
+        graphWidth=rect.width;graphHeight=rect.height;mapContext.setTransform(dpr,0,0,dpr,0,0);mapContext.clearRect(0,0,graphWidth,graphHeight);
+        const base=Math.min(graphWidth/1120,graphHeight/720),scale=base*graphZoom, query=$('residue-search').value.trim().toUpperCase(),matches=new Set();
+        if(query)for(const node of graphNodes)if(node.name.toUpperCase().includes(query))matches.add(node.index);
+        const highlighted=new Set(matches);for(const index of matches)for(const neighbor of graphNodes[index].neighbors)highlighted.add(neighbor);
+        const selectedIndices=new Set(graphNodes.filter(node=>selectedResidues.has(node.key)).map(node=>node.index));
+        mapContext.save();mapContext.translate(graphWidth/2+graphPanX,graphHeight/2+graphPanY);mapContext.scale(scale,scale);
+        const allowedNodes=graphNodes.filter(node=>(chainFilter==='*'||node.chain===chainFilter)&&(showIsolatedResidues||node.degree>0));
+        const allowedIndices=new Set(allowedNodes.map(node=>node.index));
+        const visibleLinks=graphLinks.filter(link=>activeTypes.has(link.type)&&link.count>=minContactCount&&allowedIndices.has(link.source.index)&&allowedIndices.has(link.target.index));
+        const connected=new Set();for(const link of visibleLinks){connected.add(link.source.index);connected.add(link.target.index);}
+        for(const link of visibleLinks){
+          const a=link.source,b=link.target,emphasis=!query||highlighted.has(a.index)||highlighted.has(b.index);
+          mapContext.globalAlpha=selectedIndices.size?(selectedIndices.has(a.index)||selectedIndices.has(b.index)?0.95:0.025):emphasis?(query?0.68:0.17):0.025;mapContext.strokeStyle=typeColors[link.type]||'#8da0af';mapContext.lineWidth=Math.min(2.8,0.55+Math.log1p(link.count)*0.6);
+          mapContext.beginPath();mapContext.moveTo(a.x,a.y);mapContext.lineTo(b.x,b.y);mapContext.stroke();
+        }
+        for(const node of graphNodes){
+          if((chainFilter!=='*'&&node.chain!==chainFilter)||(!showIsolatedResidues&&!connected.has(node.index)))continue;
+          const chosen=!query||matches.has(node.index),near=!query||highlighted.has(node.index),r=Math.min(7,3+Math.log1p(node.degree)*0.65);
+          mapContext.globalAlpha=selectedIndices.size?(selectedIndices.has(node.index)?1:(graphNodes[node.index].neighbors&&[...graphNodes[node.index].neighbors].some(index=>selectedIndices.has(index))?0.72:0.1)):near?(chosen?1:0.58):0.08;mapContext.fillStyle=selectedIndices.has(node.index)?'#ffbd7a':node[colorKeys[$('color-scheme').value]]||'#78e0c0';
+          mapContext.beginPath();mapContext.arc(node.x,node.y,hoveredNode===node?Math.max(5,r+2):r,0,Math.PI*2);mapContext.fill();
+          if((chosen&&query)||selectedIndices.has(node.index)){mapContext.globalAlpha=0.95;mapContext.strokeStyle=selectedIndices.has(node.index)?'#ffedcf':'#e9f5f4';mapContext.lineWidth=selectedIndices.has(node.index)?2:1.2;mapContext.stroke();}
+        }
+        if(hoveredNode){mapContext.globalAlpha=1;mapContext.fillStyle='#eff7f7';mapContext.font='12px system-ui,sans-serif';mapContext.fillText(hoveredNode.name,hoveredNode.x+9,hoveredNode.y-9);}
+        mapContext.restore();
+        $('network-count').textContent=t('count',{residues:connected.size.toLocaleString(),pairs:visibleLinks.length.toLocaleString(),chains:chainFilter==='*'?t('all_chains_name'):t('chain_only',{chain:chainFilter}),threshold:minContactCount})+(query?` · ${matches.size} ${language==='pt'?'resultados':'matches'}`:'');
+      }
+      function setHover(node,event){
+        hoveredNode=node;
+        if(node){selectedResidues.clear();selectedResidues.add(node.key);updateResidueHighlight();}
+        else if(!graphPointer&&mapCanvas.matches(':hover')===false){selectedResidues.clear();updateResidueHighlight();}
+        if(node){const r=mapStage.getBoundingClientRect();mapTooltip.style.display='block';mapTooltip.style.left=`${Math.max(8,Math.min(event.clientX-r.left+14,r.width-260))}px`;mapTooltip.style.top=`${Math.max(8,event.clientY-r.top-56)}px`;mapTooltip.textContent=`${node.name} · ${node.contacts.toLocaleString()} interaction records · ${node.degree} connected residues`;}
+        else mapTooltip.style.display='none';drawGraph();
+      }
+      function pointOnGraph(event){const rect=mapCanvas.getBoundingClientRect(),base=Math.min(rect.width/1120,rect.height/720),scale=base*graphZoom;return{x:(event.clientX-rect.left-rect.width/2-graphPanX)/scale,y:(event.clientY-rect.top-rect.height/2-graphPanY)/scale};}
+      mapCanvas.addEventListener('pointerdown',event=>{graphPointer={x:event.clientX,y:event.clientY,moved:false};mapCanvas.setPointerCapture(event.pointerId);});
+      mapCanvas.addEventListener('pointermove',event=>{
+        if(graphPointer){const dx=event.clientX-graphPointer.x,dy=event.clientY-graphPointer.y;if(Math.abs(dx)+Math.abs(dy)>2)graphPointer.moved=true;graphPanX+=dx;graphPanY+=dy;graphPointer.x=event.clientX;graphPointer.y=event.clientY;drawGraph();return;}
+        const point=pointOnGraph(event);let nearest=null,min=14/Math.min(mapCanvas.clientWidth/1120,mapCanvas.clientHeight/720)/graphZoom;
+        const visibleNodeIndices=new Set();for(const link of graphLinks)if(activeTypes.has(link.type)&&link.count>=minContactCount&&(chainFilter==='*'||(link.source.chain===chainFilter&&link.target.chain===chainFilter))){visibleNodeIndices.add(link.source.index);visibleNodeIndices.add(link.target.index);}
+        for(const node of graphNodes){if((chainFilter!=='*'&&node.chain!==chainFilter)||(!showIsolatedResidues&&!visibleNodeIndices.has(node.index)))continue;const dx=node.x-point.x,dy=node.y-point.y,d=Math.sqrt(dx*dx+dy*dy);if(d<min){nearest=node;min=d;}}
+        if(nearest!==hoveredNode)setHover(nearest,event);else if(nearest)setHover(nearest,event);
       });
-
-      var text;
-      if (selections.length === 0) text = ( multiselect.hasClass("atom-select") ) ? "Select the types" : "Select the interactions";
-      else if (selections.length > 0 && selections.length <= 1)  text = ( multiselect.hasClass("atom-select") ) ? selections.length + " selected type" : selections.length + " selected interaction";
-      else text = ( multiselect.hasClass("atom-select") ) ? selections.length + " selected types" : selections.length + " selected interactions";
-      multiselect.find('.multiselect-selected-text').text(text);
-
-      if ( multiselect.hasClass("atom-select") ) {
-        update_nodes();
+      mapCanvas.addEventListener('pointerup',()=>{graphPointer=null;});mapCanvas.addEventListener('pointerleave',()=>{if(!graphPointer)setHover(null,{});});
+      mapCanvas.addEventListener('wheel',event=>{event.preventDefault();graphZoom=Math.max(0.55,Math.min(4,graphZoom*(event.deltaY<0?1.12:0.89)));drawGraph();},{passive:false});
+      $('residue-search').addEventListener('input',drawGraph);$('color-scheme').addEventListener('change',drawGraph);
+      syncSelection=(key)=>{drawGraph();const node=graphNodes.find(item=>item.key===key);if(node){$('residue-search').value=node.name;graphPanX=-node.x*Math.min(mapCanvas.clientWidth/1120,mapCanvas.clientHeight/720)*graphZoom;graphPanY=-node.y*Math.min(mapCanvas.clientWidth/1120,mapCanvas.clientHeight/720)*graphZoom;drawGraph();}};
+      $('chain-filter').addEventListener('change',event=>{chainFilter=event.target.value;graphZoom=1;graphPanX=0;graphPanY=0;drawGraph();});
+      $('show-all-residues').addEventListener('change',event=>{showIsolatedResidues=event.target.checked;drawGraph();});
+      $('contact-threshold').addEventListener('input',event=>{minContactCount=Number(event.target.value);$('threshold-value').textContent=`${minContactCount}+ pairs`;drawGraph();});
+      function mountInteractionMap(data){
+        try{
+          if(!data||!Array.isArray(data.nodes)||!Array.isArray(data.links))throw new Error('Interaction data could not be loaded.');
+          hoveredNode=null;mapTooltip.style.display='none';
+          graphNodes=data.nodes.map((node,index)=>({...node,index}));const aggregate=new Map();
+          const typeTotals=new Map();
+          for(const edge of data.links){const weight=Number(edge.count)||1,source=Math.min(edge.source,edge.target),target=Math.max(edge.source,edge.target),key=`${source}:${target}:${edge.type}`,entry=aggregate.get(key);if(entry)entry.count+=weight;else aggregate.set(key,{source,target,type:edge.type,color:edge.color,count:weight});typeTotals.set(edge.type,(typeTotals.get(edge.type)||0)+weight);}
+          graphLinks=[...aggregate.values()].map(link=>({...link,source:graphNodes[link.source],target:graphNodes[link.target]}));
+          layoutGraph(graphNodes,graphLinks);
+          const defaultType=typeTotals.has('Close contact')?'Close contact':typeTotals.keys().next().value;
+          activeTypes.clear();if(defaultType)activeTypes.add(defaultType);interactionTypeCount=typeTotals.size;
+          const metadata=data.metadata||{};
+          currentMapMetadata=metadata;refreshDynamicTranslations();
+          $('interaction-filters').replaceChildren(...[...typeTotals.entries()].map(([type,count])=>{const label=document.createElement('label');label.className='filter-option';const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.checked=type===defaultType;checkbox.value=type;checkbox.addEventListener('change',()=>{checkbox.checked?activeTypes.add(type):activeTypes.delete(type);drawGraph();});const swatch=document.createElement('i');swatch.className='filter-swatch';swatch.style.background=typeColors[type]||'#8da0af';const text=document.createElement('span');text.dataset.typeKey=typeTranslationKeys[type]||'';text.dataset.count=count.toLocaleString();text.textContent=`${typeTranslationKeys[type]?t(typeTranslationKeys[type]):type} · ${count.toLocaleString()}`;label.append(checkbox,swatch,text);return label;}));
+          const chains=[...new Set(graphNodes.map(node=>node.chain))].sort();$('chain-filter').replaceChildren(new Option('All chains','*'),...chains.map(chain=>new Option(`Chain ${chain}`,chain)));chainFilter=chains.length>1?chains[0]:'*';$('chain-filter').value=chainFilter;
+          graphReady=true;drawGraph();
+        }catch(error){$('network-count').textContent=error.message||'Interaction map unavailable';}
       }
-
-      if ( multiselect.hasClass("inter-select") ) {
-        update_links();
-      }
-
-
-      //graphSelections.atoms = selections;
-      //else graphSelections.interactions = selections;
-
-
-    });
-
-</script>
-
-<script type="text/javascript">
-       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-       ga('create', 'UA-35245135-2', 'auto');
-       ga('send', 'pageview');
-</script>
-
-
-  </body>
+      if('ResizeObserver'in window)new ResizeObserver(drawGraph).observe(mapStage);else window.addEventListener('resize',drawGraph);
+      form.addEventListener('submit', event => { event.preventDefault(); loadStructure(input.value); });
+      document.querySelector('[data-example]').addEventListener('click', event => { input.value=event.currentTarget.dataset.example; loadStructure(input.value); });
+      window.addEventListener('resize', () => { if(viewer) viewer.resize(); });
+      const params = new URLSearchParams(location.search); const initial = params.get('pdb');
+      applyLanguage();
+      if (initial) { input.value=initial.toUpperCase(); loadStructure(initial); }
+      else mountInteractionMap(window.FOLDSPACE_INTERACTION_DATA);
+    })();
+  </script>
+</body>
 </html>
