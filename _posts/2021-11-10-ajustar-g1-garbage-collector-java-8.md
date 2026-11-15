@@ -2,14 +2,16 @@
 title: "Garbage Collector G1 no Java 8: Ajustes e Concessões"
 description: "Revise conceitos do G1 GC no Java 8, configurações de heap e pausas e por que os parâmetros da JVM devem ser medidos na sua aplicação."
 date: 2021-11-10
-lang: pt
+lang: pt-BR
 permalink: /blog/ajustar-g1-garbage-collector-java-8
-translation_url: /blog/tune-your-jvm-gc
+translation_url: "/blog/tune-your-jvm-gc"
 tags:
   - Desenvolvimento de Software
 last_modified_at: 2026-11-15
 layout: single
 toc: true
+locale: pt_BR
+translation_label: "Read this article in English"
 ---
 
 *Read this post in English: [Java 8 G1 Garbage Collection: Tuning Notes and Trade-Offs](/blog/tune-your-jvm-gc).* 

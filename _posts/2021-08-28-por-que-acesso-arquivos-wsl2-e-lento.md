@@ -1,14 +1,16 @@
 ---
-title: "Por Que o Acesso a Arquivos no WSL 2 Pode Deixar o Desenvolvimento Lento"
+title: "WSL 2: Acesso a Arquivos e Desempenho no Desenvolvimento"
 description: "Veja por que ferramentas Linux podem ficar lentas em arquivos do Windows montados no WSL 2 e como manter os repositórios no sistema de arquivos Linux."
 date: 2021-08-28
-lang: pt
+lang: pt-BR
 permalink: /blog/por-que-acesso-arquivos-wsl2-e-lento
-translation_url: /blog/why-wsl2-is-so-slow
+translation_url: "/blog/why-wsl2-is-so-slow"
 tags:
   - Desenvolvimento de Software
 last_modified_at: 2026-11-15
 layout: single
+locale: pt_BR
+translation_label: "Read this article in English"
 ---
 
 *Read this post in English: [Why WSL 2 File Access Can Slow Down Development](/blog/why-wsl2-is-so-slow).* 

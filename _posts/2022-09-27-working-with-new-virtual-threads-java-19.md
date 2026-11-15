@@ -5,6 +5,8 @@ tags:
 description: "An updated overview of Java virtual threads, including how the Java 19 preview example differs from the finalized Java 21 API."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
 ---
 
 ## What are virtual threads?

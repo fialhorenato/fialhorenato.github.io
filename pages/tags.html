@@ -1,16 +1,23 @@
 ---
 layout: archive
-title: Topics
+lang: en
+locale: en_US
+title: "Topics and Article Categories"
+description: "Browse articles by topic, including software development, Java, AI, technology, and personal finance."
 permalink: /blog/tags
+translation_url: /pt/blog/tags
 ---
 
 {% for tag in site.tags %}
+  {% assign language_posts = tag[1] | where: "lang", "en" %}
+  {% if language_posts.size > 0 %}
   <section class="taxonomy-section" id="{{ tag[0] | slugify }}">
     <h2>{{ tag[0] }}</h2>
     <ul class="taxonomy-list">
-      {% for post in tag[1] %}
+      {% for post in language_posts %}
         <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a><span>{{ post.date | date: "%Y" }}</span></li>
       {% endfor %}
     </ul>
   </section>
+  {% endif %}
 {% endfor %}

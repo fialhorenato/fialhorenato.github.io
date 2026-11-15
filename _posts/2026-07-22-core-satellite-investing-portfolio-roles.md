@@ -4,11 +4,12 @@ title: "Core and Satellite Investing: Give Every Portfolio Holding a Job"
 description: "A practical way to think about the roles of broad-market funds, bonds, gold, and thematic investments without assuming any one asset is a guaranteed hedge."
 layout: single
 lang: en
-translation_url: /blog/carteira-core-satellite-funcoes
+translation_url: "/blog/carteira-core-satellite-funcoes"
 translation_label: "Leia este artigo em português"
 tags:
   - Personal
 permalink: /blog/core-satellite-investing-portfolio-roles
+locale: en_US
 ---
 
 A portfolio can contain broad equity funds, bonds, gold, and a narrow thematic investment—and still be hard to explain. One way I find useful to organize the discussion is to give each holding a job.

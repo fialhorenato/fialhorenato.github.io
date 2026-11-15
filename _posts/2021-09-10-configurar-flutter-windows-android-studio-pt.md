@@ -2,13 +2,15 @@
 title: "Como Configurar o Flutter no Windows com Android Studio"
 description: "Tutorial histórico do Flutter 2.5 sobre SDK no Windows, plugin do Android Studio, flutter doctor e onde encontrar instruções atuais."
 date: 2021-09-10
-lang: pt
+lang: pt-BR
 permalink: /blog/configurar-flutter-windows-android-studio
-translation_url: /blog/starting-with-flutter
+translation_url: "/blog/starting-with-flutter"
 tags:
   - Desenvolvimento de Software
 last_modified_at: 2026-11-15
 layout: single
+locale: pt_BR
+translation_label: "Read this article in English"
 ---
 
 *Read this post in English: [Set Up Flutter on Windows with Android Studio](/blog/starting-with-flutter).* 

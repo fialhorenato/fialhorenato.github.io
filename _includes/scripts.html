@@ -11,10 +11,7 @@
   {%- case search_provider -%}
     {%- when "lunr" -%}
       {% assign lang = locale | slice: 0, 2 | default: "en" %}
-      {% case lang %}
-        {% when "gr" %}{% assign lang = "gr" %}
-        {% else %}{% assign lang = "en" %}
-      {% endcase %}
+      {% unless lang == "pt" %}{% assign lang = "en" %}{% endunless %}
       <script>
         (function () {
           var button = document.querySelector(".search__toggle");
@@ -24,7 +21,7 @@
             if (searchLoad) return;
             var sources = [
               "{{ '/assets/js/lunr/lunr.min.js' | relative_url }}",
-              "{{ '/assets/js/lunr/lunr-store.js' | relative_url }}",
+              "{% if lang == 'pt' %}{{ '/assets/js/lunr/lunr-store-pt.js' | relative_url }}{% else %}{{ '/assets/js/lunr/lunr-store.js' | relative_url }}{% endif %}",
               "{{ '/assets/js/lunr/lunr-' | append: lang | append: '.js' | relative_url }}"
             ];
             searchLoad = sources.reduce(function (promise, source) {

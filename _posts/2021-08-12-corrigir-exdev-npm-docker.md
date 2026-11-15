@@ -2,13 +2,15 @@
 title: "Como Corrigir Erros npm EXDEV em Contêineres Docker"
 description: "Entenda por que o npm pode gerar erros EXDEV em builds Docker e conheça uma solução histórica e práticas mais seguras."
 date: 2021-08-12
-lang: pt
+lang: pt-BR
 permalink: /blog/corrigir-exdev-npm-docker
-translation_url: /blog/learnings-docker-node
+translation_url: "/blog/learnings-docker-node"
 tags:
   - Desenvolvimento de Software
 last_modified_at: 2026-11-15
 layout: single
+locale: pt_BR
+translation_label: "Read this article in English"
 ---
 
 *Read this post in English: [Fixing npm EXDEV Errors in Docker Containers](/blog/learnings-docker-node).* 

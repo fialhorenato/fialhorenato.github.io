@@ -5,6 +5,10 @@ tags:
 description: "Learn how Project Lombok annotations generate common Java methods, how to configure IDE support, and what trade-offs teams should consider."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
+translation_url: "/blog/reduzir-boilerplate-java-lombok"
+translation_label: "Leia este artigo em português"
 ---
 
 Have you spent time writing—or generating in an IDE—the same Java getters, setters, constructors, and utility methods? A simple data class can require getters, setters, constructors, toString, equals, and hashCode.

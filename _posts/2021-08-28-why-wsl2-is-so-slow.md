@@ -5,6 +5,10 @@ tags:
 description: "Learn why Linux tools may run slowly on Windows-mounted files in WSL 2 and how keeping repositories in the Linux filesystem can help."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
+translation_url: "/blog/por-que-acesso-arquivos-wsl2-e-lento"
+translation_label: "Leia este artigo em português"
 ---
 
 ## TL;DR

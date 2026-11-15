@@ -4,11 +4,12 @@ title: "Emergency Fund: How to Build a Financial Safety Net"
 description: "Learn how to estimate an emergency fund from essential expenses, choose where to keep it, and balance access, stability, and return."
 layout: single
 lang: en
-translation_url: /blog/reserva-de-emergencia
+translation_url: "/blog/reserva-de-emergencia"
 translation_label: "Leia este artigo em português"
 tags:
   - Personal
 permalink: /blog/emergency-fund-how-to-build-one
+locale: en_US
 ---
 
 An unexpected expense can force you to sell investments at a bad time or rely on expensive credit. An emergency fund is meant to reduce that pressure: it keeps money accessible for disruptions without depending on what the stock market or your income is doing that month.

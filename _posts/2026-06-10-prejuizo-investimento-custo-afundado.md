@@ -1,14 +1,15 @@
 ---
 date: 2026-06-10
-title: "Prejuízo em Investimentos: Como Evitar a Armadilha do Custo Afundado"
+title: "Prejuízo em Investimentos e a Armadilha do Custo Afundado"
 description: "Um roteiro para reavaliar um investimento após uma queda, separando o preço de compra da decisão que precisa ser tomada hoje."
 layout: single
-lang: pt
-translation_url: /blog/investment-losses-and-the-sunk-cost-trap
+lang: pt-BR
+translation_url: "/blog/investment-losses-and-the-sunk-cost-trap"
 translation_label: "Read this article in English"
 tags:
   - Personal
 permalink: /blog/prejuizo-investimento-custo-afundado
+locale: pt_BR
 ---
 
 Ver um investimento valer menos do que o preço de compra pode fazer uma decisão simples parecer pessoal. É tentador esperar até que ele “volte ao zero” antes de decidir o que fazer.

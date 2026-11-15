@@ -3,12 +3,13 @@ date: 2026-11-13
 title: "Reserva de Emergência: Como Planejar uma Proteção Financeira"
 description: "Aprenda a estimar uma reserva de emergência a partir das despesas essenciais, escolher onde mantê-la e equilibrar liquidez, segurança e rendimento."
 layout: single
-lang: pt
-translation_url: /blog/emergency-fund-how-to-build-one
+lang: pt-BR
+translation_url: "/blog/emergency-fund-how-to-build-one"
 translation_label: "Read this article in English"
 tags:
   - Personal
 permalink: /blog/reserva-de-emergencia
+locale: pt_BR
 ---
 
 Uma despesa inesperada pode obrigar você a vender investimentos em um momento ruim ou a recorrer a crédito caro. Uma reserva de emergência existe para reduzir essa pressão: ela mantém dinheiro acessível para imprevistos sem depender do que está acontecendo com a bolsa ou com a sua renda naquele mês.

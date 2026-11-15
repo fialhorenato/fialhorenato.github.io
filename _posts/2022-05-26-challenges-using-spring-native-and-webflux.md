@@ -5,6 +5,8 @@ tags:
 description: "A historical account of testing Spring Native, WebFlux, and R2DBC with PostgreSQL, including native-image build, persistence, and observability trade-offs."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
 ---
 
 This is a report from a 2022 experiment with Spring Native, WebFlux, and R2DBC in a small news aggregation project. Spring Native was an experimental project that preceded the native-image support now integrated with Spring Boot 3. For a current project, start with the [Spring Boot native image documentation](https://docs.spring.io/spring-boot/reference/packaging/native-image/index.html); the limitations below describe the earlier stack and should be read as historical observations.

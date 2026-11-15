@@ -2,13 +2,15 @@
 title: "Como Reduzir Código Boilerplate em Java com Project Lombok"
 description: "Veja como o Project Lombok gera métodos comuns em Java, como configurar o suporte na IDE e quais concessões considerar."
 date: 2020-08-17
-lang: pt
+lang: pt-BR
 permalink: /blog/reduzir-boilerplate-java-lombok
-translation_url: /blog/stop-writing-boilerplate-code-in-java
+translation_url: "/blog/stop-writing-boilerplate-code-in-java"
 tags:
   - Desenvolvimento de Software
 last_modified_at: 2026-11-15
 layout: single
+locale: pt_BR
+translation_label: "Read this article in English"
 ---
 
 *Read this post in English: [Reduce Java Boilerplate with Project Lombok](/blog/stop-writing-boilerplate-code-in-java).* 

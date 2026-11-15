@@ -1,14 +1,15 @@
 ---
 lang: en
 permalink: /blog/investment-losses-and-the-sunk-cost-trap
-translation_url: /blog/prejuizo-investimento-custo-afundado
+translation_url: "/blog/prejuizo-investimento-custo-afundado"
 translation_label: "Leia este artigo em português"
 date: 2026-06-10
-title: "Investment Losses, Sunk Costs, and the Question to Ask Before Selling"
+title: "Investment Losses and Sunk Costs: Should You Sell?"
 description: "A practical framework for reviewing an investment after a loss, separating the original purchase price from today's portfolio decision."
 layout: single
 tags:
   - Personal
+locale: en_US
 ---
 
 Seeing an investment fall below its purchase price can make a simple decision feel personal. It is tempting to wait until it “gets back to even” before deciding what to do.

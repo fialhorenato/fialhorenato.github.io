@@ -5,6 +5,10 @@ tags:
 description: "Configure Spring Boot graceful shutdown and align container termination grace periods so active requests can finish during deployments."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
+translation_url: "/blog/encerramento-gradual-spring-boot-docker-kubernetes"
+translation_label: "Leia este artigo em português"
 ---
 
 When an orchestrator stops a container, the application usually receives SIGTERM and has a limited time to finish active work before it is forcefully terminated with SIGKILL. This article shows how to enable graceful shutdown for a Spring Boot web application and why the orchestrator’s termination grace period must allow the application enough time to stop.

@@ -8,7 +8,8 @@ baseurl: ""
 url: "https://www.renatofialho.com"
 repository: fialhorenato/fialhorenato.github.io
 logo: /images/monogram.svg
-locale: en
+lang: en_US
+locale: en_US
 minimal_mistakes_skin: air
 
 permalink: /blog/:title
@@ -20,6 +21,7 @@ words_per_minute: 200
 
 author:
   name: Renato Fialho
+  url: https://www.renatofialho.com/about/
   avatar: /images/monogram.svg
   bio: Software engineer at Booking.com in Amsterdam.
   location: Amsterdam, Netherlands
@@ -74,6 +76,8 @@ defaults:
       type: posts
     values:
       layout: single
+      lang: en
+      locale: en_US
       author_profile: false
       read_time: true
       share: true

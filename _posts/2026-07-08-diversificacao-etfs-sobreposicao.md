@@ -1,14 +1,15 @@
 ---
 date: 2026-07-08
-title: "Diversificação com ETFs: Mais Fundos Nem Sempre Significam Menos Risco"
+title: "Diversificação com ETFs: Fundos Diferentes, Riscos Iguais?"
 description: "Entenda como ETFs podem repetir posições e como analisar empresas, setores, regiões e classes de ativos em vez de apenas contar fundos."
 layout: single
-lang: pt
-translation_url: /blog/etf-diversification-overlap
+lang: pt-BR
+translation_url: "/blog/etf-diversification-overlap"
 translation_label: "Read this article in English"
 tags:
   - Personal
 permalink: /blog/diversificacao-etfs-sobreposicao
+locale: pt_BR
 ---
 
 Quando comecei a comparar ETFs, era fácil pensar que adicionar outro fundo tornaria a carteira automaticamente mais diversificada. Mas dois fundos com nomes diferentes podem ter muitas das mesmas empresas.

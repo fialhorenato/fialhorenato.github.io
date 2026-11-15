@@ -1,5 +1,10 @@
 ---
 layout: splash
+lang: en
+locale: en_US
+translation_url: /pt/
+title: "Software Engineer in Amsterdam"
+description: "Software engineer at Booking.com in Amsterdam writing about Java, Spring Boot, distributed systems, developer tools, AI, and lessons from building reliable software."
 permalink: /
 excerpt: "I’m Renato, a software engineer at Booking.com in Amsterdam. I write about software, engineering, and what I learn along the way."
 ---
@@ -11,6 +16,7 @@ excerpt: "I’m Renato, a software engineer at Booking.com in Amsterdam. I write
   <div class="home-actions">
     <a class="btn btn--primary" href="/about/">About me</a>
     <a class="text-link" href="/blog/">Explore the blog <span aria-hidden="true">↗</span></a>
+    <a class="text-link" href="/pt/" lang="pt-BR">Português</a>
   </div>
 </div>
 
@@ -23,7 +29,7 @@ excerpt: "I’m Renato, a software engineer at Booking.com in Amsterdam. I write
     <a class="text-link" href="/blog/">View all articles <span aria-hidden="true">→</span></a>
   </div>
   <div class="recent-posts">
-    {% assign recent_posts = site.posts | slice: 0, 3 %}
+    {% assign recent_posts = site.posts | where: "lang", "en" | slice: 0, 3 %}
     {% for post in recent_posts %}
     <article class="recent-post">
       <p class="post-date">{{ post.date | date: "%b %Y" }}</p>

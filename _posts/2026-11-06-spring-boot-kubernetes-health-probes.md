@@ -1,10 +1,12 @@
 ---
 date: 2026-11-06
-title: "Spring Boot Kubernetes Health Probes: Liveness, Readiness, and Startup"
+title: "Spring Boot and Kubernetes Probes: Liveness, Readiness, Startup"
 description: "Configure Spring Boot Actuator health probes for Kubernetes and distinguish liveness, readiness, and startup checks without causing restart loops."
 tags:
   - Software Development
 layout: single
+lang: en
+locale: en_US
 ---
 
 Kubernetes health probes look like a small YAML detail, but the wrong check can turn a slow dependency into a restart loop—or send traffic to a Spring Boot instance that has not finished starting.

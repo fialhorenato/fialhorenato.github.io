@@ -1,6 +1,9 @@
 ---
 layout: null
+lang: en
+locale: en_US
 permalink: /search.json
+sitemap: false
 ---
 [
   {% for post in site.posts %}

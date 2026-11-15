@@ -5,6 +5,10 @@ tags:
 description: "Use jdeps and jlink to create a custom Java runtime for a Spring Boot Docker image, with a historical Java 17 example and compatibility caveats."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
+translation_url: "/blog/imagens-spring-boot-docker-menores-jlink"
+translation_label: "Leia este artigo em português"
 ---
 
 This 2022 walkthrough shows how I used `jdeps` and `jlink` to build a smaller Java runtime for a Spring Boot Docker image. It uses Java 17-era image names and commands; review the base images, Java version, and module list for your current application before adopting it.

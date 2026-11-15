@@ -5,6 +5,10 @@ tags:
 description: "A historical 2020 guide to launching a side project with a domain, VPS, email, and HTTPS, plus what to check before choosing providers today."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
+translation_url: "/blog/colocar-projeto-online-baixo-custo"
+translation_label: "Leia este artigo em português"
 ---
 
 If you enjoy building with new languages and frameworks, you may have a side project waiting to go live. Time and motivation can get in the way, but cost is another common concern.

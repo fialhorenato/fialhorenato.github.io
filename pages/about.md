@@ -1,7 +1,11 @@
 ---
 layout: single
-title: About
+lang: en
+locale: en_US
+title: "About Renato Fialho"
+description: "Meet Renato Fialho, a software engineer at Booking.com in Amsterdam. Learn about his work with Java, Kotlin, Spring, PostgreSQL, Kafka, and AWS."
 permalink: /about/
+translation_url: /pt/about/
 author_profile: true
 ---
 

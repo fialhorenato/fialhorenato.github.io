@@ -1,11 +1,16 @@
 ---
 layout: archive
-title: Articles
+lang: en
+locale: en_US
+title: "Software Engineering Articles"
+description: "Articles and practical notes on Java, Spring Boot, software engineering, distributed systems, AI, investing, and lessons from real projects."
 permalink: /blog/
+translation_url: /pt/blog/
 excerpt: Practical notes on software, engineering, and lessons learned along the way.
 ---
 
-{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% assign language_posts = site.posts | where: "lang", "en" %}
+{% assign posts_by_year = language_posts | group_by_exp: "post", "post.date | date: '%Y'" %}
 {% for year in posts_by_year %}
   <h2 class="archive__subtitle">{{ year.name }}</h2>
   {% for post in year.items %}

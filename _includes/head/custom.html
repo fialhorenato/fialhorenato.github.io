@@ -2,6 +2,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+{% if page.noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+{% if page.translation_url %}
+  {% assign translation_page = site.posts | where: "url", page.translation_url | first %}
+  {% unless translation_page %}{% assign translation_page = site.pages | where: "url", page.translation_url | first %}{% endunless %}
+  {% if translation_page %}
+<link rel="alternate" hreflang="{{ page.lang | default: 'en' }}" href="{{ site.url }}{{ page.url | relative_url }}">
+<link rel="alternate" hreflang="{{ translation_page.lang | default: 'en' }}" href="{{ site.url }}{{ translation_page.url | relative_url }}">
+  {% endif %}
+{% endif %}
 {% if page.layout == "splash" %}
 <style>
   .home-intro { margin-top: 2rem !important; padding-top: 0 !important; }

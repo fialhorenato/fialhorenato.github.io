@@ -7,3 +7,13 @@ main:
     url: /blog/tags
   - title: Contact
     url: /contact/
+
+pt:
+  - title: Sobre
+    url: /pt/about/
+  - title: Artigos
+    url: /pt/blog/
+  - title: Tópicos
+    url: /pt/blog/tags
+  - title: Contato
+    url: /pt/contact/

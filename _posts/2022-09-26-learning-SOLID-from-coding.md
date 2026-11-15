@@ -5,6 +5,8 @@ tags:
 description: "Learn the five SOLID object-oriented design principles through Java examples and understand the trade-offs behind applying them."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
 ---
 
 This guide explains the five SOLID principles—Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion—with Java examples. Treat them as design heuristics: apply them when they make a system easier to change and understand, rather than as rules that require extra abstractions everywhere.

@@ -1,7 +1,7 @@
 ---
 lang: en
 permalink: /blog/rebalance-portfolio-with-new-contributions
-translation_url: /blog/reequilibrar-carteira-com-novos-aportes
+translation_url: "/blog/reequilibrar-carteira-com-novos-aportes"
 translation_label: "Read this article in Portuguese"
 date: 2026-06-24
 title: "Rebalance an Investment Portfolio with New Contributions"
@@ -9,6 +9,7 @@ description: "Learn how directing new contributions toward underweight assets ca
 layout: single
 tags:
   - Personal
+locale: en_US
 ---
 
 When I started paying closer attention to my portfolio, I assumed rebalancing meant selling whatever had grown above its target and buying what had fallen behind. That is one way to restore a target allocation, but it is not the only way.

@@ -5,6 +5,10 @@ tags:
 description: "Review Java 8 G1 garbage collection concepts, heap and pause-time settings, and why JVM flags should be measured on your own workload."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
+translation_url: "/blog/ajustar-g1-garbage-collector-java-8"
+translation_label: "Leia este artigo em português"
 ---
 
 This article collects G1 garbage-collection tuning notes from a Java 8 service. It covers pause-time goals, heap sizing, and a few flags worth understanding.

@@ -2,14 +2,16 @@
 title: "Como Criar Imagens Docker Menores para Spring Boot com jlink"
 description: "Use jdeps e jlink para criar um runtime Java personalizado para uma imagem Spring Boot, com exemplo histórico do Java 17 e ressalvas de compatibilidade."
 date: 2022-04-13
-lang: pt
+lang: pt-BR
 permalink: /blog/imagens-spring-boot-docker-menores-jlink
-translation_url: /blog/creating-slim-spring-boot-images
+translation_url: "/blog/creating-slim-spring-boot-images"
 tags:
   - Desenvolvimento de Software
 last_modified_at: 2026-11-15
 layout: single
 toc: true
+locale: pt_BR
+translation_label: "Read this article in English"
 ---
 
 *Read this post in English: [Build Smaller Spring Boot Docker Images with jlink](/blog/creating-slim-spring-boot-images).* 

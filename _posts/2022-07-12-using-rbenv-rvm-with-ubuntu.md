@@ -5,6 +5,8 @@ tags:
 description: "Notes from building Ruby with rbenv or RVM on Ubuntu 22.04, including OpenSSL compatibility and links to current troubleshooting guidance."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
 ---
 
 After experimenting with [WSL 2 file access](/blog/why-wsl2-is-so-slow) and [IntelliJ inside WSLg](/blog/intellij-and-wsl-not-a-good-match), I installed Ubuntu directly on a separate SSD for my development environment. This is a personal account of that 2022 setup, not a comparison of current WSL and Linux performance.

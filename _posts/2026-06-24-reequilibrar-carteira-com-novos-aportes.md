@@ -3,11 +3,12 @@ date: 2026-06-24
 title: "Como Reequilibrar uma Carteira com Novos Aportes"
 description: "Veja como direcionar novos aportes para ativos abaixo do peso-alvo e aproximar a carteira da alocação planejada sem vender automaticamente."
 layout: single
-lang: pt
-translation_url: /blog/rebalance-portfolio-with-new-contributions
+lang: pt-BR
+translation_url: "/blog/rebalance-portfolio-with-new-contributions"
 translation_label: "Read this article in English"
 tags:
   - Personal
+locale: pt_BR
 ---
 
 Quando comecei a prestar mais atenção à minha carteira, achava que reequilibrar significava vender o que havia passado do peso desejado e comprar o que estava abaixo. Essa é uma forma de voltar à alocação planejada, mas não é a única.

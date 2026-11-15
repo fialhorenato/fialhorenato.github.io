@@ -1,10 +1,12 @@
 ---
-title: "Process Large Datasets with Spring Data JPA: Page, Slice, or Stream"
+title: "Spring Data JPA: Page, Slice, or Stream for Large Datasets"
 tags:
   - Software Development
 description: "Compare Spring Data JPA Page, Slice, and Stream for large result sets, including count queries, batching, memory use, and resource handling."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
 ---
 
 When processing a large Spring Data JPA result set, the choice between `Slice`, `Page`, and `Stream` affects count queries, resource lifetime, and memory use. This guide compares the trade-offs and shows when each return type can fit.

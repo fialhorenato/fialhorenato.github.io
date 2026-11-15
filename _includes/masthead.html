@@ -1,0 +1,47 @@
+{% assign locale = include.locale | default: site.locale %}
+{% capture logo_path %}{{ site.logo }}{% endcapture %}
+{% assign home_url = '/' %}
+{% assign navigation = site.data.navigation.main %}
+{% assign language_url = '/pt/' %}
+{% assign language_label = 'Português' %}
+{% if page.lang == 'pt-BR' %}
+  {% assign home_url = '/pt/' %}
+  {% assign navigation = site.data.navigation.pt %}
+  {% assign language_url = '/' %}
+  {% assign language_label = 'English' %}
+{% endif %}
+{% if page.translation_url %}{% assign language_url = page.translation_url %}{% endif %}
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="{% if page.lang == 'pt-BR' %}Navegação principal{% else %}Primary navigation{% endif %}">
+        {% unless logo_path == empty %}
+          <a class="site-logo" href="{{ home_url | relative_url }}"><img src="{{ logo_path | relative_url }}" alt="{{ site.masthead_title | default: site.title }}"></a>
+        {% endunless %}
+        <a class="site-title" href="{{ home_url | relative_url }}">
+          {{ site.masthead_title | default: site.title | escape_once | strip }}
+          {% if site.subtitle %}<span class="site-subtitle">{% if page.lang == 'pt-BR' %}Engenheiro de software · Amsterdã{% else %}{{ site.subtitle | escape_once | strip }}{% endif %}</span>{% endif %}
+        </a>
+        <ul class="visible-links">
+          {%- for link in navigation -%}
+            <li class="masthead__menu-item">
+              <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}{% if link.target %} target="{{ link.target }}"{% endif %}>{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+          <li class="masthead__menu-item masthead__menu-item--language"><a href="{{ language_url | relative_url }}" lang="{% if page.lang == 'pt-BR' %}en{% else %}pt-BR{% endif %}">{{ language_label }}</a></li>
+        </ul>
+        {% if site.search == true %}
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">{{ site.data.ui-text[locale].search_label | default: "Toggle search" }}</span>
+          <i class="fas fa-search"></i>
+        </button>
+        {% endif %}
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">{{ site.data.ui-text[locale].menu_label | default: "Toggle menu" }}</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>

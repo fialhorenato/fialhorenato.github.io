@@ -2,13 +2,15 @@
 title: "Encerramento Gradual no Spring Boot com Docker e Kubernetes"
 description: "Configure o graceful shutdown do Spring Boot e alinhe o prazo de encerramento do contêiner para concluir requisições durante implantações."
 date: 2021-12-07
-lang: pt
+lang: pt-BR
 permalink: /blog/encerramento-gradual-spring-boot-docker-kubernetes
-translation_url: /blog/spring-boot-docker-orchestrators
+translation_url: "/blog/spring-boot-docker-orchestrators"
 tags:
   - Desenvolvimento de Software
 last_modified_at: 2026-11-15
 layout: single
+locale: pt_BR
+translation_label: "Read this article in English"
 ---
 
 *Read this post in English: [Graceful Shutdown for Spring Boot in Docker and Kubernetes](/blog/spring-boot-docker-orchestrators).* 

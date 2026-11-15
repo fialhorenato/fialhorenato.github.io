@@ -5,6 +5,8 @@ tags:
 description: "A historical migration report covering Spring Security configuration and the javax-to-Jakarta package change in Spring Boot 3.0."
 last_modified_at: 2026-11-13
 layout: single
+lang: en
+locale: en_US
 ---
 
 This article documents my 2022 migration of [SpringBootstrap](https://github.com/fialhorenato/SpringBootstrap) from Spring Boot 2.7 to 3.0. See the changes in [pull request 215](https://github.com/fialhorenato/SpringBootstrap/pull/215).

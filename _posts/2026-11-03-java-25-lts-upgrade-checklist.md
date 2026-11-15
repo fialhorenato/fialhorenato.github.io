@@ -5,6 +5,8 @@ description: "Plan a Java 25 LTS migration with a checklist for dependency compa
 tags:
   - Software Development
 layout: single
+lang: en
+locale: en_US
 ---
 
 Java 25 is an LTS release in Oracle’s support roadmap, and it arrived in September 2025. For teams running Java 17 or 21, that makes it a useful point to assess the next runtime upgrade. An LTS label does not guarantee that every vendor has the same support policy, so confirm the lifecycle and licensing terms for the JDK distribution you deploy.

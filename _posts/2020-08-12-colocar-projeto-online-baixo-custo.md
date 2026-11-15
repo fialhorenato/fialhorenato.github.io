@@ -1,14 +1,16 @@
 ---
-title: "Como Colocar um Projeto Online com Baixo Custo: Domínio, VPS e HTTPS"
+title: "Projeto Online de Baixo Custo: Domínio, VPS e HTTPS"
 description: "Relato histórico de 2020 sobre como publicar um projeto com domínio, VPS, e-mail e HTTPS, e o que conferir nos provedores hoje."
 date: 2020-08-12
-lang: pt
+lang: pt-BR
 permalink: /blog/colocar-projeto-online-baixo-custo
-translation_url: /blog/how-to-put-your-side-project-online-with-less-than-1-dollar
+translation_url: "/blog/how-to-put-your-side-project-online-with-less-than-1-dollar"
 tags:
   - Desenvolvimento de Software
 last_modified_at: 2026-11-15
 layout: single
+locale: pt_BR
+translation_label: "Read this article in English"
 ---
 
 *Read this post in English: [Launch a Side Project Online: A Low-Cost Hosting Setup](/blog/how-to-put-your-side-project-online-with-less-than-1-dollar).* 

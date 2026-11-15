@@ -4,11 +4,12 @@ description: "See how time and compound interest affect a hypothetical retiremen
 date: 2020-08-11
 layout: single
 lang: en
-translation_url: /blog/porque-devemos-investir-jovens
+translation_url: "/blog/porque-devemos-investir-jovens"
 translation_label: "Leia este artigo em português"
 tags:
   - Personal
 permalink: /blog/compound-interest-start-investing-early
+locale: en_US
 ---
 
 Starting early can make a difference to long-term investing because of compound growth: returns may themselves earn returns in later periods. The longer money remains invested, the more time compounding has to work—but actual results depend on investment returns and risk.
