@@ -10,7 +10,11 @@
   {% assign language_url = '/' %}
   {% assign language_label = 'English' %}
 {% endif %}
-{% if page.translation_url %}{% assign language_url = page.translation_url %}{% endif %}
+{% if page.layout == 'splash' %}
+  {% if page.lang == 'pt-BR' %}{% assign language_url = '/' %}{% else %}{% assign language_url = '/pt/' %}{% endif %}
+{% elsif page.translation_url %}
+  {% assign language_url = page.translation_url %}
+{% endif %}
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
