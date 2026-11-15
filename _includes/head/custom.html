@@ -3,7 +3,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 {% if page.layout == "splash" %}
-<link rel="stylesheet" href="{{ '/assets/css/home-hero-v7-20261114.css' | relative_url }}">
+<style>
+  .home-intro { margin-top: 2rem !important; padding-top: 0 !important; }
+  .home-intro h1 { max-width: none; font-size: clamp(3rem, 4.2vw, 4rem); }
+  .home-actions { margin-top: 2.5rem; }
+  .home-lede { margin-top: 3rem !important; }
+
+  @media (max-width: 600px) {
+    .home-intro { margin-top: 1rem !important; padding-top: 0.5rem !important; }
+    .home-intro h1 { max-width: 12ch; font-size: clamp(3rem, 13vw, 4.5rem); }
+    .home-actions { margin-top: 0; }
+    .home-lede { margin-top: 2rem !important; }
+  }
+</style>
 {% endif %}
 
 <script>

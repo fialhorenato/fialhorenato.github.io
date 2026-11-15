@@ -252,6 +252,29 @@ body {
   border-bottom: 1px solid $color-border;
 }
 
+// Keep theme hover effects on compositor-friendly properties. The upstream
+// theme uses `transition: all` on several text and navigation controls.
+.greedy-nav .visible-links a::before {
+  transition-property: transform;
+}
+
+.greedy-nav__toggle::before {
+  transition-property: opacity;
+}
+
+.greedy-nav__toggle .navicon,
+.greedy-nav__toggle .navicon::before,
+.greedy-nav__toggle .navicon::after {
+  transition-property: transform, opacity;
+}
+
+.greedy-nav__toggle .visually-hidden,
+.search__toggle,
+.page__footer-follow .social-icons a,
+.page__footer-follow .social-icons a * {
+  transition: none;
+}
+
 @media (max-width: 600px) {
   .home-intro {
     margin-top: 1rem;
