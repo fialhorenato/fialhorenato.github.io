@@ -10,6 +10,9 @@ tags:
   - Personal
 permalink: /blog/prejuizo-investimento-custo-afundado
 locale: pt_BR
+header:
+  image: /images/post-covers/investment-losses-and-the-sunk-cost-trap.svg
+  image_description: "Prejuízo em Investimentos e a Armadilha do Custo Afundado"
 ---
 
 Ver um investimento valer menos do que o preço de compra pode fazer uma decisão simples parecer pessoal. É tentador esperar até que ele “volte ao zero” antes de decidir o que fazer.

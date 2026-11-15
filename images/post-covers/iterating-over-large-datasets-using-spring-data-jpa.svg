@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Spring Data JPA: Page, Slice, or Stream for Large Datasets</title>
+  <desc id="desc">A custom editorial illustration for an article about database.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eaf5f1"/><stop offset="1" stop-color="#fbfaf7"/></linearGradient><radialGradient id="glow"><stop stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="111" cy="75" r="185" fill="url(#glow)"/><circle cx="1110" cy="549" r="244" fill="url(#glow)"/>
+  <path d="M0 512c175-68 298 38 434-15 122-48 202-39 320 0v133H0z" fill="#276b62" opacity=".055"/><path d="M0 571c194-58 301 23 470-20 127-32 212-20 310 3v76H0z" fill="#d89b37" opacity=".05"/>
+  <g fill="#276b62" opacity=".12"><circle cx="80" cy="492" r="4"/><circle cx="112" cy="520" r="4"/><circle cx="144" cy="492" r="4"/><circle cx="176" cy="520" r="4"/><circle cx="208" cy="492" r="4"/><circle cx="240" cy="520" r="4"/></g>
+  <g transform="translate(585 85)">
+  <ellipse cx="270" cy="395" rx="278" ry="35" fill="#263c3a" opacity=".10"/>
+  <path d="M102 112c0-32 75-58 168-58s168 26 168 58v210c0 32-75 58-168 58s-168-26-168-58z" fill="#276b62" stroke="#263c3a" stroke-width="5"/><ellipse cx="270" cy="112" rx="168" ry="58" fill="#d89b37" stroke="#263c3a" stroke-width="5"/><path d="M103 182c0 32 75 58 167 58s167-26 167-58M103 254c0 32 75 58 167 58s167-26 167-58" fill="none" stroke="#fffdf9" stroke-width="8" opacity=".68"/>
+  <rect x="157" y="139" width="226" height="88" rx="13" fill="#fffdf9" stroke="#263c3a" stroke-width="4"/><path d="M179 165h62M262 165h91M179 195h96M300 195h53" stroke="#276b62" stroke-width="10" stroke-linecap="round"/>
+  <rect x="395" y="176" width="120" height="106" rx="17" fill="#d89b37" stroke="#263c3a" stroke-width="4"/><path d="M417 207h76M417 229h54M417 252h69" stroke="#fffdf9" stroke-width="9" stroke-linecap="round"/>
+  <path d="M392 227h-26" stroke="#263c3a" stroke-width="7"/><path d="M372 213l-16 14 16 14" fill="none" stroke="#263c3a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+
+  <path d="M1050 80h67M1083 47v67" stroke="#276b62" stroke-width="5" stroke-linecap="round" opacity=".48"/><circle cx="1065" cy="145" r="6" fill="#d89b37" opacity=".55"/>
+</svg>

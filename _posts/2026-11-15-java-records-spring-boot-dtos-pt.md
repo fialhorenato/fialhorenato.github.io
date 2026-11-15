@@ -11,6 +11,9 @@ lang: pt-BR
 locale: pt_BR
 translation_url: "/blog/java-records-spring-boot-dtos-en"
 translation_label: "Read this article in English"
+header:
+  image: /images/post-covers/java-records-spring-boot-dtos-en.svg
+  image_description: "DTOs no Spring Boot com Java Records: Validação e Limites"
 ---
 
 Ainda vale escrever DTOs Java com campos privados, construtor vazio, getters e setters? Para muitos objetos que apenas transportam dados, não. Um `record` oferece uma forma concisa de declarar um tipo de dados imutável por construção, com construtor canônico, acessores, `equals`, `hashCode` e `toString` gerados pelo compilador.

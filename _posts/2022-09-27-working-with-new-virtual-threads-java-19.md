@@ -7,6 +7,9 @@ last_modified_at: 2026-11-13
 layout: single
 lang: en
 locale: en_US
+header:
+  image: /images/post-covers/working-with-new-virtual-threads-java-19.svg
+  image_description: "Java Virtual Threads: From the Java 19 Preview to Java 21"
 ---
 
 ## What are virtual threads?

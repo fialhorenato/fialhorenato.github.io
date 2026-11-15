@@ -7,6 +7,9 @@ last_modified_at: 2026-11-13
 layout: single
 lang: en
 locale: en_US
+header:
+  image: /images/post-covers/learning-SOLID-from-coding.svg
+  image_description: "The SOLID Principles Explained with Java Examples"
 ---
 
 This guide explains the five SOLID principles—Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion—with Java examples. Treat them as design heuristics: apply them when they make a system easier to change and understand, rather than as rules that require extra abstractions everywhere.

@@ -12,6 +12,9 @@ layout: single
 toc: true
 locale: pt_BR
 translation_label: "Read this article in English"
+header:
+  image: /images/post-covers/tune-your-jvm-gc.svg
+  image_description: "Garbage Collector G1 no Java 8: Ajustes e Concessões"
 ---
 
 *Read this post in English: [Java 8 G1 Garbage Collection: Tuning Notes and Trade-Offs](/blog/tune-your-jvm-gc).* 

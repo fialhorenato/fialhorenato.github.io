@@ -9,6 +9,9 @@ lang: en
 locale: en_US
 translation_url: "/blog/corrigir-exdev-npm-docker"
 translation_label: "Leia este artigo em português"
+header:
+  image: /images/post-covers/learnings-docker-node.svg
+  image_description: "Fixing npm EXDEV Errors in Docker Containers"
 ---
 
 While working on a project, I used a Dockerfile to install dependencies and build an Angular 9 application. This post records an EXDEV error I encountered and the workaround I tried. Docker and npm behavior can vary by version and build setup, so treat this as a troubleshooting example rather than a universal fix.

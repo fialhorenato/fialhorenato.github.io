@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Set Up Flutter on Windows with Android Studio</title>
+  <desc id="desc">A custom editorial illustration for an article about mobile.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8f2fb"/><stop offset="1" stop-color="#fbfaf7"/></linearGradient><radialGradient id="glow"><stop stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="111" cy="75" r="185" fill="url(#glow)"/><circle cx="1110" cy="549" r="244" fill="url(#glow)"/>
+  <path d="M0 512c175-68 298 38 434-15 122-48 202-39 320 0v133H0z" fill="#3d70aa" opacity=".055"/><path d="M0 571c194-58 301 23 470-20 127-32 212-20 310 3v76H0z" fill="#35a08a" opacity=".05"/>
+  <g fill="#3d70aa" opacity=".12"><circle cx="80" cy="492" r="4"/><circle cx="112" cy="520" r="4"/><circle cx="144" cy="492" r="4"/><circle cx="176" cy="520" r="4"/><circle cx="208" cy="492" r="4"/><circle cx="240" cy="520" r="4"/></g>
+  <g transform="translate(640 58)">
+  <ellipse cx="220" cy="430" rx="240" ry="34" fill="#26384a" opacity=".10"/>
+  <rect x="132" y="18" width="220" height="410" rx="38" fill="#26384a"/><rect x="146" y="40" width="192" height="365" rx="25" fill="#fdfcf8"/><rect x="211" y="50" width="62" height="8" rx="4" fill="#26384a"/>
+  <rect x="163" y="92" width="158" height="134" rx="18" fill="#3d70aa"/><circle cx="242" cy="158" r="42" fill="#35a08a"/><path d="M226 160l13 13 26-31" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="165" y="250" width="154" height="18" rx="9" fill="#3d70aa" opacity=".65"/><rect x="165" y="283" width="111" height="13" rx="7" fill="#3d70aa" opacity=".35"/><rect x="165" y="310" width="138" height="13" rx="7" fill="#3d70aa" opacity=".35"/>
+  <circle cx="242" cy="374" r="14" fill="#35a08a"/>
+  <rect x="30" y="120" width="102" height="105" rx="18" fill="#35a08a"/><path d="M55 151l-17 20 17 20M106 151l17 20-17 20M88 145l-15 52" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M380 140h86M380 170h60M380 200h76" stroke="#3d70aa" stroke-width="12" stroke-linecap="round"/>
+</g>
+
+  <path d="M1050 80h67M1083 47v67" stroke="#3d70aa" stroke-width="5" stroke-linecap="round" opacity=".48"/><circle cx="1065" cy="145" r="6" fill="#35a08a" opacity=".55"/>
+</svg>

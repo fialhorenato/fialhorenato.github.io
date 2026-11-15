@@ -7,6 +7,9 @@ last_modified_at: 2026-11-13
 layout: single
 lang: en
 locale: en_US
+header:
+  image: /images/post-covers/challenges-using-spring-native-and-webflux.svg
+  image_description: "Spring Native and WebFlux: What I Learned from a PostgreSQL App"
 ---
 
 This is a report from a 2022 experiment with Spring Native, WebFlux, and R2DBC in a small news aggregation project. Spring Native was an experimental project that preceded the native-image support now integrated with Spring Boot 3. For a current project, start with the [Spring Boot native image documentation](https://docs.spring.io/spring-boot/reference/packaging/native-image/index.html); the limitations below describe the earlier stack and should be read as historical observations.

@@ -10,6 +10,9 @@ layout: single
 tags:
   - Personal
 locale: en_US
+header:
+  image: /images/post-covers/rebalance-portfolio-with-new-contributions.svg
+  image_description: "Rebalance an Investment Portfolio with New Contributions"
 ---
 
 When I started paying closer attention to my portfolio, I assumed rebalancing meant selling whatever had grown above its target and buying what had fallen behind. That is one way to restore a target allocation, but it is not the only way.

@@ -9,6 +9,9 @@ lang: en
 locale: en_US
 translation_url: "/blog/por-que-acesso-arquivos-wsl2-e-lento"
 translation_label: "Leia este artigo em português"
+header:
+  image: /images/post-covers/why-wsl2-is-so-slow.svg
+  image_description: "Why WSL 2 File Access Can Slow Down Development"
 ---
 
 ## TL;DR

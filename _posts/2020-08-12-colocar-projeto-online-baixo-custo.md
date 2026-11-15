@@ -11,6 +11,9 @@ last_modified_at: 2026-11-15
 layout: single
 locale: pt_BR
 translation_label: "Read this article in English"
+header:
+  image: /images/post-covers/how-to-put-your-side-project-online-with-less-than-1-dollar.svg
+  image_description: "Projeto Online de Baixo Custo: Domínio, VPS e HTTPS"
 ---
 
 *Read this post in English: [Launch a Side Project Online: A Low-Cost Hosting Setup](/blog/how-to-put-your-side-project-online-with-less-than-1-dollar).* 

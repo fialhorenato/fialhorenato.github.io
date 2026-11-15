@@ -9,6 +9,9 @@ translation_label: "Read this article in English"
 tags:
   - Personal
 locale: pt_BR
+header:
+  image: /images/post-covers/rebalance-portfolio-with-new-contributions.svg
+  image_description: "Como Reequilibrar uma Carteira com Novos Aportes"
 ---
 
 Quando comecei a prestar mais atenção à minha carteira, achava que reequilibrar significava vender o que havia passado do peso desejado e comprar o que estava abaixo. Essa é uma forma de voltar à alocação planejada, mas não é a única.

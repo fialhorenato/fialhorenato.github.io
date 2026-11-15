@@ -10,6 +10,9 @@ tags:
   - Personal
 permalink: /blog/core-satellite-investing-portfolio-roles
 locale: en_US
+header:
+  image: /images/post-covers/core-satellite-investing-portfolio-roles.svg
+  image_description: "Core and Satellite Investing: Give Every Portfolio Holding a Job"
 ---
 
 A portfolio can contain broad equity funds, bonds, gold, and a narrow thematic investment—and still be hard to explain. One way I find useful to organize the discussion is to give each holding a job.

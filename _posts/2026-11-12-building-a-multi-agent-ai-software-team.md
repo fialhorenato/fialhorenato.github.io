@@ -8,6 +8,9 @@ tags:
 layout: single
 lang: en
 locale: en_US
+header:
+  image: /images/post-covers/building-a-multi-agent-ai-software-team.svg
+  image_description: "Build a Multi-Agent AI Software Team with Claude Code"
 ---
 
 I’m building a café management product with AI agents involved in design, implementation, review, and usability testing. The useful change was not asking one model to write more code. It was giving different sessions clear jobs and building a workflow that carries decisions and evidence from one job to the next.

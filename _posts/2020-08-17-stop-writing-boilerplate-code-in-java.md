@@ -9,6 +9,9 @@ lang: en
 locale: en_US
 translation_url: "/blog/reduzir-boilerplate-java-lombok"
 translation_label: "Leia este artigo em português"
+header:
+  image: /images/post-covers/stop-writing-boilerplate-code-in-java.svg
+  image_description: "Reduce Java Boilerplate with Project Lombok"
 ---
 
 Have you spent time writing—or generating in an IDE—the same Java getters, setters, constructors, and utility methods? A simple data class can require getters, setters, constructors, toString, equals, and hashCode.

@@ -11,6 +11,9 @@ last_modified_at: 2026-11-15
 layout: single
 locale: pt_BR
 translation_label: "Read this article in English"
+header:
+  image: /images/post-covers/learnings-docker-node.svg
+  image_description: "Como Corrigir Erros npm EXDEV em Contêineres Docker"
 ---
 
 *Read this post in English: [Fixing npm EXDEV Errors in Docker Containers](/blog/learnings-docker-node).* 

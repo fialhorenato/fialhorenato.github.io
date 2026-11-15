@@ -26,6 +26,31 @@
   }
 </style>
 {% endif %}
+{% if page.collection == "posts" or page.date %}
+<style>
+  .page__hero:not(.page__hero--overlay) {
+    max-width: 1320px;
+    margin: 2rem auto 2.5rem;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+  }
+  .page__hero-image {
+    display: block;
+    width: 100%;
+    height: clamp(14rem, 34vw, 26rem);
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .page__hero:not(.page__hero--overlay) {
+      margin: 1rem auto 1.5rem;
+      padding: 0 1rem;
+    }
+    .page__hero-image { height: 14rem; border-radius: 0.75rem; }
+  }
+</style>
+{% endif %}
 
 <script>
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

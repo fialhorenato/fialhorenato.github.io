@@ -9,6 +9,9 @@ lang: en
 locale: en_US
 translation_url: "/blog/ajustar-g1-garbage-collector-java-8"
 translation_label: "Leia este artigo em português"
+header:
+  image: /images/post-covers/tune-your-jvm-gc.svg
+  image_description: "Java 8 G1 Garbage Collection: Tuning Notes and Trade-Offs"
 ---
 
 This article collects G1 garbage-collection tuning notes from a Java 8 service. It covers pause-time goals, heap sizing, and a few flags worth understanding.

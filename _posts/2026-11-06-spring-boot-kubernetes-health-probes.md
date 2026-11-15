@@ -7,6 +7,9 @@ tags:
 layout: single
 lang: en
 locale: en_US
+header:
+  image: /images/post-covers/spring-boot-kubernetes-health-probes.svg
+  image_description: "Spring Boot and Kubernetes Probes: Liveness, Readiness, Startup"
 ---
 
 Kubernetes health probes look like a small YAML detail, but the wrong check can turn a slow dependency into a restart loop—or send traffic to a Spring Boot instance that has not finished starting.

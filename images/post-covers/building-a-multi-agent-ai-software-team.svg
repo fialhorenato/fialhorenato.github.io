@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Build a Multi-Agent AI Software Team with Claude Code</title>
+  <desc id="desc">A custom editorial illustration for an article about ai.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1edfb"/><stop offset="1" stop-color="#fbfaf7"/></linearGradient><radialGradient id="glow"><stop stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="111" cy="75" r="185" fill="url(#glow)"/><circle cx="1110" cy="549" r="244" fill="url(#glow)"/>
+  <path d="M0 512c175-68 298 38 434-15 122-48 202-39 320 0v133H0z" fill="#6551a6" opacity=".055"/><path d="M0 571c194-58 301 23 470-20 127-32 212-20 310 3v76H0z" fill="#2e867b" opacity=".05"/>
+  <g fill="#6551a6" opacity=".12"><circle cx="80" cy="492" r="4"/><circle cx="112" cy="520" r="4"/><circle cx="144" cy="492" r="4"/><circle cx="176" cy="520" r="4"/><circle cx="208" cy="492" r="4"/><circle cx="240" cy="520" r="4"/></g>
+  <g transform="translate(610 92)">
+  <ellipse cx="245" cy="390" rx="275" ry="35" fill="#25293c" opacity=".10"/>
+  <path d="M240 220L100 90M240 220L390 84M240 220L72 315M240 220L410 320M100 90L390 84M72 315L410 320" stroke="#6551a6" stroke-width="8" opacity=".52"/>
+  <rect x="163" y="143" width="155" height="155" rx="28" fill="#6551a6" stroke="#25293c" stroke-width="5"/><path d="M207 223c0-22 16-39 36-39s36 17 36 39c0 15-8 24-18 32h-36c-10-8-18-17-18-32z" fill="#fffdf9" opacity=".94"/><path d="M222 264h42M228 276h30" stroke="#2e867b" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="100" cy="90" r="26" fill="#2e867b" stroke="#25293c" stroke-width="4"/><circle cx="100" cy="90" r="8" fill="#fffdf9"/><circle cx="390" cy="84" r="26" fill="#2e867b" stroke="#25293c" stroke-width="4"/><circle cx="390" cy="84" r="8" fill="#fffdf9"/><circle cx="72" cy="315" r="26" fill="#2e867b" stroke="#25293c" stroke-width="4"/><circle cx="72" cy="315" r="8" fill="#fffdf9"/><circle cx="410" cy="320" r="26" fill="#2e867b" stroke="#25293c" stroke-width="4"/><circle cx="410" cy="320" r="8" fill="#fffdf9"/><circle cx="240" cy="45" r="32" fill="#2e867b" stroke="#25293c" stroke-width="4"/><circle cx="240" cy="45" r="8" fill="#fffdf9"/>
+  <rect x="335" y="170" width="122" height="80" rx="14" fill="#fffdf9" stroke="#25293c" stroke-width="4"/><path d="M357 195h78M357 216h48" stroke="#6551a6" stroke-width="8" stroke-linecap="round"/>
+</g>
+
+  <path d="M1050 80h67M1083 47v67" stroke="#6551a6" stroke-width="5" stroke-linecap="round" opacity=".48"/><circle cx="1065" cy="145" r="6" fill="#2e867b" opacity=".55"/>
+</svg>

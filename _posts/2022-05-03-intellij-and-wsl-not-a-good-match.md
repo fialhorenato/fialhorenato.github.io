@@ -7,6 +7,9 @@ last_modified_at: 2026-11-13
 layout: single
 lang: en
 locale: en_US
+header:
+  image: /images/post-covers/intellij-and-wsl-not-a-good-match.svg
+  image_description: "Run IntelliJ IDEA with a WSL Development Environment"
 ---
 
 This is a 2022 account of running IntelliJ IDEA inside WSLg after I had trouble importing a Gradle project through my Windows IDE setup. WSL and JetBrains support have changed since then, so check the current [JetBrains WSL development documentation](https://www.jetbrains.com/help/idea/how-to-use-wsl-development-environment-in-product.html) before following these steps.

@@ -10,6 +10,9 @@ layout: single
 tags:
   - Personal
 locale: en_US
+header:
+  image: /images/post-covers/investment-losses-and-the-sunk-cost-trap.svg
+  image_description: "Investment Losses and Sunk Costs: Should You Sell?"
 ---
 
 Seeing an investment fall below its purchase price can make a simple decision feel personal. It is tempting to wait until it “gets back to even” before deciding what to do.

@@ -9,6 +9,9 @@ lang: en
 locale: en_US
 translation_url: "/blog/colocar-projeto-online-baixo-custo"
 translation_label: "Leia este artigo em português"
+header:
+  image: /images/post-covers/how-to-put-your-side-project-online-with-less-than-1-dollar.svg
+  image_description: "Launch a Side Project Online: A Low-Cost Hosting Setup"
 ---
 
 If you enjoy building with new languages and frameworks, you may have a side project waiting to go live. Time and motivation can get in the way, but cost is another common concern.

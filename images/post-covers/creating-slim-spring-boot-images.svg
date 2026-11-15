@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Build Smaller Spring Boot Docker Images with jlink</title>
+  <desc id="desc">A custom editorial illustration for an article about containers.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eaf0f6"/><stop offset="1" stop-color="#fbfaf7"/></linearGradient><radialGradient id="glow"><stop stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="111" cy="75" r="185" fill="url(#glow)"/><circle cx="1110" cy="549" r="244" fill="url(#glow)"/>
+  <path d="M0 512c175-68 298 38 434-15 122-48 202-39 320 0v133H0z" fill="#38658a" opacity=".055"/><path d="M0 571c194-58 301 23 470-20 127-32 212-20 310 3v76H0z" fill="#2d9788" opacity=".05"/>
+  <g fill="#38658a" opacity=".12"><circle cx="80" cy="492" r="4"/><circle cx="112" cy="520" r="4"/><circle cx="144" cy="492" r="4"/><circle cx="176" cy="520" r="4"/><circle cx="208" cy="492" r="4"/><circle cx="240" cy="520" r="4"/></g>
+  <g transform="translate(585 75)">
+  <ellipse cx="280" cy="395" rx="280" ry="36" fill="#263849" opacity=".10"/>
+  <path d="M140 168l150-82 150 82-150 82z" fill="#38658a" stroke="#263849" stroke-width="5"/><path d="M140 168v168l150 83V250z" fill="#2d9788" stroke="#263849" stroke-width="5"/><path d="M440 168v168l-150 83V250z" fill="#263849" opacity=".14" stroke="#263849" stroke-width="5"/>
+  <path d="M184 190l106-58 106 58-106 58z" fill="#fffdf9" opacity=".45"/><path d="M184 190v99l106 58v-99z" fill="#38658a" opacity=".7"/><path d="M396 190v99l-106 58v-99z" fill="#2d9788" opacity=".75"/>
+  <rect x="25" y="125" width="126" height="100" rx="16" fill="#fffdf9" stroke="#263849" stroke-width="4"/><path d="M50 157h76M50 180h54M50 201h69" stroke="#38658a" stroke-width="9" stroke-linecap="round"/>
+  <path d="M154 163H89" stroke="#263849" stroke-width="7"/><path d="M92 148l-20 15 20 15" fill="none" stroke="#263849" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="467" cy="111" r="37" fill="#2d9788"/><path d="M451 111h32M467 95v32" stroke="#fffdf9" stroke-width="8" stroke-linecap="round"/>
+</g>
+
+  <path d="M1050 80h67M1083 47v67" stroke="#38658a" stroke-width="5" stroke-linecap="round" opacity=".48"/><circle cx="1065" cy="145" r="6" fill="#2d9788" opacity=".55"/>
+</svg>

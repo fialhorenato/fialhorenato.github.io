@@ -9,6 +9,9 @@ lang: en
 locale: en_US
 translation_url: "/blog/configurar-flutter-windows-android-studio"
 translation_label: "Leia este artigo em português"
+header:
+  image: /images/post-covers/starting-with-flutter.svg
+  image_description: "Set Up Flutter on Windows with Android Studio"
 ---
 
 This post records how I set up Flutter 2.5 and Android Studio on Windows in 2021. It is a historical walkthrough, not a current installation recipe; use the official [Flutter installation guide](https://docs.flutter.dev/get-started/install) for up-to-date commands and prerequisites.

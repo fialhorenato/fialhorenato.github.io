@@ -9,6 +9,9 @@ lang: en
 translation_url: "/blog/por-que-comecei-este-blog"
 translation_label: "Read this post in Portuguese"
 locale: en_US
+header:
+  image: /images/post-covers/hello-world.svg
+  image_description: "Why I Started This Blog"
 ---
 
 Welcome. I started this blog as a place to share what I learn about software development, technology, and engineering. You’ll find practical notes, lessons from projects, and ideas I’m still exploring. I hope you find something useful here.

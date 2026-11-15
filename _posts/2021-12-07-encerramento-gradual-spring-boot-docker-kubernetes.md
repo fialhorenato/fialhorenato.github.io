@@ -11,6 +11,9 @@ last_modified_at: 2026-11-15
 layout: single
 locale: pt_BR
 translation_label: "Read this article in English"
+header:
+  image: /images/post-covers/spring-boot-docker-orchestrators.svg
+  image_description: "Encerramento Gradual no Spring Boot com Docker e Kubernetes"
 ---
 
 *Read this post in English: [Graceful Shutdown for Spring Boot in Docker and Kubernetes](/blog/spring-boot-docker-orchestrators).* 

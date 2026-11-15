@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Why I Started This Blog</title>
+  <desc id="desc">A custom editorial illustration for an article about journal.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7efe4"/><stop offset="1" stop-color="#fbfaf7"/></linearGradient><radialGradient id="glow"><stop stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="111" cy="75" r="185" fill="url(#glow)"/><circle cx="1110" cy="549" r="244" fill="url(#glow)"/>
+  <path d="M0 512c175-68 298 38 434-15 122-48 202-39 320 0v133H0z" fill="#a76e3f" opacity=".055"/><path d="M0 571c194-58 301 23 470-20 127-32 212-20 310 3v76H0z" fill="#28745e" opacity=".05"/>
+  <g fill="#a76e3f" opacity=".12"><circle cx="80" cy="492" r="4"/><circle cx="112" cy="520" r="4"/><circle cx="144" cy="492" r="4"/><circle cx="176" cy="520" r="4"/><circle cx="208" cy="492" r="4"/><circle cx="240" cy="520" r="4"/></g>
+  <g transform="translate(590 87)">
+  <ellipse cx="265" cy="390" rx="278" ry="35" fill="#39352f" opacity=".10"/>
+  <path d="M95 105q90-40 174 8v267q-84-48-174-8z" fill="#fffdf9" stroke="#39352f" stroke-width="5"/><path d="M269 113q87-48 174-8v267q-87-32-174 8z" fill="#a76e3f" stroke="#39352f" stroke-width="5"/><path d="M269 113v267" stroke="#39352f" stroke-width="5"/>
+  <path d="M127 160h101M127 192h112M127 224h92M301 162h103M301 194h84M301 226h104" stroke="#28745e" stroke-width="10" stroke-linecap="round" opacity=".72"/>
+  <path d="M395 72l72 28-110 244-72-28z" fill="#28745e" stroke="#39352f" stroke-width="5"/><path d="M285 316l-21 58 53-31z" fill="#d99a36" stroke="#39352f" stroke-width="4"/>
+  <circle cx="100" cy="97" r="28" fill="#a76e3f"/><path d="M89 97l8 8 16-19" fill="none" stroke="#fffdf9" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+
+  <path d="M1050 80h67M1083 47v67" stroke="#a76e3f" stroke-width="5" stroke-linecap="round" opacity=".48"/><circle cx="1065" cy="145" r="6" fill="#28745e" opacity=".55"/>
+</svg>

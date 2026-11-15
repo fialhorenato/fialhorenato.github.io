@@ -8,6 +8,9 @@ tags:
 layout: single
 lang: en
 locale: en_US
+header:
+  image: /images/post-covers/secure-spring-ai-tool-calling.svg
+  image_description: "Secure Spring AI Tool Calling: Authorization and Validation"
 ---
 
 An AI agent can summarize a report, look up an order, or call an application API. The difficult part is not exposing a Java method to a model. It is deciding what that method is allowed to do, for whom, and under which conditions.

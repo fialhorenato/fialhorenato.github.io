@@ -11,6 +11,9 @@ last_modified_at: 2026-11-15
 layout: single
 locale: pt_BR
 translation_label: "Read this article in English"
+header:
+  image: /images/post-covers/starting-with-flutter.svg
+  image_description: "Como Configurar o Flutter no Windows com Android Studio"
 ---
 
 *Read this post in English: [Set Up Flutter on Windows with Android Studio](/blog/starting-with-flutter).* 

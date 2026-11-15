@@ -10,6 +10,9 @@ tags:
   - Personal
 permalink: /blog/carteira-core-satellite-funcoes
 locale: pt_BR
+header:
+  image: /images/post-covers/core-satellite-investing-portfolio-roles.svg
+  image_description: "Investimento Core-Satellite: Defina a Função de Cada Ativo"
 ---
 
 Uma carteira pode ter fundos amplos de ações, títulos, ouro e um investimento temático concentrado — e ainda assim ser difícil explicar. Uma forma útil de organizar a conversa é dar uma função para cada posição.

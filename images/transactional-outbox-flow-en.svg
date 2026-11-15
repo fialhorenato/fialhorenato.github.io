@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Transactional outbox event flow</title>
+  <desc id="desc">The order service writes an order and a pending outbox event in one database transaction. A relay publishes the event to Kafka, and an idempotent consumer processes it.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#334155"/></marker>
+    <style>
+      text{font-family:Inter,Arial,sans-serif;fill:#17212b}.title{font-size:25px;font-weight:700}.label{font-size:18px;font-weight:650}.small{font-size:14px;fill:#475569}.step{font-size:13px;font-weight:700;fill:#fff}
+    </style>
+  </defs>
+  <rect width="1200" height="420" rx="22" fill="#fbfaf7"/>
+  <text x="600" y="45" text-anchor="middle" class="title">Transactional Outbox: durable event handoff</text>
+  <rect x="35" y="125" width="180" height="130" rx="16" fill="#e6efff" stroke="#3973d6" stroke-width="3"/>
+  <text x="125" y="172" text-anchor="middle" class="label">Order service</text><text x="125" y="203" text-anchor="middle" class="small">business logic</text><text x="125" y="230" text-anchor="middle" class="small">save order + event</text>
+  <rect x="260" y="90" width="300" height="200" rx="18" fill="#f1f5f9" stroke="#475569" stroke-width="3"/>
+  <text x="410" y="122" text-anchor="middle" class="label">One database transaction</text>
+  <rect x="285" y="145" width="250" height="48" rx="10" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/><text x="410" y="175" text-anchor="middle" class="label">orders · business data</text>
+  <rect x="285" y="210" width="250" height="55" rx="10" fill="#fff1c2" stroke="#db8b13" stroke-width="2"/><text x="410" y="234" text-anchor="middle" class="label">outbox · PENDING</text><text x="410" y="253" text-anchor="middle" class="small">stable event ID + payload</text>
+  <rect x="620" y="125" width="165" height="130" rx="16" fill="#f0eaff" stroke="#8354d9" stroke-width="3"/><text x="702" y="173" text-anchor="middle" class="label">Outbox relay</text><text x="702" y="204" text-anchor="middle" class="small">polling or CDC</text><text x="702" y="230" text-anchor="middle" class="small">retry on failure</text>
+  <rect x="850" y="125" width="135" height="130" rx="16" fill="#fee7e5" stroke="#d64040" stroke-width="3"/><text x="917" y="182" text-anchor="middle" class="label">Kafka</text><text x="917" y="211" text-anchor="middle" class="small">topic</text>
+  <rect x="1040" y="125" width="130" height="130" rx="16" fill="#e3f8ec" stroke="#1b9a5a" stroke-width="3"/><text x="1105" y="171" text-anchor="middle" class="label">Consumer</text><text x="1105" y="202" text-anchor="middle" class="small">dedupe by</text><text x="1105" y="222" text-anchor="middle" class="small">event ID</text>
+  <path d="M215 190h38" stroke="#334155" stroke-width="4" marker-end="url(#arrow)"/><path d="M560 190h53" stroke="#334155" stroke-width="4" marker-end="url(#arrow)"/><path d="M785 190h58" stroke="#334155" stroke-width="4" marker-end="url(#arrow)"/><path d="M985 190h48" stroke="#334155" stroke-width="4" marker-end="url(#arrow)"/>
+  <circle cx="234" cy="160" r="13" fill="#17212b"/><text x="234" y="165" text-anchor="middle" class="step">1</text><circle cx="587" cy="160" r="13" fill="#17212b"/><text x="587" y="165" text-anchor="middle" class="step">2</text><circle cx="814" cy="160" r="13" fill="#17212b"/><text x="814" y="165" text-anchor="middle" class="step">3</text><circle cx="1012" cy="160" r="13" fill="#17212b"/><text x="1012" y="165" text-anchor="middle" class="step">4</text>
+  <rect x="85" y="330" width="455" height="52" rx="13" fill="#e6f7ef" stroke="#1b9a5a" stroke-width="2"/><text x="312" y="362" text-anchor="middle" class="label">Crash after commit? The event remains durable.</text>
+  <rect x="575" y="330" width="540" height="52" rx="13" fill="#fff7df" stroke="#db8b13" stroke-width="2"/><text x="845" y="362" text-anchor="middle" class="label">At-least-once delivery: consumers must be idempotent.</text>
+</svg>

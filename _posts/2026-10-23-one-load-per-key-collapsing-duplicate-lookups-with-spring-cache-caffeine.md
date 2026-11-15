@@ -8,6 +8,9 @@ tags:
 source_url: https://dev.to/fialhorenato/one-load-per-key-collapsing-duplicate-lookups-with-spring-boots-cache-and-caffeine-390p
 lang: en
 locale: en_US
+header:
+  image: /images/post-covers/one-load-per-key-collapsing-duplicate-lookups-with-spring-cache-caffeine.svg
+  image_description: "Spring Cache and Caffeine: Collapse Concurrent Loads per Key"
 ---
 
 Rule engines, aggregators, and validation pipelines share a hidden cost: independent components ask the same downstream question with the same key at the same time. Each component is correct on its own; together, they multiply the load on the system behind them.

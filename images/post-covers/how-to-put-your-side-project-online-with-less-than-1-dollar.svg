@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Launch a Side Project Online: A Low-Cost Hosting Setup</title>
+  <desc id="desc">A custom editorial illustration for an article about code.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eef2ed"/><stop offset="1" stop-color="#fbfaf7"/></linearGradient><radialGradient id="glow"><stop stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="111" cy="75" r="185" fill="url(#glow)"/><circle cx="1110" cy="549" r="244" fill="url(#glow)"/>
+  <path d="M0 512c175-68 298 38 434-15 122-48 202-39 320 0v133H0z" fill="#426c5c" opacity=".055"/><path d="M0 571c194-58 301 23 470-20 127-32 212-20 310 3v76H0z" fill="#bc8543" opacity=".05"/>
+  <g fill="#426c5c" opacity=".12"><circle cx="80" cy="492" r="4"/><circle cx="112" cy="520" r="4"/><circle cx="144" cy="492" r="4"/><circle cx="176" cy="520" r="4"/><circle cx="208" cy="492" r="4"/><circle cx="240" cy="520" r="4"/></g>
+  <g transform="translate(585 90)">
+  <ellipse cx="278" cy="390" rx="288" ry="34" fill="#293b34" opacity=".10"/>
+  <rect x="55" y="73" width="450" height="294" rx="24" fill="#293b34"/><rect x="72" y="91" width="416" height="246" rx="13" fill="#fdfcf8"/>
+  <path d="M185 367v32M375 367v32M143 401h274" stroke="#293b34" stroke-width="12" stroke-linecap="round"/>
+  <rect x="96" y="121" width="117" height="187" rx="13" fill="#426c5c"/><path d="M119 154h69M119 181h48M119 208h67M119 235h53" stroke="#fffdf9" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+  <rect x="236" y="121" width="223" height="187" rx="13" fill="#fff" stroke="#426c5c" stroke-width="3"/><path d="M268 168l-24 25 24 25M335 168l24 25-24 25M319 158l-24 70" fill="none" stroke="#bc8543" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="449" cy="84" r="42" fill="#bc8543"/><path d="M432 84h34M449 67v34" stroke="#fffdf9" stroke-width="8" stroke-linecap="round"/>
+  <rect x="4" y="215" width="80" height="99" rx="15" fill="#bc8543"/><path d="M25 244h38M25 262h30M25 280h36" stroke="#fffdf9" stroke-width="7" stroke-linecap="round"/>
+</g>
+
+  <path d="M1050 80h67M1083 47v67" stroke="#426c5c" stroke-width="5" stroke-linecap="round" opacity=".48"/><circle cx="1065" cy="145" r="6" fill="#bc8543" opacity=".55"/>
+</svg>

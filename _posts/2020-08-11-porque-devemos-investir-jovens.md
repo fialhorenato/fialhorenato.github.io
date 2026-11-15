@@ -9,6 +9,9 @@ layout: single
 locale: pt_BR
 translation_url: "/blog/compound-interest-start-investing-early"
 translation_label: "Read this article in English"
+header:
+  image: /images/post-covers/compound-interest-start-investing-early.svg
+  image_description: "Juros Compostos: Por Que Começar a Investir Cedo?"
 ---
 
 Começar a investir cedo pode fazer diferença no longo prazo por causa dos juros compostos. Nesse mecanismo, os rendimentos acumulados também passam a render nos períodos seguintes. Quanto mais tempo o dinheiro permanece investido, maior pode ser o efeito da capitalização — embora o resultado real dependa da rentabilidade e dos riscos de cada investimento.

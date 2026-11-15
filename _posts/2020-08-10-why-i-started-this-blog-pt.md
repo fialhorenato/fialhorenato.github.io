@@ -10,6 +10,9 @@ tags:
   - Personal
 permalink: /blog/por-que-comecei-este-blog
 locale: pt_BR
+header:
+  image: /images/post-covers/hello-world.svg
+  image_description: "Por Que Comecei Este Blog"
 ---
 
 Comecei este blog para registrar e compartilhar o que venho aprendendo sobre desenvolvimento de software, tecnologia e engenharia. Aqui escrevo sobre problemas que encontro no trabalho, ferramentas que testo, decisões técnicas e ideias que despertam minha curiosidade.

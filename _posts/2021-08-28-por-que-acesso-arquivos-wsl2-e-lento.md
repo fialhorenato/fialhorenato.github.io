@@ -11,6 +11,9 @@ last_modified_at: 2026-11-15
 layout: single
 locale: pt_BR
 translation_label: "Read this article in English"
+header:
+  image: /images/post-covers/why-wsl2-is-so-slow.svg
+  image_description: "WSL 2: Acesso a Arquivos e Desempenho no Desenvolvimento"
 ---
 
 *Read this post in English: [Why WSL 2 File Access Can Slow Down Development](/blog/why-wsl2-is-so-slow).* 

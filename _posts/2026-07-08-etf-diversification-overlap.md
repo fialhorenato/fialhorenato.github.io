@@ -10,6 +10,9 @@ tags:
   - Personal
 permalink: /blog/etf-diversification-overlap
 locale: en_US
+header:
+  image: /images/post-covers/etf-diversification-overlap.svg
+  image_description: "ETF Diversification: Why Owning More Funds May Not Reduce Risk"
 ---
 
 When I first started comparing ETFs, it was easy to think that adding another fund automatically made a portfolio more diversified. But two funds with different names can own many of the same companies.

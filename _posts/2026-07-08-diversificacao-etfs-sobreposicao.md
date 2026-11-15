@@ -10,6 +10,9 @@ tags:
   - Personal
 permalink: /blog/diversificacao-etfs-sobreposicao
 locale: pt_BR
+header:
+  image: /images/post-covers/etf-diversification-overlap.svg
+  image_description: "Diversificação com ETFs: Fundos Diferentes, Riscos Iguais?"
 ---
 
 Quando comecei a comparar ETFs, era fácil pensar que adicionar outro fundo tornaria a carteira automaticamente mais diversificada. Mas dois fundos com nomes diferentes podem ter muitas das mesmas empresas.

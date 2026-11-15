@@ -9,6 +9,9 @@ tags:
 source_url: https://www.linkedin.com/pulse/what-happens-when-you-stop-using-claude-coding-assistant-fialho-os7ce/
 lang: en
 locale: en_US
+header:
+  image: /images/post-covers/what-happens-when-you-stop-using-claude.svg
+  image_description: "Building a Reliable AI Coding Workflow with Claude"
 ---
 
 While building a product, I tried a different way of working with Claude. Instead of keeping it in a chat loop, I built a small autonomous engineering harness around it.

@@ -10,6 +10,9 @@ tags:
   - Personal
 permalink: /blog/compound-interest-start-investing-early
 locale: en_US
+header:
+  image: /images/post-covers/compound-interest-start-investing-early.svg
+  image_description: "Compound Interest: Why Starting to Invest Early Can Matter"
 ---
 
 Starting early can make a difference to long-term investing because of compound growth: returns may themselves earn returns in later periods. The longer money remains invested, the more time compounding has to work—but actual results depend on investment returns and risk.

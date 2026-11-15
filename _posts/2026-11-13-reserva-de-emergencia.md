@@ -10,6 +10,9 @@ tags:
   - Personal
 permalink: /blog/reserva-de-emergencia
 locale: pt_BR
+header:
+  image: /images/post-covers/emergency-fund-how-to-build-one.svg
+  image_description: "Reserva de Emergência: Como Planejar uma Proteção Financeira"
 ---
 
 Uma despesa inesperada pode obrigar você a vender investimentos em um momento ruim ou a recorrer a crédito caro. Uma reserva de emergência existe para reduzir essa pressão: ela mantém dinheiro acessível para imprevistos sem depender do que está acontecendo com a bolsa ou com a sua renda naquele mês.

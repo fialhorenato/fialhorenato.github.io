@@ -9,6 +9,9 @@ lang: en
 locale: en_US
 translation_url: "/blog/imagens-spring-boot-docker-menores-jlink"
 translation_label: "Leia este artigo em português"
+header:
+  image: /images/post-covers/creating-slim-spring-boot-images.svg
+  image_description: "Build Smaller Spring Boot Docker Images with jlink"
 ---
 
 This 2022 walkthrough shows how I used `jdeps` and `jlink` to build a smaller Java runtime for a Spring Boot Docker image. It uses Java 17-era image names and commands; review the base images, Java version, and module list for your current application before adopting it.

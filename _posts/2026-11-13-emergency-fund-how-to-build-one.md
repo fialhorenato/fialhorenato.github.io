@@ -10,6 +10,9 @@ tags:
   - Personal
 permalink: /blog/emergency-fund-how-to-build-one
 locale: en_US
+header:
+  image: /images/post-covers/emergency-fund-how-to-build-one.svg
+  image_description: "Emergency Fund: How to Build a Financial Safety Net"
 ---
 
 An unexpected expense can force you to sell investments at a bad time or rely on expensive credit. An emergency fund is meant to reduce that pressure: it keeps money accessible for disruptions without depending on what the stock market or your income is doing that month.

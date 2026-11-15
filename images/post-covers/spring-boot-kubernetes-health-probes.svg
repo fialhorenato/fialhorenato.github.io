@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Spring Boot and Kubernetes Probes: Liveness, Readiness, Startup</title>
+  <desc id="desc">A custom editorial illustration for an article about operations.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf3f5"/><stop offset="1" stop-color="#fbfaf7"/></linearGradient><radialGradient id="glow"><stop stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="111" cy="75" r="185" fill="url(#glow)"/><circle cx="1110" cy="549" r="244" fill="url(#glow)"/>
+  <path d="M0 512c175-68 298 38 434-15 122-48 202-39 320 0v133H0z" fill="#386b7d" opacity=".055"/><path d="M0 571c194-58 301 23 470-20 127-32 212-20 310 3v76H0z" fill="#d29439" opacity=".05"/>
+  <g fill="#386b7d" opacity=".12"><circle cx="80" cy="492" r="4"/><circle cx="112" cy="520" r="4"/><circle cx="144" cy="492" r="4"/><circle cx="176" cy="520" r="4"/><circle cx="208" cy="492" r="4"/><circle cx="240" cy="520" r="4"/></g>
+  <g transform="translate(605 88)">
+  <ellipse cx="250" cy="400" rx="280" ry="34" fill="#283a43" opacity=".10"/>
+  <rect x="48" y="62" width="420" height="300" rx="26" fill="#283a43"/><rect x="64" y="80" width="388" height="258" rx="16" fill="#fdfcf8"/>
+  <rect x="88" y="104" width="155" height="91" rx="16" fill="#386b7d"/><path d="M105 159h29l17-29 25 48 20-31h27" fill="none" stroke="#fffdf9" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="263" y="104" width="165" height="91" rx="16" fill="#d29439"/><circle cx="345" cy="148" r="29" fill="#fffdf9" opacity=".9"/><path d="M345 127v23l15 10" fill="none" stroke="#386b7d" stroke-width="7" stroke-linecap="round"/>
+  <rect x="91" y="217" width="337" height="20" rx="10" fill="#386b7d" opacity=".34"/><rect x="91" y="254" width="271" height="16" rx="8" fill="#386b7d" opacity=".22"/><rect x="91" y="285" width="309" height="16" rx="8" fill="#386b7d" opacity=".22"/>
+  <path d="M204 363v30M307 363v30M166 395h178" stroke="#283a43" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="478" cy="102" r="44" fill="#d29439"/><path d="M478 78v48M455 102h46" stroke="#fffdf9" stroke-width="8" stroke-linecap="round"/>
+</g>
+
+  <path d="M1050 80h67M1083 47v67" stroke="#386b7d" stroke-width="5" stroke-linecap="round" opacity=".48"/><circle cx="1065" cy="145" r="6" fill="#d29439" opacity=".55"/>
+</svg>

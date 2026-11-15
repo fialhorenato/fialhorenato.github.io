@@ -12,6 +12,9 @@ layout: single
 toc: true
 locale: pt_BR
 translation_label: "Read this article in English"
+header:
+  image: /images/post-covers/creating-slim-spring-boot-images.svg
+  image_description: "Como Criar Imagens Docker Menores para Spring Boot com jlink"
 ---
 
 *Read this post in English: [Build Smaller Spring Boot Docker Images with jlink](/blog/creating-slim-spring-boot-images).* 

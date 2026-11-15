@@ -7,6 +7,9 @@ last_modified_at: 2026-11-13
 layout: single
 lang: en
 locale: en_US
+header:
+  image: /images/post-covers/migrating-your-spring-application-to-3.svg
+  image_description: "Migrating a Kotlin Application from Spring Boot 2.7 to 3.0"
 ---
 
 This article documents my 2022 migration of [SpringBootstrap](https://github.com/fialhorenato/SpringBootstrap) from Spring Boot 2.7 to 3.0. See the changes in [pull request 215](https://github.com/fialhorenato/SpringBootstrap/pull/215).
